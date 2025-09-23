@@ -10,7 +10,7 @@ const Header = () => {
       <StatusBar />
       <div 
         className={`fixed top-10 left-0 right-0 z-50 transition-transform duration-300 ease-out ${
-          scrollDirection === "down" ? "-translate-y-24" : "translate-y-0"
+          scrollDirection === "down" ? "-translate-y-full" : "translate-y-0"
         }`}
       >
         <Navigation />
