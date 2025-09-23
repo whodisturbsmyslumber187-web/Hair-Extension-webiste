@@ -93,15 +93,17 @@ const ProductCarousel = () => {
                       <div className="absolute inset-0 bg-black/[0.03]"></div>
                     </div>
                     <div className="space-y-1">
-                      <p className="text-xs font-light text-muted-foreground uppercase tracking-wide">
+                      <p className="text-sm font-medium text-foreground">
                         {product.category}
                       </p>
-                      <h3 className="text-sm font-medium text-foreground">
-                        {product.name}
-                      </h3>
-                      <p className="text-sm font-medium text-foreground">
-                        {product.price}
-                      </p>
+                      <div className="flex justify-between items-center">
+                        <h3 className="text-sm font-medium text-foreground">
+                          {product.name}
+                        </h3>
+                        <p className="text-sm font-light text-foreground">
+                          {product.price}
+                        </p>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
