@@ -9,8 +9,7 @@ const Navigation = () => {
 
   return (
     <nav className="bg-nav border-b border-border">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+      <div className="flex items-center justify-between h-16 px-6">
           {/* Left navigation */}
           <div className="flex space-x-8">
             {navItems.map((item) => (
@@ -52,7 +51,6 @@ const Navigation = () => {
               <ShoppingBag size={20} />
             </button>
           </div>
-        </div>
       </div>
     </nav>
   );
