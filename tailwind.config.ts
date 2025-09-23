@@ -22,6 +22,7 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          hover: "hsl(var(--primary-hover))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -46,6 +47,16 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        /* Linea specific colors */
+        "status-bar": {
+          DEFAULT: "hsl(var(--status-bar))",
+          foreground: "hsl(var(--status-bar-foreground))",
+        },
+        "nav": {
+          DEFAULT: "hsl(var(--nav-background))",
+          foreground: "hsl(var(--nav-foreground))",
+          hover: "hsl(var(--nav-hover))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
@@ -80,10 +91,32 @@ export default {
             height: "0",
           },
         },
+        "slide-in": {
+          from: {
+            transform: "translateX(-100%)",
+          },
+          to: {
+            transform: "translateX(0)",
+          },
+        },
+        "fade-in": {
+          from: {
+            opacity: "0",
+          },
+          to: {
+            opacity: "1",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out", 
+        "slide-in": "slide-in 0.3s ease-out",
+        "fade-in": "fade-in 0.2s ease-out",
+      },
+      transitionTimingFunction: {
+        "smooth": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "bounce": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
       },
     },
   },
