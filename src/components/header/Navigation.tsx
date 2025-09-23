@@ -115,7 +115,7 @@ const Navigation = () => {
             <div className="flex justify-between w-full">
               {/* Left side - Menu items */}
               <div className="flex-1">
-                <ul className="space-y-4">
+                <ul className="space-y-2">
                   {navItems
                     .find(item => item.name === activeDropdown)
                     ?.submenuItems.map((subItem, index) => (
