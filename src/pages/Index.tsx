@@ -14,9 +14,9 @@ const Index = () => {
       <main className="pt-6">
         <FiftyFiftySection />
         <ProductCarousel />
-        <EditorialSection />
         <LargeHero />
         <OneThirdTwoThirdsSection />
+        <EditorialSection />
       </main>
       
       <Footer />
