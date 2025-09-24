@@ -51,97 +51,102 @@ const FilterSortBar = ({ onFiltersToggle, filtersOpen, onFiltersClose }: FilterS
                   Filters
                 </Button>
               </SheetTrigger>
-            <SheetContent side="left" className="w-80 bg-background">
-              <SheetHeader className="mb-6">
-                <div className="flex items-center justify-between">
-                  <SheetTitle className="text-lg font-medium">Filters</SheetTitle>
-                  <Button 
-                    variant="ghost" 
-                    size="sm"
-                    onClick={onFiltersClose}
-                    className="h-8 w-8 p-0"
-                  >
-                    <X className="h-4 w-4" />
-                  </Button>
-                </div>
-              </SheetHeader>
-              
-              <div className="space-y-6">
-                {/* Category Filter */}
-                <div>
-                  <h3 className="text-sm font-medium mb-3">Category</h3>
-                  <div className="space-y-2">
-                    {categories.map((category) => (
-                      <div key={category} className="flex items-center space-x-2">
-                        <Checkbox id={category} />
-                        <Label htmlFor={category} className="text-sm font-light">
-                          {category}
-                        </Label>
-                      </div>
-                    ))}
+              <SheetContent side="left" className="w-80 bg-background">
+                <SheetHeader className="mb-6">
+                  <div className="flex items-center justify-between">
+                    <SheetTitle className="text-lg font-medium">Filters</SheetTitle>
+                    <Button 
+                      variant="ghost" 
+                      size="sm"
+                      onClick={onFiltersClose}
+                      className="h-8 w-8 p-0"
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </SheetHeader>
+                
+                <div className="space-y-6">
+                  {/* Category Filter */}
+                  <div>
+                    <h3 className="text-sm font-medium mb-3">Category</h3>
+                    <div className="space-y-2">
+                      {categories.map((category) => (
+                        <div key={category} className="flex items-center space-x-2">
+                          <Checkbox id={category} />
+                          <Label htmlFor={category} className="text-sm font-light">
+                            {category}
+                          </Label>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <Separator />
+
+                  {/* Price Filter */}
+                  <div>
+                    <h3 className="text-sm font-medium mb-3">Price</h3>
+                    <div className="space-y-2">
+                      {priceRanges.map((range) => (
+                        <div key={range} className="flex items-center space-x-2">
+                          <Checkbox id={range} />
+                          <Label htmlFor={range} className="text-sm font-light">
+                            {range}
+                          </Label>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <Separator />
+
+                  {/* Material Filter */}
+                  <div>
+                    <h3 className="text-sm font-medium mb-3">Material</h3>
+                    <div className="space-y-2">
+                      {materials.map((material) => (
+                        <div key={material} className="flex items-center space-x-2">
+                          <Checkbox id={material} />
+                          <Label htmlFor={material} className="text-sm font-light">
+                            {material}
+                          </Label>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <Separator />
+
+                  <div className="flex gap-2">
+                    <Button variant="outline" size="sm" className="flex-1">
+                      Clear All
+                    </Button>
+                    <Button size="sm" className="flex-1">
+                      Apply Filters
+                    </Button>
                   </div>
                 </div>
+              </SheetContent>
+            </Sheet>
 
-                <Separator />
-
-                {/* Price Filter */}
-                <div>
-                  <h3 className="text-sm font-medium mb-3">Price</h3>
-                  <div className="space-y-2">
-                    {priceRanges.map((range) => (
-                      <div key={range} className="flex items-center space-x-2">
-                        <Checkbox id={range} />
-                        <Label htmlFor={range} className="text-sm font-light">
-                          {range}
-                        </Label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <Separator />
-
-                {/* Material Filter */}
-                <div>
-                  <h3 className="text-sm font-medium mb-3">Material</h3>
-                  <div className="space-y-2">
-                    {materials.map((material) => (
-                      <div key={material} className="flex items-center space-x-2">
-                        <Checkbox id={material} />
-                        <Label htmlFor={material} className="text-sm font-light">
-                          {material}
-                        </Label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <Separator />
-
-                <div className="flex gap-2">
-                  <Button variant="outline" size="sm" className="flex-1">
-                    Clear All
-                  </Button>
-                  <Button size="sm" className="flex-1">
-                    Apply Filters
-                  </Button>
-                </div>
-              </div>
-            </SheetContent>
-          </Sheet>
-
-          <Select value={sortBy} onValueChange={setSortBy}>
-            <SelectTrigger className="w-40 border-none bg-transparent text-sm font-light shadow-none rounded-none">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent className="shadow-none border-none rounded-none bg-background">
-              <SelectItem value="featured" className="hover:bg-transparent hover:underline data-[state=checked]:bg-transparent data-[state=checked]:underline">Featured</SelectItem>
-              <SelectItem value="price-low" className="hover:bg-transparent hover:underline data-[state=checked]:bg-transparent data-[state=checked]:underline">Price: Low to High</SelectItem>
-              <SelectItem value="price-high" className="hover:bg-transparent hover:underline data-[state=checked]:bg-transparent data-[state=checked]:underline">Price: High to Low</SelectItem>
-              <SelectItem value="newest" className="hover:bg-transparent hover:underline data-[state=checked]:bg-transparent data-[state=checked]:underline">Newest</SelectItem>
-              <SelectItem value="name" className="hover:bg-transparent hover:underline data-[state=checked]:bg-transparent data-[state=checked]:underline">Name A-Z</SelectItem>
-            </SelectContent>
-          </Select>
+            <div className="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+                <path fillRule="evenodd" d="M2.24 6.8a.75.75 0 0 0 1.06-.04l1.95-2.1v8.59a.75.75 0 0 0 1.5 0V4.66l1.95 2.1a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0L2.2 5.74a.75.75 0 0 0 .04 1.06Zm8 6.4a.75.75 0 0 0-.04 1.06l3.25 3.5a.75.75 0 0 0 1.1 0l3.25-3.5a.75.75 0 1 0-1.1-1.02l-1.95 2.1V6.75a.75.75 0 0 0-1.5 0v8.59l-1.95-2.1a.75.75 0 0 0-1.06-.04Z" clipRule="evenodd" />
+              </svg>
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-40 border-none bg-transparent text-sm font-light shadow-none rounded-none">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="shadow-none border-none rounded-none bg-background">
+                  <SelectItem value="featured" className="hover:bg-transparent hover:underline data-[state=checked]:bg-transparent data-[state=checked]:underline">Featured</SelectItem>
+                  <SelectItem value="price-low" className="hover:bg-transparent hover:underline data-[state=checked]:bg-transparent data-[state=checked]:underline">Price: Low to High</SelectItem>
+                  <SelectItem value="price-high" className="hover:bg-transparent hover:underline data-[state=checked]:bg-transparent data-[state=checked]:underline">Price: High to Low</SelectItem>
+                  <SelectItem value="newest" className="hover:bg-transparent hover:underline data-[state=checked]:bg-transparent data-[state=checked]:underline">Newest</SelectItem>
+                  <SelectItem value="name" className="hover:bg-transparent hover:underline data-[state=checked]:bg-transparent data-[state=checked]:underline">Name A-Z</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
         </div>
       </section>
