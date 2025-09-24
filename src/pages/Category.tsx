@@ -22,9 +22,8 @@ const Category = () => {
         />
         
         <FilterSortBar 
-          onFiltersToggle={() => setFiltersOpen(true)}
           filtersOpen={filtersOpen}
-          onFiltersClose={() => setFiltersOpen(false)}
+          setFiltersOpen={setFiltersOpen}
         />
         
         <ProductGrid />
