@@ -51,30 +51,30 @@ const FilterSortBar = ({ onFiltersToggle, filtersOpen, onFiltersClose }: FilterS
                   Filters
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="w-80 bg-background">
-                <SheetHeader className="mb-6">
+              <SheetContent side="left" className="w-80 bg-background border-none shadow-none">
+                <SheetHeader className="mb-6 border-b border-border pb-4">
                   <div className="flex items-center justify-between">
-                    <SheetTitle className="text-lg font-medium">Filters</SheetTitle>
+                    <SheetTitle className="text-lg font-light">Filters</SheetTitle>
                     <Button 
                       variant="ghost" 
                       size="sm"
                       onClick={onFiltersClose}
-                      className="h-8 w-8 p-0"
+                      className="h-8 w-8 p-0 hover:bg-transparent"
                     >
                       <X className="h-4 w-4" />
                     </Button>
                   </div>
                 </SheetHeader>
                 
-                <div className="space-y-6">
+                <div className="space-y-8">
                   {/* Category Filter */}
                   <div>
-                    <h3 className="text-sm font-medium mb-3">Category</h3>
-                    <div className="space-y-2">
+                    <h3 className="text-sm font-light mb-4 text-foreground">Category</h3>
+                    <div className="space-y-3">
                       {categories.map((category) => (
-                        <div key={category} className="flex items-center space-x-2">
-                          <Checkbox id={category} />
-                          <Label htmlFor={category} className="text-sm font-light">
+                        <div key={category} className="flex items-center space-x-3">
+                          <Checkbox id={category} className="border-border data-[state=checked]:bg-foreground data-[state=checked]:border-foreground" />
+                          <Label htmlFor={category} className="text-sm font-light text-foreground cursor-pointer">
                             {category}
                           </Label>
                         </div>
@@ -82,16 +82,16 @@ const FilterSortBar = ({ onFiltersToggle, filtersOpen, onFiltersClose }: FilterS
                     </div>
                   </div>
 
-                  <Separator />
+                  <Separator className="border-border" />
 
                   {/* Price Filter */}
                   <div>
-                    <h3 className="text-sm font-medium mb-3">Price</h3>
-                    <div className="space-y-2">
+                    <h3 className="text-sm font-light mb-4 text-foreground">Price</h3>
+                    <div className="space-y-3">
                       {priceRanges.map((range) => (
-                        <div key={range} className="flex items-center space-x-2">
-                          <Checkbox id={range} />
-                          <Label htmlFor={range} className="text-sm font-light">
+                        <div key={range} className="flex items-center space-x-3">
+                          <Checkbox id={range} className="border-border data-[state=checked]:bg-foreground data-[state=checked]:border-foreground" />
+                          <Label htmlFor={range} className="text-sm font-light text-foreground cursor-pointer">
                             {range}
                           </Label>
                         </div>
@@ -99,16 +99,16 @@ const FilterSortBar = ({ onFiltersToggle, filtersOpen, onFiltersClose }: FilterS
                     </div>
                   </div>
 
-                  <Separator />
+                  <Separator className="border-border" />
 
                   {/* Material Filter */}
                   <div>
-                    <h3 className="text-sm font-medium mb-3">Material</h3>
-                    <div className="space-y-2">
+                    <h3 className="text-sm font-light mb-4 text-foreground">Material</h3>
+                    <div className="space-y-3">
                       {materials.map((material) => (
-                        <div key={material} className="flex items-center space-x-2">
-                          <Checkbox id={material} />
-                          <Label htmlFor={material} className="text-sm font-light">
+                        <div key={material} className="flex items-center space-x-3">
+                          <Checkbox id={material} className="border-border data-[state=checked]:bg-foreground data-[state=checked]:border-foreground" />
+                          <Label htmlFor={material} className="text-sm font-light text-foreground cursor-pointer">
                             {material}
                           </Label>
                         </div>
@@ -116,13 +116,13 @@ const FilterSortBar = ({ onFiltersToggle, filtersOpen, onFiltersClose }: FilterS
                     </div>
                   </div>
 
-                  <Separator />
+                  <Separator className="border-border" />
 
-                  <div className="flex gap-2">
-                    <Button variant="outline" size="sm" className="flex-1">
+                  <div className="flex gap-3 pt-4">
+                    <Button variant="ghost" size="sm" className="flex-1 border-none hover:bg-transparent hover:underline font-light">
                       Clear All
                     </Button>
-                    <Button size="sm" className="flex-1">
+                    <Button variant="ghost" size="sm" className="flex-1 border-none hover:bg-transparent hover:underline font-light">
                       Apply Filters
                     </Button>
                   </div>
