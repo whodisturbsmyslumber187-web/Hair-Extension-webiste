@@ -13,7 +13,7 @@ const SizeGuide = () => {
       <div className="flex">
         <AboutSidebar />
         
-        <main className="w-full md:w-[50vw] md:ml-auto">
+        <main className="w-full md:w-[70vw] md:ml-auto">
         <PageHeader 
           title="Size Guide" 
           subtitle="Find your perfect fit with our comprehensive sizing guide"
