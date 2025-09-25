@@ -55,7 +55,7 @@ const Sustainability = () => {
 
         <ContentSection title="Circular Economy" className="bg-muted/20">
           <div className="space-y-8">
-            <p className="text-lg text-muted-foreground text-center leading-relaxed">
+            <p className="text-lg text-muted-foreground leading-relaxed">
               We believe in the power of circular design - creating jewelry that can be treasured, repaired, and eventually recycled into new pieces.
             </p>
             
