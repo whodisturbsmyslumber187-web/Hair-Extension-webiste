@@ -12,17 +12,19 @@ interface CategoryHeaderProps {
 }
 
 const CategoryHeader = ({ category }: CategoryHeaderProps) => {
+  const capitalizedCategory = category.charAt(0).toUpperCase() + category.slice(1);
+  
   return (
     <section className="w-full px-6 mb-8">
         <div className="text-sm font-light text-muted-foreground mb-6">
           <span>Home</span>
           <span className="mx-2">/</span>
-          <span className="text-foreground font-normal">{category}</span>
+          <span className="text-foreground font-normal">{capitalizedCategory}</span>
         </div>
         
         <div>
           <h1 className="text-3xl md:text-4xl font-light text-foreground">
-            {category}
+            {capitalizedCategory}
           </h1>
         </div>
     </section>
