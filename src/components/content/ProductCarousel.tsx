@@ -77,11 +77,11 @@ const ProductCarousel = () => {
           }}
           className="w-full"
         >
-          <CarouselContent className="-ml-1 first:pl-0">
-            {products.map((product, index) => (
+          <CarouselContent className="">
+            {products.map((product) => (
                <CarouselItem
                  key={product.id}
-                 className={`basis-1/2 md:basis-1/3 lg:basis-1/4 ${index === 0 ? 'pl-0' : 'pl-2 md:pl-4'} pr-2 md:pr-4`}
+                 className="basis-1/2 md:basis-1/3 lg:basis-1/4 pr-2 md:pr-4"
                >
                  <Link to={`/product/${product.id}`}>
                   <Card className="border-none shadow-none bg-transparent group">
