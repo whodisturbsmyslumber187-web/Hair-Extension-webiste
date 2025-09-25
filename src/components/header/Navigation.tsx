@@ -137,7 +137,13 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="bg-nav relative">
+    <nav 
+      className="relative" 
+      style={{
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        backdropFilter: 'blur(10px)'
+      }}
+    >
       <div className="flex items-center justify-between h-16 px-6">
         {/* Mobile hamburger button */}
         <button
