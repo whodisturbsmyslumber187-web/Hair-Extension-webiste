@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect } from "react";
+import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ImageZoomProps {
@@ -10,12 +10,6 @@ interface ImageZoomProps {
 }
 
 const ImageZoom = ({ images, initialIndex, isOpen, onClose }: ImageZoomProps) => {
-  const [currentIndex, setCurrentIndex] = useState(initialIndex);
-
-  useEffect(() => {
-    setCurrentIndex(initialIndex);
-  }, [initialIndex]);
-
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -23,34 +17,16 @@ const ImageZoom = ({ images, initialIndex, isOpen, onClose }: ImageZoomProps) =>
       }
     };
 
-    const handleArrowKeys = (event: KeyboardEvent) => {
-      if (event.key === "ArrowLeft") {
-        prevImage();
-      } else if (event.key === "ArrowRight") {
-        nextImage();
-      }
-    };
-
     if (isOpen) {
       document.addEventListener("keydown", handleEscKey);
-      document.addEventListener("keydown", handleArrowKeys);
       document.body.style.overflow = "hidden";
     }
 
     return () => {
       document.removeEventListener("keydown", handleEscKey);
-      document.removeEventListener("keydown", handleArrowKeys);
       document.body.style.overflow = "unset";
     };
   }, [isOpen, onClose]);
-
-  const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
 
   if (!isOpen) return null;
 
@@ -67,74 +43,25 @@ const ImageZoom = ({ images, initialIndex, isOpen, onClose }: ImageZoomProps) =>
         variant="ghost"
         size="sm"
         onClick={onClose}
-        className="absolute top-4 right-4 z-10 bg-white/10 hover:bg-white/20 text-white border-none"
+        className="absolute top-4 right-4 z-10 hover:bg-transparent text-white border-none p-2"
       >
-        <X className="h-6 w-6" />
+        <X className="h-8 w-8" />
       </Button>
 
-      {/* Navigation arrows */}
-      {images.length > 1 && (
-        <>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={prevImage}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 text-white border-none"
-          >
-            <ChevronLeft className="h-8 w-8" />
-          </Button>
-          
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={nextImage}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 text-white border-none"
-          >
-            <ChevronRight className="h-8 w-8" />
-          </Button>
-        </>
-      )}
-
-      {/* Image counter */}
-      {images.length > 1 && (
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
-          {currentIndex + 1} / {images.length}
-        </div>
-      )}
-
-      {/* Main image container */}
-      <div className="relative w-full h-full flex items-center justify-center p-4">
-        <div className="relative max-w-[90vw] max-h-[90vh] w-full h-full flex items-center justify-center">
-          <img
-            src={images[currentIndex]}
-            alt={`Product view ${currentIndex + 1}`}
-            className="max-w-full max-h-full w-auto h-auto object-contain animate-scale-in"
-          />
-        </div>
-      </div>
-
-      {/* Thumbnail strip for desktop */}
-      {images.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 hidden md:flex gap-2 bg-black/50 p-2 rounded-lg max-w-[90vw] overflow-x-auto">
+      {/* Scrollable image container */}
+      <div className="relative w-full h-full overflow-y-auto py-16">
+        <div className="space-y-4 px-4">
           {images.map((image, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`relative w-16 h-16 flex-shrink-0 overflow-hidden rounded border-2 transition-all ${
-                index === currentIndex 
-                  ? 'border-white' 
-                  : 'border-transparent opacity-70 hover:opacity-100'
-              }`}
-            >
+            <div key={index} className="w-full flex justify-center">
               <img
                 src={image}
-                alt={`Thumbnail ${index + 1}`}
-                className="w-full h-full object-cover"
+                alt={`Product view ${index + 1}`}
+                className="w-full max-w-none object-cover animate-scale-in"
               />
-            </button>
+            </div>
           ))}
         </div>
-      )}
+      </div>
     </div>
   );
 };
