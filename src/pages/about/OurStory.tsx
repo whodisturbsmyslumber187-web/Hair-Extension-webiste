@@ -15,7 +15,7 @@ const OurStory = () => {
           <AboutSidebar />
         </div>
         
-        <main className="w-full lg:w-[70vw] lg:ml-auto">
+        <main className="w-full lg:w-[70vw] lg:ml-auto px-6">
           <PageHeader 
             title="Our Story" 
             subtitle="A journey of passion, craftsmanship, and timeless elegance"

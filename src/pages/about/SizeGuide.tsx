@@ -15,7 +15,7 @@ const SizeGuide = () => {
           <AboutSidebar />
         </div>
         
-        <main className="w-full lg:w-[70vw] lg:ml-auto">
+        <main className="w-full lg:w-[70vw] lg:ml-auto px-6">
         <PageHeader 
           title="Size Guide" 
           subtitle="Find your perfect fit with our comprehensive sizing guide"
