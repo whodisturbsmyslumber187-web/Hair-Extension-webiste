@@ -11,9 +11,11 @@ const SizeGuide = () => {
       <Header />
       
       <div className="flex">
-        <AboutSidebar />
+        <div className="hidden lg:block">
+          <AboutSidebar />
+        </div>
         
-        <main className="w-full md:w-[70vw] md:ml-auto">
+        <main className="w-full lg:w-[70vw] lg:ml-auto">
         <PageHeader 
           title="Size Guide" 
           subtitle="Find your perfect fit with our comprehensive sizing guide"

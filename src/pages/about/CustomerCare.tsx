@@ -14,9 +14,11 @@ const CustomerCare = () => {
       <Header />
       
       <div className="flex">
-        <AboutSidebar />
+        <div className="hidden lg:block">
+          <AboutSidebar />
+        </div>
         
-        <main className="w-full md:w-[70vw] md:ml-auto">
+        <main className="w-full lg:w-[70vw] lg:ml-auto">
         <PageHeader 
           title="Customer Care" 
           subtitle="We're here to help you with all your jewelry needs"

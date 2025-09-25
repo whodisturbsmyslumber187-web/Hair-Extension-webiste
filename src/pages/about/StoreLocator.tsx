@@ -36,9 +36,11 @@ const StoreLocator = () => {
       <Header />
       
       <div className="flex">
-        <AboutSidebar />
+        <div className="hidden lg:block">
+          <AboutSidebar />
+        </div>
         
-        <main className="w-full md:w-[70vw] md:ml-auto">
+        <main className="w-full lg:w-[70vw] lg:ml-auto">
         <PageHeader 
           title="Store Locator" 
           subtitle="Visit us in person for a personalized jewelry experience"

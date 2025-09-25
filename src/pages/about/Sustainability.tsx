@@ -10,9 +10,11 @@ const Sustainability = () => {
       <Header />
       
       <div className="flex">
-        <AboutSidebar />
+        <div className="hidden lg:block">
+          <AboutSidebar />
+        </div>
         
-        <main className="w-full md:w-[70vw] md:ml-auto">
+        <main className="w-full lg:w-[70vw] lg:ml-auto">
         <PageHeader 
           title="Sustainability" 
           subtitle="Creating beautiful jewelry while protecting our planet for future generations"
