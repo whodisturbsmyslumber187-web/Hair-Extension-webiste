@@ -13,7 +13,7 @@ const SizeGuide = () => {
       <div className="flex">
         <AboutSidebar />
         
-        <main className="flex-1">
+        <main className="flex-1 md:w-1/2">
         <PageHeader 
           title="Size Guide" 
           subtitle="Find your perfect fit with our comprehensive sizing guide"
@@ -126,12 +126,12 @@ const SizeGuide = () => {
         </ContentSection>
 
         <ContentSection title="Need Help?">
-          <div className="text-center space-y-6">
-            <p className="text-muted-foreground text-center">
+          <div className="space-y-6">
+            <p className="text-muted-foreground">
               Still unsure about sizing? Our jewelry consultants are here to help you find the perfect fit. 
               Download our printable size guide or schedule a virtual consultation.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="outline" className="rounded-none">
                 Download PDF Guide
               </Button>

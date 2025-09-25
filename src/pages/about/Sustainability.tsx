@@ -12,7 +12,7 @@ const Sustainability = () => {
       <div className="flex">
         <AboutSidebar />
         
-        <main className="flex-1">
+        <main className="flex-1 md:w-1/2">
         <PageHeader 
           title="Sustainability" 
           subtitle="Creating beautiful jewelry while protecting our planet for future generations"
@@ -36,7 +36,7 @@ const Sustainability = () => {
 
           <div className="bg-muted/10 rounded-lg p-8">
             <h3 className="text-2xl font-light text-foreground mb-6 text-center">Our Impact Goals</h3>
-            <div className="grid md:grid-cols-3 gap-8 text-center">
+            <div className="grid md:grid-cols-3 gap-8">
               <div>
                 <div className="text-3xl font-light text-primary mb-2">100%</div>
                 <p className="text-sm text-muted-foreground">Carbon neutral operations by 2025</p>
@@ -77,12 +77,12 @@ const Sustainability = () => {
         </ContentSection>
 
         <ContentSection title="Certifications & Partnerships">
-          <div className="text-center space-y-8">
-            <p className="text-muted-foreground leading-relaxed text-center">
+          <div className="space-y-8">
+            <p className="text-muted-foreground leading-relaxed">
               Our commitment to sustainability is verified through partnerships with leading organizations and certifications that hold us accountable to the highest standards.
             </p>
             
-            <div className="grid md:grid-cols-4 gap-8 items-center justify-items-center">
+            <div className="grid md:grid-cols-4 gap-8 items-center">
               <div className="h-16 w-32 bg-muted/10 rounded-lg flex items-center justify-center">
                 <span className="text-xs text-muted-foreground">RJC Certified</span>
               </div>

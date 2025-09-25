@@ -13,7 +13,7 @@ const OurStory = () => {
       <div className="flex">
         <AboutSidebar />
         
-        <main className="flex-1">
+        <main className="flex-1 md:w-1/2">
           <PageHeader 
             title="Our Story" 
             subtitle="A journey of passion, craftsmanship, and timeless elegance"
@@ -47,7 +47,7 @@ const OurStory = () => {
           </ContentSection>
 
           <ContentSection title="Our Values">
-            <div className="grid md:grid-cols-3 gap-8 text-center">
+            <div className="grid md:grid-cols-3 gap-8">
               <div className="space-y-4">
                 <h3 className="text-lg font-light text-foreground">Excellence</h3>
                 <p className="text-muted-foreground">

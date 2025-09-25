@@ -16,14 +16,14 @@ const CustomerCare = () => {
       <div className="flex">
         <AboutSidebar />
         
-        <main className="flex-1">
+        <main className="flex-1 md:w-1/2">
         <PageHeader 
           title="Customer Care" 
           subtitle="We're here to help you with all your jewelry needs"
         />
         
         <ContentSection title="Contact Information">
-          <div className="grid md:grid-cols-3 gap-8 text-center">
+          <div className="grid md:grid-cols-3 gap-8">
             <div className="space-y-4">
               <h3 className="text-lg font-light text-foreground">Phone</h3>
               <p className="text-muted-foreground">+1 (555) 123-4567</p>
