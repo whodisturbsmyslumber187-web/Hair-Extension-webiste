@@ -1,4 +1,3 @@
-import { ChevronRight } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -15,23 +14,11 @@ interface CategoryHeaderProps {
 const CategoryHeader = ({ category }: CategoryHeaderProps) => {
   return (
     <section className="w-full px-6 mb-8">
-        <Breadcrumb className="mb-6">
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/" className="text-sm font-light text-muted-foreground hover:text-foreground">
-                Home
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator>
-              <ChevronRight className="h-3 w-3" />
-            </BreadcrumbSeparator>
-            <BreadcrumbItem>
-              <BreadcrumbPage className="text-sm font-light text-foreground">
-                {category}
-              </BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+        <div className="text-sm font-light text-muted-foreground mb-6">
+          <span>Home</span>
+          <span className="mx-2">/</span>
+          <span className="text-foreground font-normal">{category}</span>
+        </div>
         
         <div>
           <h1 className="text-3xl md:text-4xl font-light text-foreground">
