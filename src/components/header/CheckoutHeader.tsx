@@ -5,7 +5,7 @@ const CheckoutHeader = () => {
   return (
     <header className="w-full bg-background border-b border-muted-foreground/20">
       <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
+        <div className="relative flex items-center justify-between">
           {/* Left side - Continue Shopping */}
           <Link 
             to="/" 
@@ -15,8 +15,8 @@ const CheckoutHeader = () => {
             <span className="text-sm font-light hidden sm:inline">Continue Shopping</span>
           </Link>
 
-          {/* Center - Logo */}
-          <Link to="/" className="flex-shrink-0">
+          {/* Center - Logo - Absolutely positioned to ensure perfect centering */}
+          <Link to="/" className="absolute left-1/2 transform -translate-x-1/2">
             <img 
               src="/LINEA-1.svg" 
               alt="Linea Jewelry Inc" 
