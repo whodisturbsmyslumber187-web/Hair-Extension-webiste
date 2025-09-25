@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ImageZoom from "./ImageZoom";
 import pantheonImage from "@/assets/pantheon.jpg";
 import eclipseImage from "@/assets/eclipse.jpg";
 import haloImage from "@/assets/halo.jpg";
@@ -17,6 +18,8 @@ const productImages = [
 
 const ProductImageGallery = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isZoomOpen, setIsZoomOpen] = useState(false);
+  const [zoomInitialIndex, setZoomInitialIndex] = useState(0);
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
@@ -26,17 +29,26 @@ const ProductImageGallery = () => {
     setCurrentImageIndex((prev) => (prev - 1 + productImages.length) % productImages.length);
   };
 
+  const handleImageClick = (index: number) => {
+    setZoomInitialIndex(index);
+    setIsZoomOpen(true);
+  };
+
   return (
     <div className="w-full">
       {/* Desktop/Tablet: Vertical scrolling gallery */}
       <div className="hidden md:block">
         <div className="space-y-4">
           {productImages.map((image, index) => (
-            <div key={index} className="w-full aspect-square overflow-hidden">
+            <div 
+              key={index} 
+              className="w-full aspect-square overflow-hidden cursor-pointer group"
+              onClick={() => handleImageClick(index)}
+            >
               <img
                 src={image}
                 alt={`Product view ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             </div>
           ))}
@@ -46,11 +58,14 @@ const ProductImageGallery = () => {
       {/* Mobile: Image slider */}
       <div className="md:hidden">
         <div className="relative">
-          <div className="w-full aspect-square overflow-hidden">
+          <div 
+            className="w-full aspect-square overflow-hidden cursor-pointer group"
+            onClick={() => handleImageClick(currentImageIndex)}
+          >
             <img
               src={productImages[currentImageIndex]}
               alt={`Product view ${currentImageIndex + 1}`}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
           </div>
           
@@ -86,6 +101,14 @@ const ProductImageGallery = () => {
           </div>
         </div>
       </div>
+
+      {/* Image Zoom Modal */}
+      <ImageZoom
+        images={productImages}
+        initialIndex={zoomInitialIndex}
+        isOpen={isZoomOpen}
+        onClose={() => setIsZoomOpen(false)}
+      />
     </div>
   );
 };
