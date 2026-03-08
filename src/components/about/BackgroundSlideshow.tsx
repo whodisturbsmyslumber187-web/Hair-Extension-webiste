@@ -44,9 +44,9 @@ const BackgroundSlideshow = () => {
         }}
       />
       {/* Lighter overlay so images are more visible */}
-      <div className="absolute inset-0 bg-background/60" />
+      <div className="absolute inset-0 bg-background/70" />
       {/* Subtle edge blending */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background/60" />
     </div>
   );
 };
