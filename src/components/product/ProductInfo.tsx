@@ -12,16 +12,18 @@ interface ProductInfoProps {
   productId?: number;
 }
 
-const lengthMultipliers: Record<string, number> = {
-  '14"': 1.0, '16"': 1.1, '18"': 1.2, '20"': 1.35, '22"': 1.5,
-  '24"': 1.7, '26"': 1.9, '28"': 2.1, '30"': 2.35, '32"': 2.6,
-  '34"': 2.85, '36"': 3.1, '38"': 3.4, '40"': 3.7,
+// Price additions based on length (longer = costs more per 100g)
+const lengthPriceAdd: Record<string, number> = {
+  '14"': 0, '16"': 3, '18"': 7, '20"': 12, '22"': 18,
+  '24"': 25, '26"': 35, '28"': 45, '30"': 58, '32"': 72,
+  '34"': 88, '36"': 105, '38"': 125, '40"': 150,
 };
 
+// Weight is linear — price per 100g base
 const weightMultipliers: Record<string, number> = {
-  '50g': 0.6, '60g': 0.7, '100g': 1.0, '120g': 1.15, '150g': 1.4,
-  '160g': 1.45, '180g': 1.6, '200g': 1.8, '220g': 1.9, '250g': 2.1,
-  '300g': 2.5, '400g': 3.2,
+  '50g': 0.55, '60g': 0.65, '100g': 1.0, '120g': 1.2, '150g': 1.5,
+  '160g': 1.6, '180g': 1.8, '200g': 2.0, '220g': 2.2, '250g': 2.5,
+  '300g': 3.0, '400g': 4.0,
 };
 
 const ProductInfo = ({ productId }: ProductInfoProps) => {
@@ -41,9 +43,9 @@ const ProductInfo = ({ productId }: ProductInfoProps) => {
   const colors = product?.colors || ["Natural Black #1B"];
 
   const calculatedPrice = useMemo(() => {
-    const lengthMult = selectedLength ? (lengthMultipliers[selectedLength] || 1) : 1;
+    const lengthAdd = selectedLength ? (lengthPriceAdd[selectedLength] || 0) : 0;
     const weightMult = selectedWeight ? (weightMultipliers[selectedWeight] || 1) : 1;
-    return Math.round(basePrice * lengthMult * weightMult);
+    return Math.round((basePrice + lengthAdd) * weightMult);
   }, [basePrice, selectedLength, selectedWeight]);
 
   const hasSelections = selectedLength || selectedWeight;
