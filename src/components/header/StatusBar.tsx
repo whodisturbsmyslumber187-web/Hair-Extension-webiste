@@ -7,7 +7,7 @@ const StatusBar = () => {
     "Shipping rates calculated at checkout",
     "100% virgin human hair guaranteed",
     "14\" to 40\" lengths available",
-    "30-day quality guarantee",
+    "All sales are final — No refunds or returns",
     "Now available in 5 languages 🌍"
   ];
 
