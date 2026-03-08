@@ -12,6 +12,10 @@ import hairBlondeBodywave from "@/assets/hair-blonde-bodywave.jpg";
 import hairBlondeDeepwave from "@/assets/hair-blonde-deepwave.jpg";
 import hairBlondeStraight from "@/assets/hair-blonde-straight.jpg";
 import hairBlondeFrontal from "@/assets/hair-blonde-frontal.jpg";
+import hairClosureBodywave from "@/assets/hair-closure-bodywave.jpg";
+import hairFrontalDeepwave from "@/assets/hair-frontal-deepwave.jpg";
+import hairWigBodywave from "@/assets/hair-wig-bodywave.jpg";
+import hairMicroLoop from "@/assets/hair-micro-loop.jpg";
 
 export interface Product {
   id: number;
@@ -36,19 +40,61 @@ export interface Product {
   colorImages?: Record<string, string>;
 }
 
+/** Bulk discount rates by weight for bundles */
+const weightDiscounts: Record<string, number> = {
+  "100g": 0,
+  "150g": 0.10,
+  "200g": 0.15,
+  "300g": 0.20,
+  "400g": 0.25,
+};
+
+/** Weight multipliers (how many 100g units) */
+const weightMultipliers: Record<string, number> = {
+  "50g": 0.5,
+  "60g": 0.6,
+  "100g": 1,
+  "120g": 1.2,
+  "150g": 1.5,
+  "160g": 1.6,
+  "180g": 1.8,
+  "200g": 2,
+  "220g": 2.2,
+  "250g": 2.5,
+  "300g": 3,
+  "400g": 4,
+};
+
 /** Calculate the final price for a product given selections */
 export const calculatePrice = (product: Product, selectedLength?: string, selectedWeight?: string): number => {
-  let price = product.priceNum;
+  // Get the per-100g price based on length
+  let basePrice = product.priceNum;
   if (selectedLength && product.lengthPrices?.[selectedLength] !== undefined) {
-    price = product.lengthPrices[selectedLength];
+    basePrice = product.lengthPrices[selectedLength];
   }
+
+  // For bundles: multiply by weight and apply bulk discount
+  if (selectedWeight && product.category === "Bundles") {
+    const multiplier = weightMultipliers[selectedWeight] || 1;
+    const discount = weightDiscounts[selectedWeight] || 0;
+    const totalPrice = basePrice * multiplier;
+    return Math.round(totalPrice * (1 - discount));
+  }
+
+  // For non-bundles: use the old weight pricing if applicable
   if (selectedWeight && product.weightPrices?.[selectedWeight] !== undefined) {
-    price += product.weightPrices[selectedWeight] - product.priceNum;
-    if (selectedLength && product.lengthPrices?.[selectedLength] !== undefined) {
-      price = product.lengthPrices[selectedLength] + (product.weightPrices[selectedWeight] - product.priceNum);
-    }
+    const weightAdj = product.weightPrices[selectedWeight] - product.priceNum;
+    return basePrice + weightAdj;
   }
-  return price;
+
+  return basePrice;
+};
+
+/** Get the discount label for a weight */
+export const getWeightDiscount = (weight: string): string | null => {
+  const discount = weightDiscounts[weight];
+  if (discount && discount > 0) return `${Math.round(discount * 100)}% off`;
+  return null;
 };
 
 /** Generate length-based pricing: base price + increment per step */
@@ -58,7 +104,7 @@ const genLengthPrices = (lengths: string[], basePrice: number, increment: number
   return map;
 };
 
-/** Generate weight-based pricing */
+/** Generate weight-based pricing (for non-bundle categories) */
 const genWeightPrices = (weights: string[], basePrice: number, increment: number): Record<string, number> => {
   const map: Record<string, number> = {};
   weights.forEach((w, i) => { map[w] = basePrice + i * increment; });
@@ -462,6 +508,176 @@ export const products: Product[] = [
     colors: ["Natural Black #1B", "Dark Brown #2", "613 Blonde"],
     description: "Pre-bonded I-tip (stick tip) extensions. 100 strands per pack. Keratin bond for long-lasting, damage-free wear.",
     colorImages: { "Natural Black #1B": hairBundlesStraight, "Dark Brown #2": hairBundlesBrown, "613 Blonde": hairBlondeStraight },
+  },
+  {
+    id: 25,
+    name: "4x4 Body Wave Closure",
+    category: "Closures",
+    subcategory: "Body Wave",
+    price: "$49",
+    priceNum: 49,
+    image: hairClosureBodywave,
+    hoverImage: hairClosure,
+    lengths: ["14\"", "16\"", "18\"", "20\""],
+    weights: ["50g"],
+    colors: ["Natural Black #1B", "Dark Brown #2"],
+    description: "Body wave Swiss lace closure with natural parting. Pre-plucked with baby hairs. Seamless blend for a flawless install.",
+    colorImages: { "Natural Black #1B": hairClosureBodywave, "Dark Brown #2": hairBundlesBrown },
+  },
+  {
+    id: 26,
+    name: "5x5 Deep Wave Closure",
+    category: "Closures",
+    subcategory: "Deep Wave",
+    price: "$65",
+    priceNum: 65,
+    image: hairClosureBodywave,
+    hoverImage: hairBundlesDeepwave,
+    isNew: true,
+    lengths: ["14\"", "16\"", "18\"", "20\"", "22\""],
+    weights: ["60g"],
+    colors: ["Natural Black #1B"],
+    description: "Deep wave HD lace closure with tight defined curls. Invisible lace that melts into the scalp. Multiple parting options.",
+    colorImages: { "Natural Black #1B": hairClosureBodywave },
+  },
+  {
+    id: 27,
+    name: "13x4 Kinky Curly Frontal",
+    category: "Frontals",
+    subcategory: "Kinky Curly",
+    price: "$115",
+    priceNum: 115,
+    image: hairFrontalDeepwave,
+    hoverImage: hairBundlesDeepwave,
+    lengths: ["14\"", "16\"", "18\"", "20\"", "22\""],
+    weights: ["100g"],
+    colors: ["Natural Black #1B"],
+    description: "Kinky curly lace frontal for the most natural-looking protective style. Pre-plucked with baby hairs. Bleached knots.",
+    colorImages: { "Natural Black #1B": hairFrontalDeepwave },
+  },
+  {
+    id: 28,
+    name: "13x6 Straight HD Frontal",
+    category: "Frontals",
+    subcategory: "Straight",
+    price: "$125",
+    priceNum: 125,
+    image: hairFrontal,
+    hoverImage: hairClosure,
+    isBestseller: true,
+    lengths: ["14\"", "16\"", "18\"", "20\"", "22\"", "24\"", "26\""],
+    weights: ["100g"],
+    colors: ["Natural Black #1B", "Jet Black #1", "613 Blonde"],
+    description: "Premium 13x6 HD lace frontal with extended parting space. Ultra-thin lace for the most undetectable hairline.",
+    colorImages: { "Natural Black #1B": hairFrontal, "Jet Black #1": hairBundlesJetblack, "613 Blonde": hairBlondeFrontal },
+  },
+  {
+    id: 29,
+    name: "Water Wave Lace Wig",
+    category: "Wigs",
+    subcategory: "Water Wave",
+    price: "$195",
+    priceNum: 195,
+    image: hairWigBodywave,
+    hoverImage: hairBundlesDeepwave,
+    isNew: true,
+    lengths: ["16\"", "18\"", "20\"", "22\"", "24\"", "26\"", "28\""],
+    weights: ["150g", "200g", "250g"],
+    colors: ["Natural Black #1B"],
+    description: "Water wave HD lace front wig with natural ocean wave pattern. Glueless cap, pre-plucked hairline. 180% density.",
+    colorImages: { "Natural Black #1B": hairWigBodywave },
+  },
+  {
+    id: 30,
+    name: "Micro Loop Extensions",
+    category: "Extensions",
+    subcategory: "Micro Loop",
+    price: "$89",
+    priceNum: 89,
+    image: hairMicroLoop,
+    hoverImage: hairBundlesStraight,
+    lengths: ["16\"", "18\"", "20\"", "22\"", "24\""],
+    weights: ["50g", "100g"],
+    colors: ["Natural Black #1B", "Dark Brown #2", "Honey Blonde #27"],
+    description: "Micro loop ring extensions with pre-attached silicone-lined beads. No heat, no glue. Easy DIY install. 100 strands per pack.",
+    colorImages: { "Natural Black #1B": hairMicroLoop, "Dark Brown #2": hairBundlesBrown, "Honey Blonde #27": hairBundlesHoneyBlonde },
+  },
+  {
+    id: 31,
+    name: "Blonde Frontal 13x4",
+    category: "Frontals",
+    subcategory: "Blonde",
+    price: "$135",
+    priceNum: 135,
+    image: hairBlondeFrontal,
+    hoverImage: hairWigBlonde,
+    isNew: true,
+    lengths: ["14\"", "16\"", "18\"", "20\"", "22\""],
+    weights: ["100g"],
+    colors: ["613 Blonde", "Honey Blonde #27"],
+    description: "613 blonde HD lace frontal. Pre-bleached, ready to tone. Ear-to-ear coverage with a seamless, invisible hairline.",
+    colorImages: { "613 Blonde": hairBlondeFrontal, "Honey Blonde #27": hairBundlesHoneyBlonde },
+  },
+  {
+    id: 32,
+    name: "5x5 Blonde Closure",
+    category: "Closures",
+    subcategory: "Blonde",
+    price: "$75",
+    priceNum: 75,
+    image: hairBlondeFrontal,
+    hoverImage: hairWigBlonde,
+    lengths: ["14\"", "16\"", "18\"", "20\""],
+    weights: ["50g"],
+    colors: ["613 Blonde"],
+    description: "613 blonde HD lace closure. Pre-bleached knots for undetectable parting. Perfect to complete a blonde bundle install.",
+    colorImages: { "613 Blonde": hairBlondeFrontal },
+  },
+  {
+    id: 33,
+    name: "Invisible Wire Extensions",
+    category: "Extensions",
+    subcategory: "Wire",
+    price: "$79",
+    priceNum: 79,
+    image: hairBundlesStraight,
+    hoverImage: hairHero,
+    lengths: ["16\"", "18\"", "20\"", "22\"", "24\""],
+    weights: ["100g", "150g"],
+    colors: ["Natural Black #1B", "Dark Brown #2", "613 Blonde"],
+    description: "Invisible wire halo extensions with adjustable transparent wire. No clips, no glue. Put on in seconds for instant volume.",
+    colorImages: { "Natural Black #1B": hairBundlesStraight, "Dark Brown #2": hairBundlesBrown, "613 Blonde": hairBlondeStraight },
+  },
+  {
+    id: 34,
+    name: "Raw Vietnamese Straight",
+    category: "Bundles",
+    subcategory: "Straight",
+    price: "$99",
+    priceNum: 99,
+    image: hairBundlesStraight,
+    hoverImage: hairBundlesJetblack,
+    isBestseller: true,
+    lengths: ["14\"", "16\"", "18\"", "20\"", "22\"", "24\"", "26\"", "28\"", "30\"", "32\"", "34\""],
+    weights: ["100g", "150g", "200g", "300g", "400g"],
+    colors: ["Natural Black #1B"],
+    description: "Raw Vietnamese single-donor straight hair. The thickest, most durable virgin hair. Lasts 3-5 years with proper care.",
+    colorImages: { "Natural Black #1B": hairBundlesStraight },
+  },
+  {
+    id: 35,
+    name: "Burmese Curly Bundles",
+    category: "Bundles",
+    subcategory: "Burmese Curly",
+    price: "$85",
+    priceNum: 85,
+    image: hairBundlesDeepwave,
+    hoverImage: hairBundlesBodywave,
+    lengths: ["14\"", "16\"", "18\"", "20\"", "22\"", "24\""],
+    weights: ["100g", "150g", "200g", "300g", "400g"],
+    colors: ["Natural Black #1B"],
+    description: "Burmese curly virgin hair with a beautiful 3B/3C curl pattern. Blends seamlessly with natural curls. Zero processing.",
+    colorImages: { "Natural Black #1B": hairBundlesDeepwave },
   },
 ];
 

@@ -5,7 +5,7 @@ import {
   Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator 
 } from "@/components/ui/breadcrumb";
 import { Minus, Plus } from "lucide-react";
-import { getProductById, calculatePrice } from "@/data/products";
+import { getProductById, calculatePrice, getWeightDiscount } from "@/data/products";
 
 interface ProductInfoProps {
   productId?: number;
@@ -25,6 +25,7 @@ const ProductInfo = ({ productId, onColorChange }: ProductInfoProps) => {
   const lengths = product?.lengths || ["14\"", "16\"", "18\"", "20\"", "22\"", "24\""];
   const weights = product?.weights || ["100g", "150g", "200g"];
   const colors = product?.colors || ["Natural Black #1B"];
+  const isBundle = product?.category === "Bundles";
 
   const currentPrice = useMemo(() => {
     if (!product) return 55;
@@ -35,7 +36,6 @@ const ProductInfo = ({ productId, onColorChange }: ProductInfoProps) => {
     ? `$${currentPrice}` 
     : `from $${product?.priceNum || 55}`;
 
-  // Notify parent when color changes for image switching
   useEffect(() => {
     if (selectedColor && onColorChange) {
       onColorChange(selectedColor);
@@ -45,14 +45,12 @@ const ProductInfo = ({ productId, onColorChange }: ProductInfoProps) => {
   const incrementQuantity = () => setQuantity(prev => prev + 1);
   const decrementQuantity = () => setQuantity(prev => Math.max(1, prev - 1));
 
-  // Get the price for a specific length (with current weight)
   const getLengthPrice = (length: string): string => {
     if (!product) return "";
     const price = calculatePrice(product, length, selectedWeight || undefined);
     return `$${price}`;
   };
 
-  // Get the price for a specific weight (with current length)
   const getWeightPrice = (weight: string): string => {
     if (!product) return "";
     const price = calculatePrice(product, selectedLength || undefined, weight);
@@ -81,8 +79,18 @@ const ProductInfo = ({ productId, onColorChange }: ProductInfoProps) => {
           </div>
           <div className="text-right">
             <p className="text-xl font-body font-light text-foreground">{displayPrice}</p>
+            {selectedWeight && isBundle && getWeightDiscount(selectedWeight) && (
+              <p className="text-xs font-body text-primary mt-0.5">
+                {getWeightDiscount(selectedWeight)} bulk discount applied
+              </p>
+            )}
           </div>
         </div>
+        {isBundle && (
+          <p className="text-xs font-body text-muted-foreground">
+            Price per 100g • Buy more, save more
+          </p>
+        )}
       </div>
 
       {/* Length selector with prices */}
@@ -110,29 +118,46 @@ const ProductInfo = ({ productId, onColorChange }: ProductInfoProps) => {
         </div>
       </div>
 
-      {/* Weight selector with prices */}
+      {/* Weight selector with prices & discount badges */}
       <div className="space-y-3 py-4 border-b border-border">
         <h3 className="text-sm font-body font-medium text-foreground">
           Weight {selectedWeight && <span className="font-light text-muted-foreground ml-1">— {selectedWeight}</span>}
         </h3>
         <div className="flex flex-wrap gap-2">
-          {weights.map(weight => (
-            <button
-              key={weight}
-              onClick={() => setSelectedWeight(weight)}
-              className={`px-3 py-2 text-xs font-body border transition-colors duration-200 flex flex-col items-center gap-0.5 ${
-                selectedWeight === weight 
-                  ? 'border-primary bg-primary text-primary-foreground' 
-                  : 'border-border text-foreground hover:border-primary'
-              }`}
-            >
-              <span>{weight}</span>
-              <span className={`text-[10px] ${selectedWeight === weight ? 'text-primary-foreground/80' : 'text-muted-foreground'}`}>
-                {getWeightPrice(weight)}
-              </span>
-            </button>
-          ))}
+          {weights.map(weight => {
+            const discount = isBundle ? getWeightDiscount(weight) : null;
+            return (
+              <button
+                key={weight}
+                onClick={() => setSelectedWeight(weight)}
+                className={`px-3 py-2 text-xs font-body border transition-colors duration-200 flex flex-col items-center gap-0.5 relative ${
+                  selectedWeight === weight 
+                    ? 'border-primary bg-primary text-primary-foreground' 
+                    : 'border-border text-foreground hover:border-primary'
+                }`}
+              >
+                {discount && (
+                  <span className={`absolute -top-2 -right-2 text-[9px] px-1.5 py-0.5 rounded-full font-medium ${
+                    selectedWeight === weight
+                      ? 'bg-primary-foreground text-primary'
+                      : 'bg-primary text-primary-foreground'
+                  }`}>
+                    {discount}
+                  </span>
+                )}
+                <span>{weight}</span>
+                <span className={`text-[10px] ${selectedWeight === weight ? 'text-primary-foreground/80' : 'text-muted-foreground'}`}>
+                  {getWeightPrice(weight)}
+                </span>
+              </button>
+            );
+          })}
         </div>
+        {isBundle && (
+          <p className="text-[11px] font-body text-muted-foreground mt-1">
+            💡 Buy 400g and save 25% — more hair, better value
+          </p>
+        )}
       </div>
 
       {/* Color selector */}
