@@ -3,10 +3,12 @@ import Footer from "../../components/footer/Footer";
 import PageHeader from "../../components/about/PageHeader";
 import ContentSection from "../../components/about/ContentSection";
 import AboutSidebar from "../../components/about/AboutSidebar";
+import BackgroundSlideshow from "../../components/about/BackgroundSlideshow";
 
 const SizeGuide = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen relative">
+      <BackgroundSlideshow />
       <Header />
       
       <div className="flex">
