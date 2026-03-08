@@ -38,7 +38,7 @@ const CustomerCare = () => {
             </div>
             <div className="space-y-4">
               <h3 className="text-lg font-light text-foreground">Instagram DM</h3>
-              <p className="text-muted-foreground">@lineahair</p>
+              <p className="text-muted-foreground">@nayahair</p>
               <p className="text-sm text-muted-foreground">Send us a DM for quick questions</p>
             </div>
           </div>
