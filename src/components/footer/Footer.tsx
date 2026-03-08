@@ -8,7 +8,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <h3 className="text-2xl tracking-[0.2em] font-semibold mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-              NAYA
+              NAYA HAIR
             </h3>
             <p className="text-sm font-body text-muted-foreground leading-relaxed max-w-md mb-6">
               Premium 100% virgin hair extensions, bundles, wigs & frontals. Luxury quality for the modern woman.
