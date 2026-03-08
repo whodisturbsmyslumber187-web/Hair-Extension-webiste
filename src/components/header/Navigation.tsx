@@ -167,7 +167,8 @@ const Navigation = () => {
         </div>
 
         {/* Right icons */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-1">
+          <LanguageSelector />
           <button 
             className="p-2 text-nav-foreground hover:text-nav-hover transition-colors duration-200"
             aria-label="Search"
