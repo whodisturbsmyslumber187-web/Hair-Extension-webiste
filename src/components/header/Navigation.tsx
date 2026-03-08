@@ -248,10 +248,10 @@ const Navigation = () => {
           onMouseEnter={() => handleMouseEnter(activeDropdown)}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="px-6 py-5">
-            <div className="flex justify-between w-full items-start">
-              <div className="flex-1">
-                <ul className="space-y-1">
+          <div className="px-6 py-3">
+            <div className="flex gap-8">
+              <div className="min-w-[200px]">
+                <ul className="space-y-0.5">
                   {navItems
                     .find(item => item.name === activeDropdown)
                     ?.submenuItems.map((subItem, index) => {
@@ -273,7 +273,7 @@ const Navigation = () => {
                     <li key={index}>
                       <Link 
                         to={linkTo}
-                        className="text-nav-foreground hover:text-nav-hover transition-colors duration-200 text-sm font-body tracking-wide block py-1.5"
+                        className="text-nav-foreground hover:text-nav-hover transition-colors duration-200 text-sm font-body tracking-wide block py-1"
                         onClick={() => setActiveDropdown(null)}
                       >
                         {subItem}
@@ -283,30 +283,31 @@ const Navigation = () => {
                   })}
                 </ul>
               </div>
-              <div className="flex space-x-4">
-                {navItems
-                  .find(item => item.name === activeDropdown)
-                  ?.images.map((image, index) => {
-                    let linkTo = "/";
-                    if (activeDropdown === "Shop") {
-                      if (image.label === "Bundles") linkTo = "/category/bundles";
-                      else if (image.label === "Wigs") linkTo = "/category/wigs";
-                    } else if (activeDropdown === "New In") {
-                      linkTo = "/category/new-in";
-                    } else if (activeDropdown === "About") {
-                      linkTo = "/about/our-story";
-                    }
-                    return (
-                      <Link key={index} to={linkTo} className="w-[240px] h-[160px] cursor-pointer group relative overflow-hidden block" onClick={() => setActiveDropdown(null)}>
-                        <img src={image.src} alt={image.alt} className="w-full h-full object-cover transition-opacity duration-200 group-hover:opacity-90" />
-                        <div className="absolute bottom-2 left-2 text-foreground bg-card/80 px-2 py-1 text-xs font-body tracking-wide flex items-center gap-1">
-                          <span>{image.label}</span>
-                          <ArrowRight size={12} />
-                        </div>
-                      </Link>
-                    );
-                  })}
-              </div>
+              {/* Only show images for Shop and Bundle Deals */}
+              {(activeDropdown === "Shop" || activeDropdown === "Bundle Deals") && (
+                <div className="flex gap-3">
+                  {navItems
+                    .find(item => item.name === activeDropdown)
+                    ?.images.slice(0, 2).map((image, index) => {
+                      let linkTo = "/";
+                      if (activeDropdown === "Shop") {
+                        if (image.label === "Bundles") linkTo = "/category/bundles";
+                        else if (image.label === "Wigs") linkTo = "/category/wigs";
+                      } else if (activeDropdown === "Bundle Deals") {
+                        linkTo = "/bundle-deal";
+                      }
+                      return (
+                        <Link key={index} to={linkTo} className="w-[120px] h-[80px] cursor-pointer group relative overflow-hidden block rounded" onClick={() => setActiveDropdown(null)}>
+                          <img src={image.src} alt={image.alt} className="w-full h-full object-cover transition-opacity duration-200 group-hover:opacity-90" />
+                          <div className="absolute bottom-1 left-1 text-foreground bg-card/90 px-1.5 py-0.5 text-[10px] font-body tracking-wide flex items-center gap-1 rounded-sm">
+                            <span>{image.label}</span>
+                            <ArrowRight size={10} />
+                          </div>
+                        </Link>
+                      );
+                    })}
+                </div>
+              )}
             </div>
           </div>
         </div>
