@@ -4,11 +4,13 @@ import PageHeader from "../../components/about/PageHeader";
 import ContentSection from "../../components/about/ContentSection";
 import ImageTextBlock from "../../components/about/ImageTextBlock";
 import AboutSidebar from "../../components/about/AboutSidebar";
+import BackgroundSlideshow from "../../components/about/BackgroundSlideshow";
 import heroImage from "@/assets/hero-bundles.jpg";
 
 const OurStory = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen relative">
+      <BackgroundSlideshow />
       <Header />
       
       <div className="flex">

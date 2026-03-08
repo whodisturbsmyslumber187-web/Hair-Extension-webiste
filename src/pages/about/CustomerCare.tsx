@@ -7,10 +7,12 @@ import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../../components/ui/accordion";
 import AboutSidebar from "../../components/about/AboutSidebar";
+import BackgroundSlideshow from "../../components/about/BackgroundSlideshow";
 
 const CustomerCare = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen relative">
+      <BackgroundSlideshow />
       <Header />
       
       <div className="flex">
