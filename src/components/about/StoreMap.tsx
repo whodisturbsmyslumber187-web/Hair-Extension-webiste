@@ -17,7 +17,7 @@ const stores: Store[] = [
     lng: -73.9776
   },
   {
-    name: "LINEA Beverly Hills", 
+    name: "Naya Hair — Houston", 
     address: "456 Rodeo Drive, Beverly Hills, CA 90210",
     phone: "+1 (310) 555-0456",
     hours: "Mon-Sat: 10AM-8PM, Sun: 12PM-6PM",
