@@ -1,28 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 
-import hairHero from "@/assets/hair-hero-1.jpg";
-import hairBundlesStraight from "@/assets/hair-bundles-straight.jpg";
-import hairBundlesBodywave from "@/assets/hair-bundles-bodywave.jpg";
-import hairClosure from "@/assets/hair-closure.jpg";
-import hairFrontal from "@/assets/hair-frontal.jpg";
-import hairWigBlonde from "@/assets/hair-wig-blonde.jpg";
-import hairWigBodywave from "@/assets/hair-wig-bodywave.jpg";
-import hairBlondeStraight from "@/assets/hair-blonde-straight.jpg";
-import hairFrontalDeepwave from "@/assets/hair-frontal-deepwave.jpg";
-import hairClosureBodywave from "@/assets/hair-closure-bodywave.jpg";
+import bgHair1 from "@/assets/bg-hair-1.jpg";
+import bgHair2 from "@/assets/bg-hair-2.jpg";
+import bgHair3 from "@/assets/bg-hair-3.jpg";
+import bgHair4 from "@/assets/bg-hair-4.jpg";
+import bgHair5 from "@/assets/bg-hair-5.jpg";
 
-const images = [
-  hairHero,
-  hairBundlesStraight,
-  hairBundlesBodywave,
-  hairClosure,
-  hairFrontal,
-  hairWigBlonde,
-  hairWigBodywave,
-  hairBlondeStraight,
-  hairFrontalDeepwave,
-  hairClosureBodywave,
-];
+const images = [bgHair1, bgHair2, bgHair3, bgHair4, bgHair5];
 
 const BackgroundSlideshow = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -46,7 +30,12 @@ const BackgroundSlideshow = () => {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      {/* Current image */}
+      {/* Next image (underneath) */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${images[nextIndex]})` }}
+      />
+      {/* Current image (fades out) */}
       <div
         className="absolute inset-0 bg-cover bg-center transition-opacity duration-[1800ms] ease-in-out"
         style={{
@@ -54,17 +43,10 @@ const BackgroundSlideshow = () => {
           opacity: transitioning ? 0 : 1,
         }}
       />
-      {/* Next image (fades in underneath) */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${images[nextIndex]})`,
-        }}
-      />
-      {/* Overlay to blend with site theme */}
-      <div className="absolute inset-0 bg-background/80 backdrop-blur-[2px]" />
-      {/* Gradient edges for seamless blending */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background opacity-60" />
+      {/* Lighter overlay so images are more visible */}
+      <div className="absolute inset-0 bg-background/60" />
+      {/* Subtle edge blending */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/50" />
     </div>
   );
 };
