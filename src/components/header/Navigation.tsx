@@ -170,6 +170,7 @@ const Navigation = () => {
 
         {/* Right icons */}
         <div className="flex items-center space-x-1">
+          <ThemeSelector />
           <MusicPlayer />
           <LanguageSelector />
           <button 
