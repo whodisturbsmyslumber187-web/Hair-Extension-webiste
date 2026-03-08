@@ -147,33 +147,33 @@ const Wholesale = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="businessName">Business Name *</Label>
-                    <Input id="businessName" value={formData.businessName} onChange={(e) => handleChange("businessName", e.target.value)} placeholder="Your salon or business name" maxLength={100} className="bg-black/30 border-white/20 backdrop-blur-sm" />
+                    <Input id="businessName" value={formData.businessName} onChange={(e) => handleChange("businessName", e.target.value)} placeholder="Your salon or business name" maxLength={100} className="bg-black/30 border-white/20 backdrop-blur-sm text-white font-bold placeholder:text-white/40" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="contactName">Contact Name *</Label>
-                    <Input id="contactName" value={formData.contactName} onChange={(e) => handleChange("contactName", e.target.value)} placeholder="Full name" maxLength={100} className="bg-black/30 border-white/20 backdrop-blur-sm" />
+                    <Input id="contactName" value={formData.contactName} onChange={(e) => handleChange("contactName", e.target.value)} placeholder="Full name" maxLength={100} className="bg-black/30 border-white/20 backdrop-blur-sm text-white font-bold placeholder:text-white/40" />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="email">Email *</Label>
-                    <Input id="email" type="email" value={formData.email} onChange={(e) => handleChange("email", e.target.value)} placeholder="you@business.com" maxLength={255} className="bg-black/30 border-white/20 backdrop-blur-sm" />
+                    <Input id="email" type="email" value={formData.email} onChange={(e) => handleChange("email", e.target.value)} placeholder="you@business.com" maxLength={255} className="bg-black/30 border-white/20 backdrop-blur-sm text-white font-bold placeholder:text-white/40" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone</Label>
-                    <Input id="phone" type="tel" value={formData.phone} onChange={(e) => handleChange("phone", e.target.value)} placeholder="+1 (555) 000-0000" maxLength={20} className="bg-black/30 border-white/20 backdrop-blur-sm" />
+                    <Input id="phone" type="tel" value={formData.phone} onChange={(e) => handleChange("phone", e.target.value)} placeholder="+1 (555) 000-0000" maxLength={20} className="bg-black/30 border-white/20 backdrop-blur-sm text-white font-bold placeholder:text-white/40" />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="businessType">Business Type</Label>
-                  <Input id="businessType" value={formData.businessType} onChange={(e) => handleChange("businessType", e.target.value)} placeholder="e.g. Hair Salon, Beauty Supply Store, Online Reseller" maxLength={100} className="bg-black/30 border-white/20 backdrop-blur-sm" />
+                  <Input id="businessType" value={formData.businessType} onChange={(e) => handleChange("businessType", e.target.value)} placeholder="e.g. Hair Salon, Beauty Supply Store, Online Reseller" maxLength={100} className="bg-black/30 border-white/20 backdrop-blur-sm text-white font-bold placeholder:text-white/40" />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="message">Tell us about your business</Label>
-                  <Textarea id="message" value={formData.message} onChange={(e) => handleChange("message", e.target.value)} placeholder="How many units do you typically order? What textures are you interested in?" rows={5} maxLength={1000} className="bg-black/30 border-white/20 backdrop-blur-sm" />
+                  <Textarea id="message" value={formData.message} onChange={(e) => handleChange("message", e.target.value)} placeholder="How many units do you typically order? What textures are you interested in?" rows={5} maxLength={1000} className="bg-black/30 border-white/20 backdrop-blur-sm text-white font-bold placeholder:text-white/40" />
                 </div>
 
                 <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
