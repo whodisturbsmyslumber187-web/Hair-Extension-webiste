@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ShoppingBag from "./ShoppingBag";
 import LanguageSelector from "./LanguageSelector";
 
-import ThemeSelector from "./ThemeSelector";
+
 import hairBundlesStraight from "@/assets/hair-bundles-straight.jpg";
 import hairBundlesBodywave from "@/assets/hair-bundles-bodywave.jpg";
 import hairFrontal from "@/assets/hair-frontal.jpg";
@@ -193,7 +193,6 @@ const Navigation = () => {
 
         {/* Right icons */}
         <div className="flex items-center space-x-1">
-          <ThemeSelector />
           
           <LanguageSelector />
           <button 

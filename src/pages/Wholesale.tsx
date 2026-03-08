@@ -15,25 +15,22 @@ import { toast } from "sonner";
 const pricingTiers = [
   {
     name: "Starter",
-    minOrder: "10 units",
-    discount: "15% off retail",
-    description: "Perfect for new salon owners testing our products",
-    features: ["Free color swatches", "Standard shipping", "Email support"],
+    minOrder: "50–99 units",
+    description: "Perfect for new salon owners getting started",
+    features: ["Standard shipping rates", "Email support", "Color swatches available"],
   },
   {
     name: "Professional",
-    minOrder: "25 units",
-    discount: "25% off retail",
+    minOrder: "100–199 units",
     description: "Most popular for established salons",
     features: ["Priority shipping", "Dedicated account manager", "Marketing materials", "Custom packaging available"],
     highlighted: true,
   },
   {
     name: "Elite",
-    minOrder: "50+ units",
-    discount: "35% off retail",
+    minOrder: "200+ units",
     description: "For large-scale resellers and distributors",
-    features: ["Free expedited shipping", "Private labeling", "Exclusive early access", "Custom formulations", "Co-marketing opportunities"],
+    features: ["Expedited shipping", "Private labeling", "Exclusive early access", "Custom formulations", "Co-marketing opportunities"],
   },
 ];
 
@@ -119,7 +116,6 @@ const Wholesale = () => {
                     <span className="text-xs tracking-widest uppercase mb-2">Most Popular</span>
                   )}
                   <h3 className="text-2xl uppercase tracking-wide mb-1">{tier.name}</h3>
-                  <p className="text-2xl font-bold mb-2">{tier.discount}</p>
                   <p className="text-sm mb-1">Min. order: {tier.minOrder}</p>
                   <p className="text-sm mb-6">{tier.description}</p>
                   <ul className="space-y-2 mb-8 flex-1">
