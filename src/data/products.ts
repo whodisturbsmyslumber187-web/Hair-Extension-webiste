@@ -339,7 +339,7 @@ export const products: Product[] = [
     weights: ["50g", "100g", "150g"],
     colors: ["Natural Black #1B", "Dark Brown #2", "613 Blonde"],
     description: "Seamless tape-in extensions that lay flat against the head. 20 pieces per pack. Reusable up to 3 times.",
-    colorImages: { "Natural Black #1B": hairBundlesStraight, "Dark Brown #2": hairBundlesBrown, "613 Blonde": hairWigBlonde },
+    colorImages: { "Natural Black #1B": hairBundlesStraight, "Dark Brown #2": hairBundlesBrown, "613 Blonde": hairBlondeStraight },
   },
   {
     id: 17,
