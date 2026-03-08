@@ -9,21 +9,21 @@ import AboutSidebar from "../../components/about/AboutSidebar";
 const StoreLocator = () => {
   const stores = [
     {
-      name: "LINEA Hair — Atlanta",
+      name: "Naya Hair — Atlanta",
       address: "3500 Peachtree Road NE, Atlanta, GA 30326",
       phone: "+1 (404) 555-0123",
       hours: "Mon-Sat: 10AM-8PM, Sun: 12PM-6PM",
       services: ["In-Store Pickup", "Hair Consultations", "Colour Matching", "Bundle Deals"]
     },
     {
-      name: "LINEA Hair — Houston",
+      name: "Naya Hair — Houston",
       address: "2800 Post Oak Blvd, Houston, TX 77056",
       phone: "+1 (713) 555-0456",
       hours: "Mon-Sat: 10AM-8PM, Sun: 12PM-6PM",
       services: ["In-Store Pickup", "Hair Consultations", "VIP Appointments", "Custom Orders"]
     },
     {
-      name: "LINEA Hair — London",
+      name: "Naya Hair — London",
       address: "45 Oxford Street, London W1D 2DZ",
       phone: "+44 20 7555 0789",
       hours: "Mon-Sat: 10AM-7PM, Sun: 12PM-5PM",
@@ -93,7 +93,7 @@ const StoreLocator = () => {
         <ContentSection title="In-Store Experience">
           <div className="space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Nothing beats touching and feeling the hair in person. Visit any LINEA location to compare textures, get colour-matched, and leave with your bundles the same day.
+              Nothing beats touching and feeling the hair in person. Visit any Naya location to compare textures, get colour-matched, and leave with your bundles the same day.
             </p>
             
             <div className="grid md:grid-cols-3 gap-8 mt-12">

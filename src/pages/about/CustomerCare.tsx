@@ -33,12 +33,12 @@ const CustomerCare = () => {
             </div>
             <div className="space-y-4">
               <h3 className="text-lg font-light text-foreground">Email</h3>
-              <p className="text-muted-foreground">care@lineahair.com</p>
+              <p className="text-muted-foreground">care@nayahair.com</p>
               <p className="text-sm text-muted-foreground">Response within 24 hours</p>
             </div>
             <div className="space-y-4">
               <h3 className="text-lg font-light text-foreground">Instagram DM</h3>
-              <p className="text-muted-foreground">@lineahair</p>
+              <p className="text-muted-foreground">@nayahair</p>
               <p className="text-sm text-muted-foreground">Send us a DM for quick questions</p>
             </div>
           </div>
@@ -123,7 +123,7 @@ const CustomerCare = () => {
               
               <div className="space-y-2">
                 <label className="text-sm font-light text-foreground">Order Number (Optional)</label>
-                <Input className="rounded-none" placeholder="e.g. LINEA-12345" />
+                <Input className="rounded-none" placeholder="e.g. NAYA-12345" />
               </div>
               
               <div className="space-y-2">

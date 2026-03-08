@@ -17,7 +17,7 @@ const Sustainability = () => {
         <main className="w-full lg:w-[70vw] lg:ml-auto px-6">
         <PageHeader 
           title="Hair Quality" 
-          subtitle="What sets LINEA hair apart — from source to slay"
+          subtitle="What sets Naya hair apart — from source to slay"
         />
         
         <ContentSection title="Our Sourcing Standards">
@@ -25,7 +25,7 @@ const Sustainability = () => {
             <div className="space-y-6">
               <h3 className="text-xl font-light text-foreground">Ethically Sourced</h3>
               <p className="text-muted-foreground leading-relaxed">
-                All LINEA hair is ethically sourced from single donors. We work directly with trusted collectors who ensure fair compensation and transparent practices. Every bundle can be traced back to its origin.
+                All Naya hair is ethically sourced from single donors. We work directly with trusted collectors who ensure fair compensation and transparent practices. Every bundle can be traced back to its origin.
               </p>
             </div>
             <div className="space-y-6">
@@ -81,7 +81,7 @@ const Sustainability = () => {
         <ContentSection title="Hair Care Tips">
           <div className="space-y-8">
             <p className="text-muted-foreground leading-relaxed">
-              Proper care extends the life of your LINEA hair. Follow these expert tips to keep your hair looking fresh.
+              Proper care extends the life of your Naya hair. Follow these expert tips to keep your hair looking fresh.
             </p>
             
             <div className="grid md:grid-cols-2 gap-8">
