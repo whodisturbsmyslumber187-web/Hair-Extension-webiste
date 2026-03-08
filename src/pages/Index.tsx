@@ -5,8 +5,11 @@ import FiftyFiftySection from "../components/content/FiftyFiftySection";
 import OneThirdTwoThirdsSection from "../components/content/OneThirdTwoThirdsSection";
 import ProductCarousel from "../components/content/ProductCarousel";
 import EditorialSection from "../components/content/EditorialSection";
+import { useTranslation } from "react-i18next";
 
 const Index = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -15,14 +18,14 @@ const Index = () => {
         <LargeHero />
         
         <div className="mb-4 px-6">
-          <h2 className="text-sm font-body tracking-wide text-foreground">Bestsellers</h2>
+          <h2 className="text-sm font-body tracking-wide text-foreground">{t("home.bestsellers")}</h2>
         </div>
         <ProductCarousel />
         
         <FiftyFiftySection />
         
         <div className="mb-4 px-6">
-          <h2 className="text-sm font-body tracking-wide text-foreground">New Arrivals</h2>
+          <h2 className="text-sm font-body tracking-wide text-foreground">{t("home.newArrivals")}</h2>
         </div>
         <ProductCarousel filterCategory="Bundles" />
         
