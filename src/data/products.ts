@@ -21,7 +21,40 @@ export interface Product {
   weights: string[];
   colors: string[];
   description: string;
+  /** Price adjustments by length (added to base priceNum) */
+  lengthPrices?: Record<string, number>;
+  /** Price adjustments by weight (added to base priceNum) */
+  weightPrices?: Record<string, number>;
 }
+
+/** Calculate the final price for a product given selections */
+export const calculatePrice = (product: Product, selectedLength?: string, selectedWeight?: string): number => {
+  let price = product.priceNum;
+  if (selectedLength && product.lengthPrices?.[selectedLength] !== undefined) {
+    price = product.lengthPrices[selectedLength];
+  }
+  if (selectedWeight && product.weightPrices?.[selectedWeight] !== undefined) {
+    price += product.weightPrices[selectedWeight] - product.priceNum;
+    if (selectedLength && product.lengthPrices?.[selectedLength] !== undefined) {
+      price = product.lengthPrices[selectedLength] + (product.weightPrices[selectedWeight] - product.priceNum);
+    }
+  }
+  return price;
+};
+
+/** Generate length-based pricing: base price + increment per step */
+const genLengthPrices = (lengths: string[], basePrice: number, increment: number): Record<string, number> => {
+  const map: Record<string, number> = {};
+  lengths.forEach((l, i) => { map[l] = basePrice + i * increment; });
+  return map;
+};
+
+/** Generate weight-based pricing */
+const genWeightPrices = (weights: string[], basePrice: number, increment: number): Record<string, number> => {
+  const map: Record<string, number> = {};
+  weights.forEach((w, i) => { map[w] = basePrice + i * increment; });
+  return map;
+};
 
 export const products: Product[] = [
   {
