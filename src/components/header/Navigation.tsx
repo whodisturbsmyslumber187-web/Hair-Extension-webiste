@@ -197,7 +197,7 @@ const Navigation = () => {
         <div className="absolute left-1/2 transform -translate-x-1/2">
           <Link to="/" className="block">
             <span className="text-xl tracking-[0.2em] font-semibold text-foreground" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-// Need to view the file first to find the logo reference
+              NAYA HAIR
             </span>
           </Link>
         </div>

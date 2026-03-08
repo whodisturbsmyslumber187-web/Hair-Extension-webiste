@@ -18,7 +18,7 @@ const CheckoutHeader = () => {
           {/* Center - Logo - Absolutely positioned to ensure perfect centering */}
           <Link to="/" className="absolute left-1/2 transform -translate-x-1/2">
             <span className="text-lg tracking-[0.2em] font-semibold" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-              NAYA
+              NAYA HAIR
             </span>
           </Link>
 
