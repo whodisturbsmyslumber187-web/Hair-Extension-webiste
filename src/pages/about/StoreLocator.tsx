@@ -23,7 +23,7 @@ const StoreLocator = () => {
       services: ["In-Store Pickup", "Hair Consultations", "VIP Appointments", "Custom Orders"]
     },
     {
-      name: "LINEA Hair — London",
+      name: "Naya Hair — London",
       address: "45 Oxford Street, London W1D 2DZ",
       phone: "+44 20 7555 0789",
       hours: "Mon-Sat: 10AM-7PM, Sun: 12PM-5PM",
