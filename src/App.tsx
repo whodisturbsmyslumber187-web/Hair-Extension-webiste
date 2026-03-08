@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import LeadCapture from "./components/LeadCapture";
+import MusicPlayer from "./components/header/MusicPlayer";
 import Index from "./pages/Index";
 import Category from "./pages/Category";
 import ProductDetail from "./pages/ProductDetail";
@@ -31,6 +32,7 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <LeadCapture />
+        <MusicPlayer />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/category/:category" element={<Category />} />

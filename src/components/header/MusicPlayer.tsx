@@ -3,15 +3,15 @@ import { Volume2, VolumeX } from "lucide-react";
 
 /**
  * Mall-style shopping music player using Web Audio API.
- * Generates a catchy, upbeat lofi/jazzy melody — no external files needed.
+ * Auto-starts on first user interaction and persists across pages.
  */
 const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioContextRef = useRef<AudioContext | null>(null);
   const gainNodeRef = useRef<GainNode | null>(null);
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const isStoppedRef = useRef(false);
+  const hasAutoStarted = useRef(false);
 
   const createShoppingMusic = useCallback(() => {
     const ctx = new AudioContext();
@@ -23,13 +23,11 @@ const MusicPlayer = () => {
     masterGain.connect(ctx.destination);
     gainNodeRef.current = masterGain;
 
-    // Compressor for polish
     const compressor = ctx.createDynamicsCompressor();
     compressor.threshold.value = -20;
     compressor.ratio.value = 4;
     compressor.connect(masterGain);
 
-    // Note frequencies
     const notes: Record<string, number> = {
       C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23, G4: 392.00,
       A4: 440.00, B4: 493.88, C5: 523.25, D5: 587.33, E5: 659.25,
@@ -38,27 +36,22 @@ const MusicPlayer = () => {
       D3: 146.83, F3: 174.61,
     };
 
-    // Play a single note with envelope
-    const playNote = (freq: number, startTime: number, duration: number, volume: number = 0.3, type: OscillatorType = "triangle") => {
+    const playNote = (freq: number, startTime: number, duration: number, volume = 0.3, type: OscillatorType = "triangle") => {
       if (isStoppedRef.current) return;
       const osc = ctx.createOscillator();
       const env = ctx.createGain();
       osc.type = type;
       osc.frequency.value = freq;
-
       env.gain.setValueAtTime(0, startTime);
       env.gain.linearRampToValueAtTime(volume, startTime + 0.02);
       env.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
-
       osc.connect(env);
       env.connect(compressor);
       osc.start(startTime);
       osc.stop(startTime + duration);
     };
 
-    // Chord patterns (jazz/bossa feel)
     const chordProgressions = [
-      // Cmaj7 - Dm7 - Em7 - Fmaj7 - G7 - Am7 - Dm7 - G7
       [
         [notes.C3, notes.E4, notes.G4, notes.B4],
         [notes.D3, notes.F4, notes.A4, notes.C5],
@@ -69,7 +62,6 @@ const MusicPlayer = () => {
         [notes.D3, notes.F4, notes.A4, notes.C5],
         [notes.G3, notes.B4, notes.D5, notes.F5],
       ],
-      // Am7 - Dm7 - G7 - Cmaj7 - Fmaj7 - Bm7b5 - E7 - Am7
       [
         [notes.A3, notes.C5, notes.E5, notes.G5],
         [notes.D3, notes.F4, notes.A4, notes.C5],
@@ -82,7 +74,6 @@ const MusicPlayer = () => {
       ],
     ];
 
-    // Melody patterns
     const melodies = [
       [notes.E5, notes.D5, notes.C5, notes.D5, notes.E5, notes.G5, notes.A5, notes.G5,
        notes.F5, notes.E5, notes.D5, notes.C5, notes.D5, notes.E5, notes.C5, notes.D5],
@@ -95,36 +86,27 @@ const MusicPlayer = () => {
     const bpm = 105;
     const beatDuration = 60 / bpm;
     const barDuration = beatDuration * 4;
-
     let currentBar = 0;
 
     const playBar = () => {
       if (isStoppedRef.current || !audioContextRef.current) return;
-
       const now = ctx.currentTime;
       const progIdx = currentBar % 2;
       const progression = chordProgressions[progIdx];
-      const chordIdx = (currentBar % 8);
+      const chordIdx = currentBar % 8;
       const chord = progression[chordIdx];
 
-      // Bass note
       playNote(chord[0], now, barDuration * 0.9, 0.25, "sine");
-
-      // Chord stabs (bossa rhythm)
       playNote(chord[1], now + beatDuration * 0.5, beatDuration * 0.4, 0.08, "triangle");
       playNote(chord[2], now + beatDuration * 0.5, beatDuration * 0.4, 0.07, "triangle");
       playNote(chord[3], now + beatDuration * 0.5, beatDuration * 0.4, 0.06, "triangle");
-
       playNote(chord[1], now + beatDuration * 1.5, beatDuration * 0.3, 0.06, "triangle");
       playNote(chord[2], now + beatDuration * 1.5, beatDuration * 0.3, 0.05, "triangle");
-
       playNote(chord[1], now + beatDuration * 2.5, beatDuration * 0.4, 0.08, "triangle");
       playNote(chord[2], now + beatDuration * 2.5, beatDuration * 0.4, 0.07, "triangle");
       playNote(chord[3], now + beatDuration * 2.5, beatDuration * 0.4, 0.06, "triangle");
-
       playNote(chord[1], now + beatDuration * 3.25, beatDuration * 0.3, 0.05, "triangle");
 
-      // Melody
       const melodyIdx = currentBar % melodies.length;
       const melody = melodies[melodyIdx];
       const notesPerBar = 8;
@@ -132,13 +114,11 @@ const MusicPlayer = () => {
 
       for (let i = 0; i < notesPerBar; i++) {
         const mNote = melody[(chordIdx * 2 + i) % melody.length];
-        // Add slight swing
         const swing = i % 2 === 1 ? noteSpacing * 0.08 : 0;
         const vol = 0.08 + Math.sin(i * 0.7) * 0.03;
         playNote(mNote, now + i * noteSpacing + swing, noteSpacing * 0.7, vol, "sine");
       }
 
-      // Hi-hat pattern (noise-like)
       for (let i = 0; i < 8; i++) {
         const hihatOsc = ctx.createOscillator();
         const hihatGain = ctx.createGain();
@@ -166,10 +146,6 @@ const MusicPlayer = () => {
     isStoppedRef.current = true;
     timeoutsRef.current.forEach(t => clearTimeout(t));
     timeoutsRef.current = [];
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
     if (audioContextRef.current) {
       audioContextRef.current.close().catch(() => {});
       audioContextRef.current = null;
@@ -186,6 +162,26 @@ const MusicPlayer = () => {
     }
   };
 
+  // Auto-start on first user interaction anywhere on the page
+  useEffect(() => {
+    if (hasAutoStarted.current) return;
+    const startOnInteraction = () => {
+      if (!hasAutoStarted.current) {
+        hasAutoStarted.current = true;
+        createShoppingMusic();
+        setIsPlaying(true);
+      }
+      document.removeEventListener("click", startOnInteraction);
+      document.removeEventListener("touchstart", startOnInteraction);
+    };
+    document.addEventListener("click", startOnInteraction);
+    document.addEventListener("touchstart", startOnInteraction);
+    return () => {
+      document.removeEventListener("click", startOnInteraction);
+      document.removeEventListener("touchstart", startOnInteraction);
+    };
+  }, [createShoppingMusic]);
+
   useEffect(() => {
     return () => { stopSound(); };
   }, [stopSound]);
@@ -193,14 +189,14 @@ const MusicPlayer = () => {
   return (
     <button
       onClick={toggleMusic}
-      className="p-2 text-nav-foreground hover:text-nav-hover transition-colors duration-200 relative group"
+      className="fixed bottom-20 left-4 z-50 p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-lg text-foreground hover:bg-background transition-colors duration-200"
       aria-label={isPlaying ? "Mute music" : "Play shopping music"}
       title={isPlaying ? "Mute music" : "Play shopping music"}
     >
       {isPlaying ? (
-        <Volume2 className="w-4 h-4" />
+        <Volume2 className="w-5 h-5" />
       ) : (
-        <VolumeX className="w-4 h-4" />
+        <VolumeX className="w-5 h-5" />
       )}
       {isPlaying && (
         <span className="absolute inset-0 rounded-full animate-ping bg-primary/10 pointer-events-none" />

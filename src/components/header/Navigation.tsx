@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ShoppingBag from "./ShoppingBag";
 import LanguageSelector from "./LanguageSelector";
-import MusicPlayer from "./MusicPlayer";
+
 import ThemeSelector from "./ThemeSelector";
 import hairBundlesStraight from "@/assets/hair-bundles-straight.jpg";
 import hairBundlesBodywave from "@/assets/hair-bundles-bodywave.jpg";
@@ -183,7 +183,7 @@ const Navigation = () => {
         {/* Right icons */}
         <div className="flex items-center space-x-1">
           <ThemeSelector />
-          <MusicPlayer />
+          
           <LanguageSelector />
           <button 
             className="p-2 text-nav-foreground hover:text-nav-hover transition-colors duration-200"
