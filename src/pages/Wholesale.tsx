@@ -69,8 +69,15 @@ const Wholesale = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (honeypot) return; // bot trap
     if (!formData.businessName || !formData.contactName || !formData.email) {
       toast.error("Please fill in all required fields");
+      return;
+    }
+    if (parseInt(captchaInput) !== captcha.answer) {
+      toast.error("Incorrect answer — please try again");
+      setCaptcha(generateMathChallenge());
+      setCaptchaInput("");
       return;
     }
     setIsSubmitting(true);
@@ -78,6 +85,8 @@ const Wholesale = () => {
     setIsSubmitting(false);
     toast.success("Application submitted! We'll be in touch within 24 hours.");
     setFormData({ businessName: "", contactName: "", email: "", phone: "", businessType: "", message: "" });
+    setCaptcha(generateMathChallenge());
+    setCaptchaInput("");
   };
 
   return (
