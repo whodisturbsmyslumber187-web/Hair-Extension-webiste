@@ -16,7 +16,7 @@ const SizeGuide = () => {
           <AboutSidebar />
         </div>
         
-        <main className="w-full lg:w-[70vw] lg:ml-auto px-6">
+        <main className="w-full lg:w-[70vw] lg:ml-auto px-6 about-text-bold">
         <PageHeader 
           title="Length Guide" 
           subtitle="Find the perfect length for your desired look"
