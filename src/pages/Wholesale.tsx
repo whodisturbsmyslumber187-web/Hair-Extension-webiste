@@ -194,6 +194,26 @@ const Wholesale = () => {
                   <Textarea id="message" value={formData.message} onChange={(e) => handleChange("message", e.target.value)} placeholder="How many units do you typically order? What textures are you interested in?" rows={5} maxLength={1000} className="bg-black/30 border-white/20 backdrop-blur-sm text-white font-bold placeholder:text-white/40" />
                 </div>
 
+                {/* Honeypot - hidden from humans */}
+                <div className="absolute opacity-0 pointer-events-none h-0 overflow-hidden" aria-hidden="true">
+                  <Input tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+                </div>
+
+                {/* Math CAPTCHA */}
+                <div className="space-y-2">
+                  <Label htmlFor="captcha">Security Check: What is {captcha.question}? *</Label>
+                  <Input
+                    id="captcha"
+                    type="text"
+                    inputMode="numeric"
+                    value={captchaInput}
+                    onChange={(e) => setCaptchaInput(e.target.value)}
+                    placeholder="Enter your answer"
+                    maxLength={5}
+                    className="bg-black/30 border-white/20 backdrop-blur-sm text-white font-bold placeholder:text-white/40 max-w-[200px]"
+                  />
+                </div>
+
                 <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
                   {isSubmitting ? "Submitting..." : "Submit Wholesale Application"}
                 </Button>
