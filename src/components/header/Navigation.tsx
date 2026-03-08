@@ -127,6 +127,17 @@ const Navigation = () => {
       images: [
         { src: hairClosure, alt: "Premium Hair", label: "Our quality promise" }
       ]
+    },
+    {
+      name: "Wholesale",
+      href: "/wholesale",
+      submenuItems: [
+        "Pricing Tiers",
+        "Apply Now",
+      ],
+      images: [
+        { src: hairBundlesStraight, alt: "Wholesale Bundles", label: "Bulk pricing" }
+      ]
     }
   ];
 
