@@ -23,10 +23,10 @@ const ImageTextBlock = ({
         />
       </div>
       <div className="flex-1 space-y-6">
-        <h3 className="text-2xl font-light text-foreground">
+        <h3 className="text-2xl font-medium text-foreground">
           {title}
         </h3>
-        <p className="text-muted-foreground leading-relaxed">
+        <p className="text-foreground/80 font-normal leading-relaxed">
           {content}
         </p>
       </div>
