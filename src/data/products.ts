@@ -118,9 +118,9 @@ export const products: Product[] = [
     isBestseller: true,
     lengths: ["14\"", "16\"", "18\"", "20\"", "22\"", "24\"", "26\"", "28\"", "30\"", "32\"", "34\"", "36\"", "38\"", "40\""],
     weights: ["100g", "150g", "200g", "300g", "400g"],
-    colors: ["Natural Black #1B", "Dark Brown #2"],
+    colors: ["Natural Black #1B", "Dark Brown #2", "Honey Blonde #27", "613 Blonde"],
     description: "Premium body wave virgin hair with gorgeous S-pattern waves. Bouncy, full, and luxuriously soft. Maintains curl pattern after washing.",
-    colorImages: { "Natural Black #1B": hairBundlesBodywave, "Dark Brown #2": hairBundlesBrown },
+    colorImages: { "Natural Black #1B": hairBundlesBodywave, "Dark Brown #2": hairBundlesBrown, "Honey Blonde #27": hairBundlesHoneyBlonde, "613 Blonde": hairWigBlonde },
   },
   {
     id: 3,
