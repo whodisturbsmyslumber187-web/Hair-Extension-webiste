@@ -1,6 +1,10 @@
 import { useState } from "react";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
+import AboutSidebar from "@/components/about/AboutSidebar";
+import PageHeader from "@/components/about/PageHeader";
+import ContentSection from "@/components/about/ContentSection";
+import WholesaleSlideshow from "@/components/wholesale/WholesaleSlideshow";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -64,7 +68,6 @@ const Wholesale = () => {
       return;
     }
     setIsSubmitting(true);
-    // Simulate submission
     await new Promise((r) => setTimeout(r, 1500));
     setIsSubmitting(false);
     toast.success("Application submitted! We'll be in touch within 24 hours.");
@@ -72,139 +75,119 @@ const Wholesale = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen about-text-bold">
+      <WholesaleSlideshow />
       <Header />
 
-      {/* Hero */}
-      <section className="relative py-24 md:py-32 px-6 text-center bg-gradient-to-b from-secondary to-background">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-sm tracking-[0.3em] uppercase text-primary mb-4 font-body">Partner With Us</p>
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight mb-6" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-            Wholesale Program
-          </h1>
-          <p className="text-lg text-muted-foreground font-body max-w-xl mx-auto leading-relaxed">
-            Premium virgin hair at unbeatable bulk prices. Join hundreds of salons and resellers who trust Naya for quality and consistency.
-          </p>
+      <main className="relative flex">
+        <div className="hidden lg:block">
+          <AboutSidebar />
         </div>
-      </section>
 
-      {/* Benefits */}
-      <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-semibold text-center mb-4" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-            Why Partner With Naya
-          </h2>
-          <p className="text-muted-foreground text-center font-body mb-14 max-w-lg mx-auto">
-            Everything you need to grow your hair business with confidence.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((b) => (
-              <div key={b.title} className="p-6 rounded-xl border border-border bg-card hover:shadow-lg transition-shadow">
-                <b.icon className="w-8 h-8 text-primary mb-4" strokeWidth={1.5} />
-                <h3 className="text-lg font-semibold mb-2">{b.title}</h3>
-                <p className="text-sm text-muted-foreground font-body leading-relaxed">{b.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        <div className="w-full lg:w-[70vw] lg:ml-auto px-6">
+          <PageHeader
+            title="Wholesale Program"
+            subtitle="Premium virgin hair at unbeatable bulk prices — for salons, resellers & distributors"
+          />
 
-      {/* Pricing Tiers */}
-      <section className="py-20 px-6 bg-secondary/50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-semibold text-center mb-4" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-            Pricing Tiers
-          </h2>
-          <p className="text-muted-foreground text-center font-body mb-14 max-w-lg mx-auto">
-            Volume-based discounts that scale with your business.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {pricingTiers.map((tier) => (
-              <div
-                key={tier.name}
-                className={`p-8 rounded-xl border bg-card flex flex-col ${
-                  tier.highlighted ? "border-primary shadow-xl ring-1 ring-primary/20 scale-[1.02]" : "border-border"
-                }`}
-              >
-                {tier.highlighted && (
-                  <span className="text-xs tracking-widest uppercase text-primary font-body mb-2">Most Popular</span>
-                )}
-                <h3 className="text-2xl font-semibold mb-1" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-                  {tier.name}
-                </h3>
-                <p className="text-2xl font-bold text-primary mb-2">{tier.discount}</p>
-                <p className="text-sm text-muted-foreground font-body mb-1">Min. order: {tier.minOrder}</p>
-                <p className="text-sm text-muted-foreground font-body mb-6">{tier.description}</p>
-                <ul className="space-y-2 mb-8 flex-1">
-                  {tier.features.map((f) => (
-                    <li key={f} className="text-sm font-body flex items-start gap-2">
-                      <span className="text-primary mt-0.5">✓</span>
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  variant={tier.highlighted ? "default" : "outline"}
-                  className="w-full"
-                  onClick={() => document.getElementById("wholesale-form")?.scrollIntoView({ behavior: "smooth" })}
+          {/* Benefits */}
+          <ContentSection title="Why Partner With Naya">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {benefits.map((b) => (
+                <div key={b.title} className="p-6 rounded-xl border border-white/15 bg-black/30 backdrop-blur-sm">
+                  <b.icon className="w-8 h-8 mb-4" strokeWidth={1.5} />
+                  <h3 className="text-lg mb-2">{b.title}</h3>
+                  <p className="text-sm leading-relaxed">{b.description}</p>
+                </div>
+              ))}
+            </div>
+          </ContentSection>
+
+          {/* Pricing Tiers */}
+          <ContentSection title="Pricing Tiers">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {pricingTiers.map((tier) => (
+                <div
+                  key={tier.name}
+                  className={`p-8 rounded-xl border bg-black/30 backdrop-blur-sm flex flex-col ${
+                    tier.highlighted
+                      ? "border-white/40 ring-1 ring-white/20 scale-[1.02]"
+                      : "border-white/15"
+                  }`}
                 >
-                  Apply Now
+                  {tier.highlighted && (
+                    <span className="text-xs tracking-widest uppercase mb-2">Most Popular</span>
+                  )}
+                  <h3 className="text-2xl uppercase tracking-wide mb-1">{tier.name}</h3>
+                  <p className="text-2xl font-bold mb-2">{tier.discount}</p>
+                  <p className="text-sm mb-1">Min. order: {tier.minOrder}</p>
+                  <p className="text-sm mb-6">{tier.description}</p>
+                  <ul className="space-y-2 mb-8 flex-1">
+                    {tier.features.map((f) => (
+                      <li key={f} className="text-sm flex items-start gap-2">
+                        <span className="mt-0.5">✓</span>
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    variant={tier.highlighted ? "default" : "outline"}
+                    className="w-full"
+                    onClick={() => document.getElementById("wholesale-form")?.scrollIntoView({ behavior: "smooth" })}
+                  >
+                    Apply Now
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </ContentSection>
+
+          {/* Application Form */}
+          <ContentSection title="Apply for Wholesale">
+            <div id="wholesale-form" className="max-w-2xl">
+              <p className="mb-8">Fill out the form below and our team will get back to you within 24 hours.</p>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="businessName">Business Name *</Label>
+                    <Input id="businessName" value={formData.businessName} onChange={(e) => handleChange("businessName", e.target.value)} placeholder="Your salon or business name" maxLength={100} className="bg-black/30 border-white/20 backdrop-blur-sm" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="contactName">Contact Name *</Label>
+                    <Input id="contactName" value={formData.contactName} onChange={(e) => handleChange("contactName", e.target.value)} placeholder="Full name" maxLength={100} className="bg-black/30 border-white/20 backdrop-blur-sm" />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email *</Label>
+                    <Input id="email" type="email" value={formData.email} onChange={(e) => handleChange("email", e.target.value)} placeholder="you@business.com" maxLength={255} className="bg-black/30 border-white/20 backdrop-blur-sm" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone</Label>
+                    <Input id="phone" type="tel" value={formData.phone} onChange={(e) => handleChange("phone", e.target.value)} placeholder="+1 (555) 000-0000" maxLength={20} className="bg-black/30 border-white/20 backdrop-blur-sm" />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="businessType">Business Type</Label>
+                  <Input id="businessType" value={formData.businessType} onChange={(e) => handleChange("businessType", e.target.value)} placeholder="e.g. Hair Salon, Beauty Supply Store, Online Reseller" maxLength={100} className="bg-black/30 border-white/20 backdrop-blur-sm" />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="message">Tell us about your business</Label>
+                  <Textarea id="message" value={formData.message} onChange={(e) => handleChange("message", e.target.value)} placeholder="How many units do you typically order? What textures are you interested in?" rows={5} maxLength={1000} className="bg-black/30 border-white/20 backdrop-blur-sm" />
+                </div>
+
+                <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                  {isSubmitting ? "Submitting..." : "Submit Wholesale Application"}
                 </Button>
-              </div>
-            ))}
-          </div>
+              </form>
+            </div>
+          </ContentSection>
         </div>
-      </section>
-
-      {/* Application Form */}
-      <section id="wholesale-form" className="py-20 px-6">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-semibold text-center mb-4" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-            Apply for Wholesale
-          </h2>
-          <p className="text-muted-foreground text-center font-body mb-12">
-            Fill out the form below and our team will get back to you within 24 hours.
-          </p>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="businessName">Business Name *</Label>
-                <Input id="businessName" value={formData.businessName} onChange={(e) => handleChange("businessName", e.target.value)} placeholder="Your salon or business name" maxLength={100} />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="contactName">Contact Name *</Label>
-                <Input id="contactName" value={formData.contactName} onChange={(e) => handleChange("contactName", e.target.value)} placeholder="Full name" maxLength={100} />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email *</Label>
-                <Input id="email" type="email" value={formData.email} onChange={(e) => handleChange("email", e.target.value)} placeholder="you@business.com" maxLength={255} />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" type="tel" value={formData.phone} onChange={(e) => handleChange("phone", e.target.value)} placeholder="+1 (555) 000-0000" maxLength={20} />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="businessType">Business Type</Label>
-              <Input id="businessType" value={formData.businessType} onChange={(e) => handleChange("businessType", e.target.value)} placeholder="e.g. Hair Salon, Beauty Supply Store, Online Reseller" maxLength={100} />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="message">Tell us about your business</Label>
-              <Textarea id="message" value={formData.message} onChange={(e) => handleChange("message", e.target.value)} placeholder="How many units do you typically order? What textures are you interested in?" rows={5} maxLength={1000} />
-            </div>
-
-            <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
-              {isSubmitting ? "Submitting..." : "Submit Wholesale Application"}
-            </Button>
-          </form>
-        </div>
-      </section>
+      </main>
 
       <Footer />
     </div>
