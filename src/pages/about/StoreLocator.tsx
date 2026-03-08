@@ -52,20 +52,15 @@ const StoreLocator = () => {
         <ContentSection title="We Ship Worldwide">
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-6">
-              <h3 className="text-xl font-light text-foreground">Shipping Options</h3>
+              <h3 className="text-xl font-light text-foreground">Delivery Times</h3>
               <div className="space-y-4">
                 <div className="flex justify-between py-3 border-b border-border">
-                  <span className="text-muted-foreground">Standard (5–7 days)</span>
-                  <span className="text-foreground">Free over €150</span>
+                  <span className="text-muted-foreground">Estimated Delivery</span>
+                  <span className="text-foreground">4–6 weeks</span>
                 </div>
-                <div className="flex justify-between py-3 border-b border-border">
-                  <span className="text-muted-foreground">Express (2–3 days)</span>
-                  <span className="text-foreground">€15</span>
-                </div>
-                <div className="flex justify-between py-3 border-b border-border">
-                  <span className="text-muted-foreground">Next-Day</span>
-                  <span className="text-foreground">€35</span>
-                </div>
+                <p className="text-sm text-muted-foreground">
+                  Delivery times may vary depending on supply and availability. You'll receive a tracking number once your order ships.
+                </p>
               </div>
             </div>
             
