@@ -9,25 +9,25 @@ import AboutSidebar from "../../components/about/AboutSidebar";
 const StoreLocator = () => {
   const stores = [
     {
-      name: "LINEA Madison Avenue",
-      address: "789 Madison Avenue, New York, NY 10065",
-      phone: "+1 (212) 555-0123",
+      name: "LINEA Hair — Atlanta",
+      address: "3500 Peachtree Road NE, Atlanta, GA 30326",
+      phone: "+1 (404) 555-0123",
       hours: "Mon-Sat: 10AM-8PM, Sun: 12PM-6PM",
-      services: ["Personal Shopping", "Custom Design", "Repairs", "Appraisals"]
+      services: ["In-Store Pickup", "Hair Consultations", "Colour Matching", "Bundle Deals"]
     },
     {
-      name: "LINEA Beverly Hills",
-      address: "456 Rodeo Drive, Beverly Hills, CA 90210",
-      phone: "+1 (310) 555-0456",
+      name: "LINEA Hair — Houston",
+      address: "2800 Post Oak Blvd, Houston, TX 77056",
+      phone: "+1 (713) 555-0456",
       hours: "Mon-Sat: 10AM-8PM, Sun: 12PM-6PM",
-      services: ["Personal Shopping", "Custom Design", "VIP Suites", "Repairs"]
+      services: ["In-Store Pickup", "Hair Consultations", "VIP Appointments", "Custom Orders"]
     },
     {
-      name: "LINEA SoHo",
-      address: "123 Spring Street, New York, NY 10012",
-      phone: "+1 (212) 555-0789",
-      hours: "Mon-Sat: 11AM-8PM, Sun: 12PM-7PM",
-      services: ["Browse & Buy", "Repairs", "Gift Wrapping"]
+      name: "LINEA Hair — London",
+      address: "45 Oxford Street, London W1D 2DZ",
+      phone: "+44 20 7555 0789",
+      hours: "Mon-Sat: 10AM-7PM, Sun: 12PM-5PM",
+      services: ["In-Store Pickup", "Hair Consultations", "Texture Matching", "Express Orders"]
     }
   ];
 
@@ -43,17 +43,17 @@ const StoreLocator = () => {
         <main className="w-full lg:w-[70vw] lg:ml-auto px-6">
         <PageHeader 
           title="Store Locator" 
-          subtitle="Visit us in person for a personalized jewelry experience"
+          subtitle="Visit us in person to see and feel the quality before you buy"
         />
         
-        <ContentSection title="Interactive Store Map">
+        <ContentSection title="Find a Store">
           <StoreMap />
         </ContentSection>
 
         <ContentSection title="Our Locations">
           <div className="grid gap-8">
             {stores.map((store, index) => (
-              <div key={index} className="bg-background rounded-lg p-8 border border-border">
+              <div key={index} className="bg-background p-8 border border-border">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="space-y-4">
                     <h3 className="text-xl font-light text-foreground">{store.name}</h3>
@@ -74,7 +74,7 @@ const StoreLocator = () => {
                   </div>
                   
                   <div className="space-y-4">
-                    <h4 className="text-lg font-light text-foreground">Available Services</h4>
+                    <h4 className="text-lg font-light text-foreground">Services Available</h4>
                     <ul className="grid grid-cols-2 gap-2">
                       {store.services.map((service, serviceIndex) => (
                         <li key={serviceIndex} className="text-sm text-muted-foreground flex items-center">
@@ -90,51 +90,38 @@ const StoreLocator = () => {
           </div>
         </ContentSection>
 
-        <ContentSection title="Private Appointments">
+        <ContentSection title="In-Store Experience">
           <div className="space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Experience personalized service with a private appointment. Our jewelry consultants will guide you through our collections, help with custom designs, and provide expert advice in a comfortable, private setting.
+              Nothing beats touching and feeling the hair in person. Visit any LINEA location to compare textures, get colour-matched, and leave with your bundles the same day.
             </p>
             
             <div className="grid md:grid-cols-3 gap-8 mt-12">
               <div className="space-y-3">
-                <h4 className="text-lg font-light text-foreground">Personal Shopping</h4>
+                <h4 className="text-lg font-light text-foreground">Hair Consultations</h4>
                 <p className="text-muted-foreground text-sm">
-                  One-on-one guidance to find the perfect piece for any occasion
+                  Our hair specialists will help you choose the right texture, length, and number of bundles for your desired look.
                 </p>
               </div>
               <div className="space-y-3">
-                <h4 className="text-lg font-light text-foreground">Custom Design</h4>
+                <h4 className="text-lg font-light text-foreground">Same-Day Pickup</h4>
                 <p className="text-muted-foreground text-sm">
-                  Work with our designers to create a unique piece just for you
+                  Order online and pick up in store within hours. Skip the shipping wait and get your hair today.
                 </p>
               </div>
               <div className="space-y-3">
-                <h4 className="text-lg font-light text-foreground">Expert Services</h4>
+                <h4 className="text-lg font-light text-foreground">VIP Appointments</h4>
                 <p className="text-muted-foreground text-sm">
-                  Professional appraisals, repairs, and maintenance services
+                  Book a private appointment for a one-on-one session with our team. Perfect for custom orders and bulk purchases.
                 </p>
               </div>
             </div>
             
             <div className="pt-8">
               <Button size="lg" className="rounded-none">
-                Schedule Your Appointment
+                Book Your Appointment
               </Button>
             </div>
-          </div>
-        </ContentSection>
-
-        <ContentSection title="Virtual Consultations">
-          <div className="bg-muted/10 rounded-lg p-8">
-            <h3 className="text-xl font-light text-foreground mb-4">Can't visit in person?</h3>
-            <p className="text-muted-foreground mb-6">
-              Book a virtual consultation with one of our jewelry experts. We'll showcase pieces via video call, 
-              answer your questions, and help you make the perfect selection from the comfort of your home.
-            </p>
-            <Button variant="outline" className="rounded-none">
-              Book Virtual Consultation
-            </Button>
           </div>
         </ContentSection>
         </main>
