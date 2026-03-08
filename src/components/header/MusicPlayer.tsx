@@ -189,14 +189,14 @@ const MusicPlayer = () => {
   return (
     <button
       onClick={toggleMusic}
-      className="p-2 text-nav-foreground hover:text-nav-hover transition-colors duration-200 relative group"
+      className="fixed bottom-20 left-4 z-50 p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-lg text-foreground hover:bg-background transition-colors duration-200"
       aria-label={isPlaying ? "Mute music" : "Play shopping music"}
       title={isPlaying ? "Mute music" : "Play shopping music"}
     >
       {isPlaying ? (
-        <Volume2 className="w-4 h-4" />
+        <Volume2 className="w-5 h-5" />
       ) : (
-        <VolumeX className="w-4 h-4" />
+        <VolumeX className="w-5 h-5" />
       )}
       {isPlaying && (
         <span className="absolute inset-0 rounded-full animate-ping bg-primary/10 pointer-events-none" />
