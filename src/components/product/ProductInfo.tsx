@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
@@ -9,9 +9,10 @@ import { getProductById, calculatePrice } from "@/data/products";
 
 interface ProductInfoProps {
   productId?: number;
+  onColorChange?: (color: string) => void;
 }
 
-const ProductInfo = ({ productId }: ProductInfoProps) => {
+const ProductInfo = ({ productId, onColorChange }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedLength, setSelectedLength] = useState<string>("");
   const [selectedWeight, setSelectedWeight] = useState<string>("");
@@ -26,13 +27,20 @@ const ProductInfo = ({ productId }: ProductInfoProps) => {
   const colors = product?.colors || ["Natural Black #1B"];
 
   const currentPrice = useMemo(() => {
-    if (!product) return 85;
+    if (!product) return 55;
     return calculatePrice(product, selectedLength || undefined, selectedWeight || undefined);
   }, [product, selectedLength, selectedWeight]);
 
   const displayPrice = selectedLength || selectedWeight 
     ? `$${currentPrice}` 
-    : `from $${product?.priceNum || 85}`;
+    : `from $${product?.priceNum || 55}`;
+
+  // Notify parent when color changes for image switching
+  useEffect(() => {
+    if (selectedColor && onColorChange) {
+      onColorChange(selectedColor);
+    }
+  }, [selectedColor, onColorChange]);
 
   const incrementQuantity = () => setQuantity(prev => prev + 1);
   const decrementQuantity = () => setQuantity(prev => Math.max(1, prev - 1));
@@ -65,7 +73,9 @@ const ProductInfo = ({ productId }: ProductInfoProps) => {
 
       {/* Length selector */}
       <div className="space-y-3 py-4 border-b border-border">
-        <h3 className="text-sm font-body font-medium text-foreground">Length</h3>
+        <h3 className="text-sm font-body font-medium text-foreground">
+          Length {selectedLength && <span className="font-light text-muted-foreground ml-1">— {selectedLength}</span>}
+        </h3>
         <div className="flex flex-wrap gap-2">
           {lengths.map(length => (
             <button
@@ -85,7 +95,9 @@ const ProductInfo = ({ productId }: ProductInfoProps) => {
 
       {/* Weight selector */}
       <div className="space-y-3 py-4 border-b border-border">
-        <h3 className="text-sm font-body font-medium text-foreground">Weight</h3>
+        <h3 className="text-sm font-body font-medium text-foreground">
+          Weight {selectedWeight && <span className="font-light text-muted-foreground ml-1">— {selectedWeight}</span>}
+        </h3>
         <div className="flex flex-wrap gap-2">
           {weights.map(weight => (
             <button
@@ -105,7 +117,9 @@ const ProductInfo = ({ productId }: ProductInfoProps) => {
 
       {/* Color selector */}
       <div className="space-y-3 py-4 border-b border-border">
-        <h3 className="text-sm font-body font-medium text-foreground">Color</h3>
+        <h3 className="text-sm font-body font-medium text-foreground">
+          Color {selectedColor && <span className="font-light text-muted-foreground ml-1">— {selectedColor}</span>}
+        </h3>
         <div className="flex flex-wrap gap-2">
           {colors.map(color => (
             <button
@@ -145,7 +159,7 @@ const ProductInfo = ({ productId }: ProductInfoProps) => {
         </Button>
         
         <div className="text-center space-y-1">
-          <p className="text-xs font-body text-muted-foreground">✓ Free shipping over $150</p>
+          <p className="text-xs font-body text-muted-foreground">✓ Shipping calculated at checkout</p>
           <p className="text-xs font-body text-muted-foreground">✓ 30-day quality guarantee</p>
         </div>
       </div>
