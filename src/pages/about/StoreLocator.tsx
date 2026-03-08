@@ -34,9 +34,9 @@ const StoreLocator = () => {
                 </p>
               </div>
               <div className="space-y-3 bg-muted/10 p-6">
-                <h4 className="text-lg font-light text-foreground">Fast Shipping</h4>
+                <h4 className="text-lg font-light text-foreground">Fast Processing</h4>
                 <p className="text-muted-foreground text-sm">
-                  Orders ship within 24 hours. Standard delivery in 5–7 days, express in 2–3 days, or next-day if you need it ASAP.
+                  Orders are processed and shipped promptly. Estimated delivery is 4–6 weeks depending on supply and availability.
                 </p>
               </div>
               <div className="space-y-3 bg-muted/10 p-6">
