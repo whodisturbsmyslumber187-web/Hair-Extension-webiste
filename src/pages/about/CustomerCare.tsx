@@ -21,84 +21,82 @@ const CustomerCare = () => {
         <main className="w-full lg:w-[70vw] lg:ml-auto px-6">
         <PageHeader 
           title="Customer Care" 
-          subtitle="We're here to help you with all your jewelry needs"
+          subtitle="We're here to help you with your hair needs"
         />
         
-        <ContentSection title="Contact Information">
+        <ContentSection title="Get in Touch">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="space-y-4">
-              <h3 className="text-lg font-light text-foreground">Phone</h3>
+              <h3 className="text-lg font-light text-foreground">WhatsApp</h3>
               <p className="text-muted-foreground">+1 (555) 123-4567</p>
-              <p className="text-sm text-muted-foreground">Mon-Fri: 9AM-6PM EST<br />Sat: 10AM-4PM EST</p>
+              <p className="text-sm text-muted-foreground">Fastest response — message us anytime</p>
             </div>
             <div className="space-y-4">
               <h3 className="text-lg font-light text-foreground">Email</h3>
-              <p className="text-muted-foreground">care@lineajewelry.com</p>
+              <p className="text-muted-foreground">care@lineahair.com</p>
               <p className="text-sm text-muted-foreground">Response within 24 hours</p>
             </div>
             <div className="space-y-4">
-              <h3 className="text-lg font-light text-foreground">Live Chat</h3>
-              <Button variant="outline" className="rounded-none">
-                Start Chat
-              </Button>
-              <p className="text-sm text-muted-foreground">Available during business hours</p>
+              <h3 className="text-lg font-light text-foreground">Instagram DM</h3>
+              <p className="text-muted-foreground">@lineahair</p>
+              <p className="text-sm text-muted-foreground">Send us a DM for quick questions</p>
             </div>
           </div>
         </ContentSection>
 
         <ContentSection title="Frequently Asked Questions">
           <Accordion type="single" collapsible className="space-y-4">
-            <AccordionItem value="shipping" className="border border-border rounded-lg px-6">
+            <AccordionItem value="hair-type" className="border border-border px-6">
               <AccordionTrigger className="text-left hover:no-underline">
-                What are your shipping options and timeframes?
+                What type of hair do you sell?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                We offer free standard shipping (3-5 business days) on orders over $500. Express shipping (1-2 business days) is available for $25. All orders are fully insured and require signature confirmation.
+                We sell 100% virgin human hair — unprocessed, single-donor, cuticle-aligned. Our hair is Grade 12A quality and comes in Straight, Body Wave, and Deep Wave textures in lengths from 10" to 30".
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="returns" className="border border-border rounded-lg px-6">
+            <AccordionItem value="bundles-needed" className="border border-border px-6">
               <AccordionTrigger className="text-left hover:no-underline">
-                What is your return and exchange policy?
+                How many bundles do I need for a full head?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                We offer a 30-day return policy for unworn items in original condition. Custom and engraved pieces are final sale. Returns are free with our prepaid return label.
+                For lengths 10"–14", 2–3 bundles are sufficient. For 16"–22", we recommend 3–4 bundles. For 24"–30", you'll need 4–5 bundles. Check our Length Guide for a detailed breakdown including closure and frontal recommendations.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="warranty" className="border border-border rounded-lg px-6">
+            <AccordionItem value="coloring" className="border border-border px-6">
               <AccordionTrigger className="text-left hover:no-underline">
-                What warranty do you offer on your jewelry?
+                Can I colour or bleach the hair?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                All LINEA jewelry comes with a lifetime warranty against manufacturing defects. This includes free repairs for normal wear and tear, stone tightening, and professional cleaning.
+                Yes! Our virgin hair takes colour beautifully. We recommend having a professional stylist handle bleaching and colouring for best results. Always do a strand test first. Our blonde and coloured bundles are pre-processed for your convenience.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="sizing" className="border border-border rounded-lg px-6">
+            <AccordionItem value="longevity" className="border border-border px-6">
               <AccordionTrigger className="text-left hover:no-underline">
-                Can I resize my jewelry after purchase?
+                How long does the hair last?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Yes, we offer free ring resizing within 60 days of purchase (up to 2 sizes). Additional resizing is available for a service fee. Some designs cannot be resized due to their construction.
+                With proper care (sulfate-free products, silk pillowcase, regular deep conditioning), our hair lasts 12–24 months. Many customers reuse their bundles for multiple installs.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="care" className="border border-border rounded-lg px-6">
+            <AccordionItem value="shipping" className="border border-border px-6">
               <AccordionTrigger className="text-left hover:no-underline">
-                How should I care for my LINEA jewelry?
+                What are your shipping options?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Store pieces separately in soft pouches, avoid contact with chemicals and cosmetics, and clean gently with a soft cloth. We recommend professional cleaning every 6-12 months.
+                We offer Standard shipping (5–7 business days, free on orders over €150), Express shipping (2–3 business days, €15), and Next-Day delivery (€35). All orders include tracking and are shipped in discreet luxury packaging.
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="authentication" className="border border-border rounded-lg px-6">
+            <AccordionItem value="returns" className="border border-border px-6">
               <AccordionTrigger className="text-left hover:no-underline">
-                How can I verify the authenticity of my jewelry?
+                What is your return policy?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Every LINEA piece comes with a certificate of authenticity and is hallmarked. You can verify authenticity on our website using your unique piece number or contact our customer care team.
+                All sales are final. Due to the intimate nature of hair products, we cannot accept returns or exchanges once the hair has been opened, worn, or installed. Please review our Length Guide and reach out to our team before ordering if you're unsure.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -106,33 +104,33 @@ const CustomerCare = () => {
 
         <ContentSection title="Contact Form">
           <div>
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-light text-foreground">First Name</label>
-                  <Input className="rounded-none" placeholder="Enter your first name" />
+                  <Input className="rounded-none" placeholder="Your first name" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-light text-foreground">Last Name</label>
-                  <Input className="rounded-none" placeholder="Enter your last name" />
+                  <Input className="rounded-none" placeholder="Your last name" />
                 </div>
               </div>
               
               <div className="space-y-2">
                 <label className="text-sm font-light text-foreground">Email</label>
-                <Input type="email" className="rounded-none" placeholder="Enter your email" />
+                <Input type="email" className="rounded-none" placeholder="Your email address" />
               </div>
               
               <div className="space-y-2">
                 <label className="text-sm font-light text-foreground">Order Number (Optional)</label>
-                <Input className="rounded-none" placeholder="Enter your order number if applicable" />
+                <Input className="rounded-none" placeholder="e.g. LINEA-12345" />
               </div>
               
               <div className="space-y-2">
-                <label className="text-sm font-light text-foreground">How can we help you?</label>
+                <label className="text-sm font-light text-foreground">How can we help?</label>
                 <Textarea 
                   className="rounded-none min-h-[120px]" 
-                  placeholder="Please describe your inquiry in detail"
+                  placeholder="Tell us about your question — include your hair length, texture, and any details that will help us assist you faster"
                 />
               </div>
               

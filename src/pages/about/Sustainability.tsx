@@ -16,86 +16,92 @@ const Sustainability = () => {
         
         <main className="w-full lg:w-[70vw] lg:ml-auto px-6">
         <PageHeader 
-          title="Sustainability" 
-          subtitle="Creating beautiful jewelry while protecting our planet for future generations"
+          title="Hair Quality" 
+          subtitle="What sets LINEA hair apart — from source to slay"
         />
         
-        <ContentSection title="Our Environmental Commitment">
+        <ContentSection title="Our Sourcing Standards">
           <div className="grid md:grid-cols-2 gap-12 mb-16">
             <div className="space-y-6">
-              <h3 className="text-xl font-light text-foreground">Ethical Sourcing</h3>
+              <h3 className="text-xl font-light text-foreground">Ethically Sourced</h3>
               <p className="text-muted-foreground leading-relaxed">
-                We partner only with suppliers who share our commitment to ethical practices. Every gemstone and precious metal in our collection is sourced responsibly, with full transparency in our supply chain.
+                All LINEA hair is ethically sourced from single donors. We work directly with trusted collectors who ensure fair compensation and transparent practices. Every bundle can be traced back to its origin.
               </p>
             </div>
             <div className="space-y-6">
-              <h3 className="text-xl font-light text-foreground">Recycled Materials</h3>
+              <h3 className="text-xl font-light text-foreground">Cuticle-Aligned</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Over 80% of our precious metals come from recycled sources, reducing the environmental impact of mining while maintaining the highest quality standards for our jewelry.
+                Our hair is collected with cuticles running in the same direction — root to tip. This eliminates tangling and matting, giving you that silky, natural movement that cheap hair simply can't replicate.
               </p>
             </div>
           </div>
 
-          <div className="bg-muted/10 rounded-lg p-8">
-            <h3 className="text-2xl font-light text-foreground mb-6">Our Impact Goals</h3>
+          <div className="bg-muted/10 p-8">
+            <h3 className="text-2xl font-light text-foreground mb-6">Quality Benchmarks</h3>
             <div className="grid md:grid-cols-3 gap-8">
               <div>
                 <div className="text-3xl font-light text-primary mb-2">100%</div>
-                <p className="text-sm text-muted-foreground">Carbon neutral operations by 2025</p>
+                <p className="text-sm text-muted-foreground">Virgin human hair — no synthetics, no blends</p>
               </div>
               <div>
-                <div className="text-3xl font-light text-primary mb-2">90%</div>
-                <p className="text-sm text-muted-foreground">Recycled packaging materials</p>
+                <div className="text-3xl font-light text-primary mb-2">Grade 12A</div>
+                <p className="text-sm text-muted-foreground">Highest quality grade available on the market</p>
               </div>
               <div>
-                <div className="text-3xl font-light text-primary mb-2">Zero</div>
-                <p className="text-sm text-muted-foreground">Waste to landfill policy</p>
+                <div className="text-3xl font-light text-primary mb-2">12–24 mo</div>
+                <p className="text-sm text-muted-foreground">Lifespan with proper care and maintenance</p>
               </div>
             </div>
           </div>
         </ContentSection>
 
-        <ContentSection title="Circular Economy">
+        <ContentSection title="Quality Control Process">
           <div className="space-y-8">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              We believe in the power of circular design - creating jewelry that can be treasured, repaired, and eventually recycled into new pieces.
+              Every bundle goes through a 5-step quality check before it reaches you. We reject anything that doesn't meet our standards — no exceptions.
             </p>
             
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-4">
-                <h3 className="text-lg font-light text-foreground">Lifetime Care</h3>
+                <h3 className="text-lg font-light text-foreground">Texture Verification</h3>
                 <p className="text-muted-foreground">
-                  Every piece comes with our lifetime care promise, including professional cleaning, repairs, and resizing services.
+                  Every bundle is checked to ensure the texture pattern (straight, body wave, deep wave) is consistent from root to tip and holds its shape after washing.
                 </p>
               </div>
               <div className="space-y-4">
-                <h3 className="text-lg font-light text-foreground">Take-Back Program</h3>
+                <h3 className="text-lg font-light text-foreground">Weight & Length Accuracy</h3>
                 <p className="text-muted-foreground">
-                  When you're ready for something new, we'll take back your LINEA jewelry to be recycled into future pieces.
+                  We weigh every bundle and verify the length so you always receive the exact inches and grams you ordered — no stretching, no short bundles.
                 </p>
               </div>
             </div>
           </div>
         </ContentSection>
 
-        <ContentSection title="Certifications & Partnerships">
+        <ContentSection title="Hair Care Tips">
           <div className="space-y-8">
             <p className="text-muted-foreground leading-relaxed">
-              Our commitment to sustainability is verified through partnerships with leading organizations and certifications that hold us accountable to the highest standards.
+              Proper care extends the life of your LINEA hair. Follow these expert tips to keep your hair looking fresh.
             </p>
             
-            <div className="grid md:grid-cols-4 gap-8 items-center">
-              <div className="h-16 w-32 bg-muted/10 rounded-lg flex items-center justify-center">
-                <span className="text-xs text-muted-foreground">RJC Certified</span>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="space-y-4 bg-muted/10 p-6">
+                <h4 className="font-light text-foreground">Washing</h4>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>• Use sulfate-free shampoo and conditioner</li>
+                  <li>• Wash in a downward motion — never scrub</li>
+                  <li>• Co-wash between full washes to maintain moisture</li>
+                  <li>• Air dry when possible to preserve texture</li>
+                </ul>
               </div>
-              <div className="h-16 w-32 bg-muted/10 rounded-lg flex items-center justify-center">
-                <span className="text-xs text-muted-foreground">B Corp</span>
-              </div>
-              <div className="h-16 w-32 bg-muted/10 rounded-lg flex items-center justify-center">
-                <span className="text-xs text-muted-foreground">SCS Certified</span>
-              </div>
-              <div className="h-16 w-32 bg-muted/10 rounded-lg flex items-center justify-center">
-                <span className="text-xs text-muted-foreground">Fair Trade</span>
+              <div className="space-y-4 bg-muted/10 p-6">
+                <h4 className="font-light text-foreground">Styling & Maintenance</h4>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>• Always use heat protectant before flat-ironing or curling</li>
+                  <li>• Sleep on a silk or satin pillowcase</li>
+                  <li>• Detangle from ends to roots with a wide-tooth comb</li>
+                  <li>• Deep condition weekly for maximum softness</li>
+                </ul>
               </div>
             </div>
           </div>
