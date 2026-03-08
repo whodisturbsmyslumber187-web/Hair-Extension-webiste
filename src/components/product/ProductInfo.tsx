@@ -201,15 +201,24 @@ const ProductInfo = ({ productId, onColorChange }: ProductInfoProps) => {
           </div>
         </div>
 
-        <Button className="w-full h-12 bg-primary text-primary-foreground hover:bg-primary-hover font-body font-medium tracking-wide rounded-none">
+        <Button 
+          onClick={() => setShowUpsell(true)}
+          className="w-full h-12 bg-primary text-primary-foreground hover:bg-primary-hover font-body font-medium tracking-wide rounded-none"
+        >
           Add to Bag — {displayPrice}
         </Button>
         
         <div className="text-center space-y-1">
           <p className="text-xs font-body text-muted-foreground">✓ Shipping calculated at checkout</p>
-          <p className="text-xs font-body text-muted-foreground">✓ 30-day quality guarantee</p>
+          <p className="text-xs font-body text-muted-foreground">✓ All sales are final</p>
         </div>
       </div>
+
+      <UpsellModal
+        isOpen={showUpsell}
+        onClose={() => setShowUpsell(false)}
+        addedProduct={{ name, category }}
+      />
     </div>
   );
 };
