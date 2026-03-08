@@ -70,7 +70,7 @@ const bundleColorImages: Record<string, string> = {
   "Natural Black #1B": hairBundlesStraight,
   "Jet Black #1": hairBundlesJetblack,
   "Dark Brown #2": hairBundlesBrown,
-  "613 Blonde": hairWigBlonde,
+  "613 Blonde": hairBlondeStraight,
   "Honey Blonde #27": hairBundlesHoneyBlonde,
   "Ash Blonde": hairBundlesHoneyBlonde,
 };
