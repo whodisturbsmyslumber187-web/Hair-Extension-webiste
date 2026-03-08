@@ -127,6 +127,17 @@ const Navigation = () => {
       images: [
         { src: hairClosure, alt: "Premium Hair", label: "Our quality promise" }
       ]
+    },
+    {
+      name: "Wholesale",
+      href: "/wholesale",
+      submenuItems: [
+        "Pricing Tiers",
+        "Apply Now",
+      ],
+      images: [
+        { src: hairBundlesStraight, alt: "Wholesale Bundles", label: "Bulk pricing" }
+      ]
     }
   ];
 
@@ -243,6 +254,8 @@ const Navigation = () => {
                       else linkTo = "/bundle-deal";
                     } else if (activeDropdown === "New In") {
                       linkTo = "/category/new-in";
+                    } else if (activeDropdown === "Wholesale") {
+                      linkTo = "/wholesale";
                     } else {
                       linkTo = `/category/${subItem.toLowerCase().replace(/\s+/g, '-')}`;
                     }
