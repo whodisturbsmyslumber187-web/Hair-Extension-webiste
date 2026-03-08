@@ -227,9 +227,9 @@ export const products: Product[] = [
     hoverImage: hairBundlesDeepwave,
     lengths: ["14\"", "16\"", "18\"", "20\"", "22\"", "24\"", "26\"", "28\"", "30\""],
     weights: ["100g", "150g", "200g", "300g", "400g"],
-    colors: ["Natural Black #1B", "Dark Brown #2"],
+    colors: ["Natural Black #1B", "Dark Brown #2", "Honey Blonde #27"],
     description: "Gorgeous loose wave pattern with natural bounce and movement. 100% virgin Peruvian hair. Minimal shedding guaranteed.",
-    colorImages: { "Natural Black #1B": hairBundlesBodywave, "Dark Brown #2": hairBundlesBrown },
+    colorImages: { "Natural Black #1B": hairBundlesBodywave, "Dark Brown #2": hairBundlesBrown, "Honey Blonde #27": hairBundlesHoneyBlonde },
   },
   {
     id: 10,
