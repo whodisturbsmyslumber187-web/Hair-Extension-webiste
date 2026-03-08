@@ -18,6 +18,7 @@ const ProductInfo = ({ productId, onColorChange }: ProductInfoProps) => {
   const [selectedLength, setSelectedLength] = useState<string>("");
   const [selectedWeight, setSelectedWeight] = useState<string>("");
   const [selectedColor, setSelectedColor] = useState<string>("");
+  const [showUpsell, setShowUpsell] = useState(false);
 
   const product = productId ? getProductById(productId) : null;
   
