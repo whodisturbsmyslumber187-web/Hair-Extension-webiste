@@ -43,10 +43,10 @@ const BackgroundSlideshow = () => {
           opacity: transitioning ? 0 : 1,
         }}
       />
-      {/* Lighter overlay so images are more visible */}
-      <div className="absolute inset-0 bg-background/70" />
-      {/* Subtle edge blending */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background/60" />
+      {/* Minimal overlay — let images shine */}
+      <div className="absolute inset-0 bg-background/30" />
+      {/* Edge blending only */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/30" />
     </div>
   );
 };
