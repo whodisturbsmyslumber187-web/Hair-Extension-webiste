@@ -169,6 +169,7 @@ const Navigation = () => {
 
         {/* Right icons */}
         <div className="flex items-center space-x-1">
+          <MusicPlayer />
           <LanguageSelector />
           <button 
             className="p-2 text-nav-foreground hover:text-nav-hover transition-colors duration-200"
