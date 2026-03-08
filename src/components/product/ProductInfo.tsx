@@ -1,7 +1,6 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useTranslation } from "react-i18next";
 import { 
   Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator 
 } from "@/components/ui/breadcrumb";
@@ -12,22 +11,7 @@ interface ProductInfoProps {
   productId?: number;
 }
 
-// Price additions based on length (per 100g, added to base)
-const lengthPriceAdd: Record<string, number> = {
-  '14"': 0, '16"': 10, '18"': 20, '20"': 35, '22"': 50,
-  '24"': 70, '26"': 95, '28"': 120, '30"': 150, '32"': 185,
-  '34"': 220, '36"': 260, '38"': 310, '40"': 365,
-};
-
-// Weight is linear — price per 100g base
-const weightMultipliers: Record<string, number> = {
-  '50g': 0.55, '60g': 0.65, '100g': 1.0, '120g': 1.2, '150g': 1.5,
-  '160g': 1.6, '180g': 1.8, '200g': 2.0, '220g': 2.2, '250g': 2.5,
-  '300g': 3.0, '400g': 4.0,
-};
-
 const ProductInfo = ({ productId }: ProductInfoProps) => {
-  const { t } = useTranslation();
   const [quantity, setQuantity] = useState(1);
   const [selectedLength, setSelectedLength] = useState<string>("");
   const [selectedWeight, setSelectedWeight] = useState<string>("");
@@ -37,18 +21,10 @@ const ProductInfo = ({ productId }: ProductInfoProps) => {
   
   const name = product?.name || "Straight Virgin Bundles";
   const category = product?.category || "Bundles";
-  const basePrice = product?.priceNum || 85;
+  const price = product?.price || "$85";
   const lengths = product?.lengths || ["14\"", "16\"", "18\"", "20\"", "22\"", "24\""];
   const weights = product?.weights || ["100g", "150g", "200g"];
   const colors = product?.colors || ["Natural Black #1B"];
-
-  const calculatedPrice = useMemo(() => {
-    const lengthAdd = selectedLength ? (lengthPriceAdd[selectedLength] || 0) : 0;
-    const weightMult = selectedWeight ? (weightMultipliers[selectedWeight] || 1) : 1;
-    return Math.round((basePrice + lengthAdd) * weightMult);
-  }, [basePrice, selectedLength, selectedWeight]);
-
-  const hasSelections = selectedLength || selectedWeight;
 
   const incrementQuantity = () => setQuantity(prev => prev + 1);
   const decrementQuantity = () => setQuantity(prev => Math.max(1, prev - 1));
@@ -73,30 +49,15 @@ const ProductInfo = ({ productId }: ProductInfoProps) => {
             <p className="text-xs font-body font-light text-muted-foreground mb-1 tracking-wide uppercase">{category}</p>
             <h1 className="text-2xl md:text-3xl font-light text-foreground" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{name}</h1>
           </div>
-          <div className="text-end">
-            {hasSelections ? (
-              <div>
-                <p className="text-2xl font-body font-semibold text-foreground">${calculatedPrice}</p>
-                <p className="text-xs font-body text-muted-foreground">{t("product.shippingAtCheckout")}</p>
-              </div>
-            ) : (
-              <div>
-                <p className="text-xl font-body font-light text-foreground">{t("product.from")} ${basePrice}</p>
-                <p className="text-xs font-body text-muted-foreground">{t("product.selectOptions")}</p>
-              </div>
-            )}
+          <div className="text-right">
+            <p className="text-xl font-body font-light text-foreground">from {price}</p>
           </div>
         </div>
       </div>
 
       {/* Length selector */}
       <div className="space-y-3 py-4 border-b border-border">
-        <div className="flex justify-between items-center">
-          <h3 className="text-sm font-body font-medium text-foreground">{t("product.length")}</h3>
-          {selectedLength && (
-            <span className="text-xs font-body text-muted-foreground">{t("product.selected")}: {selectedLength}</span>
-          )}
-        </div>
+        <h3 className="text-sm font-body font-medium text-foreground">Length</h3>
         <div className="flex flex-wrap gap-2">
           {lengths.map(length => (
             <button
@@ -116,12 +77,7 @@ const ProductInfo = ({ productId }: ProductInfoProps) => {
 
       {/* Weight selector */}
       <div className="space-y-3 py-4 border-b border-border">
-        <div className="flex justify-between items-center">
-          <h3 className="text-sm font-body font-medium text-foreground">{t("product.weight")}</h3>
-          {selectedWeight && (
-            <span className="text-xs font-body text-muted-foreground">{t("product.selected")}: {selectedWeight}</span>
-          )}
-        </div>
+        <h3 className="text-sm font-body font-medium text-foreground">Weight</h3>
         <div className="flex flex-wrap gap-2">
           {weights.map(weight => (
             <button
@@ -141,7 +97,7 @@ const ProductInfo = ({ productId }: ProductInfoProps) => {
 
       {/* Color selector */}
       <div className="space-y-3 py-4 border-b border-border">
-        <h3 className="text-sm font-body font-medium text-foreground">{t("product.color")}</h3>
+        <h3 className="text-sm font-body font-medium text-foreground">Color</h3>
         <div className="flex flex-wrap gap-2">
           {colors.map(color => (
             <button
@@ -162,7 +118,7 @@ const ProductInfo = ({ productId }: ProductInfoProps) => {
       {/* Quantity and Add to Cart */}
       <div className="space-y-4">
         <div className="flex items-center gap-4">
-          <span className="text-sm font-body font-light text-foreground">{t("product.quantity")}</span>
+          <span className="text-sm font-body font-light text-foreground">Quantity</span>
           <div className="flex items-center border border-border">
             <Button variant="ghost" size="sm" onClick={decrementQuantity} className="h-10 w-10 p-0 hover:bg-transparent hover:opacity-50 rounded-none border-none">
               <Minus className="h-4 w-4" />
@@ -174,20 +130,15 @@ const ProductInfo = ({ productId }: ProductInfoProps) => {
               <Plus className="h-4 w-4" />
             </Button>
           </div>
-          {hasSelections && (
-            <span className="text-sm font-body font-semibold text-foreground ms-auto">
-              {t("product.total")}: ${calculatedPrice * quantity}
-            </span>
-          )}
         </div>
 
         <Button className="w-full h-12 bg-primary text-primary-foreground hover:bg-primary-hover font-body font-medium tracking-wide rounded-none">
-          {t("product.addToBag")} {hasSelections ? `— $${calculatedPrice * quantity}` : ''}
+          Add to Bag
         </Button>
         
         <div className="text-center space-y-1">
-          <p className="text-xs font-body text-muted-foreground">✓ {t("product.shippingAtCheckout")}</p>
-          <p className="text-xs font-body text-muted-foreground">✓ {t("product.qualityGuarantee")}</p>
+          <p className="text-xs font-body text-muted-foreground">✓ Free shipping over $150</p>
+          <p className="text-xs font-body text-muted-foreground">✓ 30-day quality guarantee</p>
         </div>
       </div>
     </div>

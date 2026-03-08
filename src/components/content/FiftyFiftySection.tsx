@@ -1,11 +1,8 @@
 import hairBundlesStraight from "@/assets/hair-bundles-straight.jpg";
 import hairBundlesBodywave from "@/assets/hair-bundles-bodywave.jpg";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 const FiftyFiftySection = () => {
-  const { t } = useTranslation();
-
   return (
     <section className="w-full mb-16 px-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -21,10 +18,10 @@ const FiftyFiftySection = () => {
           </Link>
           <div>
             <h3 className="text-sm font-body font-medium text-foreground mb-1">
-              {t("fiftyFifty.title1")}
+              Virgin Bundles
             </h3>
             <p className="text-sm font-body font-light text-muted-foreground">
-              {t("fiftyFifty.subtitle1")}
+              100% unprocessed human hair, 14" to 40" in all textures
             </p>
           </div>
         </div>
@@ -41,10 +38,10 @@ const FiftyFiftySection = () => {
           </Link>
           <div>
             <h3 className="text-sm font-body font-medium text-foreground mb-1">
-              {t("fiftyFifty.title2")}
+              Body Wave Collection
             </h3>
             <p className="text-sm font-body font-light text-muted-foreground">
-              {t("fiftyFifty.subtitle2")}
+              Luxurious waves that hold their pattern wash after wash
             </p>
           </div>
         </div>
