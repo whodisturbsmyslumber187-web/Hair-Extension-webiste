@@ -43,9 +43,8 @@ const BackgroundSlideshow = () => {
           opacity: transitioning ? 0 : 1,
         }}
       />
-      {/* Overlay for text readability */}
-      <div className="absolute inset-0 bg-background/50" />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/50" />
+      {/* Very subtle darkening for text contrast — keeps images visible */}
+      <div className="absolute inset-0 bg-black/25" />
     </div>
   );
 };
