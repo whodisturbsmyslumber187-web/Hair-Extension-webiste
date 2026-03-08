@@ -4,10 +4,10 @@ const StatusBar = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   
   const usps = [
-    "Free shipping on orders over $150",
     "100% virgin human hair guaranteed",
     "14\" to 40\" lengths available",
-    "30-day quality guarantee"
+    "30-day quality guarantee",
+    "Premium quality — shipping calculated at checkout"
   ];
 
   useEffect(() => {
