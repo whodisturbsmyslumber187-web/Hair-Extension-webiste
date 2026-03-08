@@ -43,8 +43,7 @@ const LeadCapture = () => {
     if (!email) return;
     setSubmitted(true);
     localStorage.setItem("naya-lead-captured", "true");
-    // In production, this would send to your email service
-    console.log("Lead captured:", email);
+    // In production, this would send to your email service via an edge function
     setTimeout(() => {
       setIsVisible(false);
     }, 3000);
