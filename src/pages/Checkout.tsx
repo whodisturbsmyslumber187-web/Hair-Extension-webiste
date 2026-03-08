@@ -645,9 +645,24 @@ const Checkout = () => {
                     </div>
                   </div>
 
+                  {/* Terms Agreement */}
+                  <div className="flex items-start gap-3 p-4 border border-border bg-muted/20">
+                    <Checkbox
+                      id="terms"
+                      checked={agreedToTerms}
+                      onCheckedChange={(checked) => setAgreedToTerms(checked === true)}
+                      className="mt-0.5"
+                    />
+                    <label htmlFor="terms" className="text-xs font-body text-muted-foreground leading-relaxed cursor-pointer">
+                      I have read and agree to the{" "}
+                      <a href="/terms-of-service" target="_blank" className="text-primary underline hover:text-primary-hover">Terms of Service</a>.
+                      I understand that <strong className="text-foreground">ALL SALES ARE FINAL</strong> — no refunds, returns, or exchanges will be issued under any circumstances.
+                    </label>
+                  </div>
+
                   <Button
                     onClick={handleCompleteOrder}
-                    disabled={isProcessing || !paymentDetails.cardNumber || !paymentDetails.expiryDate || !paymentDetails.cvv || !paymentDetails.cardholderName}
+                    disabled={isProcessing || !agreedToTerms || !paymentDetails.cardNumber || !paymentDetails.expiryDate || !paymentDetails.cvv || !paymentDetails.cardholderName}
                     className="w-full rounded-none h-12 text-base"
                   >
                     {isProcessing ? "Processing..." : `Complete Order • €${total.toLocaleString()}`}
