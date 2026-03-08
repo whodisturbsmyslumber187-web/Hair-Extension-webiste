@@ -309,7 +309,7 @@ export const products: Product[] = [
     weights: ["150g", "200g"],
     colors: ["613 Blonde", "Honey Blonde #27", "Ash Blonde"],
     description: "Full lace body wave wig in stunning 613 blonde. Can be toned, dyed, and heat styled. Premium virgin hair.",
-    colorImages: { "613 Blonde": hairWigBlonde, "Honey Blonde #27": hairBundlesHoneyBlonde, "Ash Blonde": hairBundlesHoneyBlonde },
+    colorImages: { "613 Blonde": hairWigBlonde, "Honey Blonde #27": hairBlondeFrontal, "Ash Blonde": hairBundlesHoneyBlonde },
   },
   {
     id: 15,
