@@ -134,9 +134,9 @@ export const products: Product[] = [
     isNew: true,
     lengths: ["14\"", "16\"", "18\"", "20\"", "22\"", "24\"", "26\"", "28\"", "30\"", "32\""],
     weights: ["100g", "150g", "200g", "300g", "400g"],
-    colors: ["Natural Black #1B"],
+    colors: ["Natural Black #1B", "Dark Brown #2", "613 Blonde"],
     description: "Deep wave virgin hair bundles with tight, defined curls. Full and voluminous with a natural bounce. 100% human hair.",
-    colorImages: { "Natural Black #1B": hairBundlesDeepwave },
+    colorImages: { "Natural Black #1B": hairBundlesDeepwave, "Dark Brown #2": hairBundlesBrown, "613 Blonde": hairWigBlonde },
   },
   {
     id: 4,
