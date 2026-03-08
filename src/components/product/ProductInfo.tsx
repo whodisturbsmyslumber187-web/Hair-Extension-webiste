@@ -41,9 +41,9 @@ const ProductInfo = ({ productId }: ProductInfoProps) => {
   const colors = product?.colors || ["Natural Black #1B"];
 
   const calculatedPrice = useMemo(() => {
-    const lengthMult = selectedLength ? (lengthMultipliers[selectedLength] || 1) : 1;
+    const lengthAdd = selectedLength ? (lengthPriceAdd[selectedLength] || 0) : 0;
     const weightMult = selectedWeight ? (weightMultipliers[selectedWeight] || 1) : 1;
-    return Math.round(basePrice * lengthMult * weightMult);
+    return Math.round((basePrice + lengthAdd) * weightMult);
   }, [basePrice, selectedLength, selectedWeight]);
 
   const hasSelections = selectedLength || selectedWeight;
