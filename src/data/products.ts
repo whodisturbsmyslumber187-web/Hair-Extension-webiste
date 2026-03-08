@@ -8,6 +8,10 @@ import hairHero from "@/assets/hair-hero-1.jpg";
 import hairBundlesBrown from "@/assets/hair-bundles-brown.jpg";
 import hairBundlesHoneyBlonde from "@/assets/hair-bundles-honey-blonde.jpg";
 import hairBundlesJetblack from "@/assets/hair-bundles-jetblack.jpg";
+import hairBlondeBodywave from "@/assets/hair-blonde-bodywave.jpg";
+import hairBlondeDeepwave from "@/assets/hair-blonde-deepwave.jpg";
+import hairBlondeStraight from "@/assets/hair-blonde-straight.jpg";
+import hairBlondeFrontal from "@/assets/hair-blonde-frontal.jpg";
 
 export interface Product {
   id: number;
