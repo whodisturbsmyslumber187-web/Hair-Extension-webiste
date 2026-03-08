@@ -8,6 +8,10 @@ import hairHero from "@/assets/hair-hero-1.jpg";
 import hairBundlesBrown from "@/assets/hair-bundles-brown.jpg";
 import hairBundlesHoneyBlonde from "@/assets/hair-bundles-honey-blonde.jpg";
 import hairBundlesJetblack from "@/assets/hair-bundles-jetblack.jpg";
+import hairBlondeBodywave from "@/assets/hair-blonde-bodywave.jpg";
+import hairBlondeDeepwave from "@/assets/hair-blonde-deepwave.jpg";
+import hairBlondeStraight from "@/assets/hair-blonde-straight.jpg";
+import hairBlondeFrontal from "@/assets/hair-blonde-frontal.jpg";
 
 export interface Product {
   id: number;
@@ -66,7 +70,7 @@ const bundleColorImages: Record<string, string> = {
   "Natural Black #1B": hairBundlesStraight,
   "Jet Black #1": hairBundlesJetblack,
   "Dark Brown #2": hairBundlesBrown,
-  "613 Blonde": hairWigBlonde,
+  "613 Blonde": hairBlondeStraight,
   "Honey Blonde #27": hairBundlesHoneyBlonde,
   "Ash Blonde": hairBundlesHoneyBlonde,
 };
@@ -104,7 +108,7 @@ export const products: Product[] = [
     weights: ["100g", "150g", "200g", "300g", "400g"],
     colors: ["Natural Black #1B", "Jet Black #1", "Dark Brown #2", "613 Blonde"],
     description: "100% unprocessed Brazilian virgin straight hair bundles. Silky smooth, no tangling, no shedding. Can be colored, bleached, and styled.",
-    colorImages: { "Natural Black #1B": hairBundlesStraight, "Jet Black #1": hairBundlesJetblack, "Dark Brown #2": hairBundlesBrown, "613 Blonde": hairWigBlonde },
+    colorImages: { "Natural Black #1B": hairBundlesStraight, "Jet Black #1": hairBundlesJetblack, "Dark Brown #2": hairBundlesBrown, "613 Blonde": hairBlondeStraight },
   },
   {
     id: 2,
@@ -120,7 +124,7 @@ export const products: Product[] = [
     weights: ["100g", "150g", "200g", "300g", "400g"],
     colors: ["Natural Black #1B", "Dark Brown #2", "Honey Blonde #27", "613 Blonde"],
     description: "Premium body wave virgin hair with gorgeous S-pattern waves. Bouncy, full, and luxuriously soft. Maintains curl pattern after washing.",
-    colorImages: { "Natural Black #1B": hairBundlesBodywave, "Dark Brown #2": hairBundlesBrown, "Honey Blonde #27": hairBundlesHoneyBlonde, "613 Blonde": hairWigBlonde },
+    colorImages: { "Natural Black #1B": hairBundlesBodywave, "Dark Brown #2": hairBundlesBrown, "Honey Blonde #27": hairBundlesHoneyBlonde, "613 Blonde": hairBlondeBodywave },
   },
   {
     id: 3,
@@ -136,7 +140,7 @@ export const products: Product[] = [
     weights: ["100g", "150g", "200g", "300g", "400g"],
     colors: ["Natural Black #1B", "Dark Brown #2", "613 Blonde"],
     description: "Deep wave virgin hair bundles with tight, defined curls. Full and voluminous with a natural bounce. 100% human hair.",
-    colorImages: { "Natural Black #1B": hairBundlesDeepwave, "Dark Brown #2": hairBundlesBrown, "613 Blonde": hairWigBlonde },
+    colorImages: { "Natural Black #1B": hairBundlesDeepwave, "Dark Brown #2": hairBundlesBrown, "613 Blonde": hairBlondeDeepwave },
   },
   {
     id: 4,
@@ -168,7 +172,7 @@ export const products: Product[] = [
     weights: ["150g", "200g", "250g"],
     colors: ["613 Blonde", "Honey Blonde #27"],
     description: "Platinum blonde 613 full lace wig. Pre-plucked hairline with baby hairs. 150% density. Can be toned to any shade.",
-    colorImages: { "613 Blonde": hairWigBlonde, "Honey Blonde #27": hairBundlesHoneyBlonde },
+    colorImages: { "613 Blonde": hairWigBlonde, "Honey Blonde #27": hairBlondeFrontal },
   },
   {
     id: 6,
@@ -305,7 +309,7 @@ export const products: Product[] = [
     weights: ["150g", "200g"],
     colors: ["613 Blonde", "Honey Blonde #27", "Ash Blonde"],
     description: "Full lace body wave wig in stunning 613 blonde. Can be toned, dyed, and heat styled. Premium virgin hair.",
-    colorImages: { "613 Blonde": hairWigBlonde, "Honey Blonde #27": hairBundlesHoneyBlonde, "Ash Blonde": hairBundlesHoneyBlonde },
+    colorImages: { "613 Blonde": hairWigBlonde, "Honey Blonde #27": hairBlondeFrontal, "Ash Blonde": hairBundlesHoneyBlonde },
   },
   {
     id: 15,
@@ -335,7 +339,7 @@ export const products: Product[] = [
     weights: ["50g", "100g", "150g"],
     colors: ["Natural Black #1B", "Dark Brown #2", "613 Blonde"],
     description: "Seamless tape-in extensions that lay flat against the head. 20 pieces per pack. Reusable up to 3 times.",
-    colorImages: { "Natural Black #1B": hairBundlesStraight, "Dark Brown #2": hairBundlesBrown, "613 Blonde": hairWigBlonde },
+    colorImages: { "Natural Black #1B": hairBundlesStraight, "Dark Brown #2": hairBundlesBrown, "613 Blonde": hairBlondeStraight },
   },
   {
     id: 17,
@@ -396,7 +400,7 @@ export const products: Product[] = [
     weights: ["100g", "150g"],
     colors: ["Natural Black #1B", "Jet Black #1", "613 Blonde"],
     description: "Wrap-around ponytail extension for an instant glam look. Secure velcro and comb attachment. 100% human hair.",
-    colorImages: { "Natural Black #1B": hairBundlesStraight, "Jet Black #1": hairBundlesJetblack, "613 Blonde": hairWigBlonde },
+    colorImages: { "Natural Black #1B": hairBundlesStraight, "Jet Black #1": hairBundlesJetblack, "613 Blonde": hairBlondeStraight },
   },
   {
     id: 21,
@@ -427,7 +431,7 @@ export const products: Product[] = [
     weights: ["100g", "150g", "200g"],
     colors: ["613 Blonde", "Honey Blonde #27"],
     description: "Premium 613 blonde straight virgin bundles. Pre-bleached and ready to tone. No chemical smell. Silky and manageable.",
-    colorImages: { "613 Blonde": hairWigBlonde, "Honey Blonde #27": hairBundlesHoneyBlonde },
+    colorImages: { "613 Blonde": hairBlondeStraight, "Honey Blonde #27": hairBundlesHoneyBlonde },
   },
   {
     id: 23,
@@ -457,7 +461,7 @@ export const products: Product[] = [
     weights: ["50g", "100g"],
     colors: ["Natural Black #1B", "Dark Brown #2", "613 Blonde"],
     description: "Pre-bonded I-tip (stick tip) extensions. 100 strands per pack. Keratin bond for long-lasting, damage-free wear.",
-    colorImages: { "Natural Black #1B": hairBundlesStraight, "Dark Brown #2": hairBundlesBrown, "613 Blonde": hairWigBlonde },
+    colorImages: { "Natural Black #1B": hairBundlesStraight, "Dark Brown #2": hairBundlesBrown, "613 Blonde": hairBlondeStraight },
   },
 ];
 
