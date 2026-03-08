@@ -461,7 +461,7 @@ export const products: Product[] = [
     weights: ["50g", "100g"],
     colors: ["Natural Black #1B", "Dark Brown #2", "613 Blonde"],
     description: "Pre-bonded I-tip (stick tip) extensions. 100 strands per pack. Keratin bond for long-lasting, damage-free wear.",
-    colorImages: { "Natural Black #1B": hairBundlesStraight, "Dark Brown #2": hairBundlesBrown, "613 Blonde": hairWigBlonde },
+    colorImages: { "Natural Black #1B": hairBundlesStraight, "Dark Brown #2": hairBundlesBrown, "613 Blonde": hairBlondeStraight },
   },
 ];
 
