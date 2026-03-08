@@ -18,7 +18,7 @@ const OurStory = () => {
           <AboutSidebar />
         </div>
         
-        <main className="w-full lg:w-[70vw] lg:ml-auto px-6">
+        <main className="w-full lg:w-[70vw] lg:ml-auto px-6 about-text-bold">
           <PageHeader 
             title="Our Story" 
             subtitle="Premium virgin hair extensions — crafted for confidence, designed for queens"

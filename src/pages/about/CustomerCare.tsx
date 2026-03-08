@@ -20,7 +20,7 @@ const CustomerCare = () => {
           <AboutSidebar />
         </div>
         
-        <main className="w-full lg:w-[70vw] lg:ml-auto px-6">
+        <main className="w-full lg:w-[70vw] lg:ml-auto px-6 about-text-bold">
         <PageHeader 
           title="Customer Care" 
           subtitle="We're here to help you with your hair needs"

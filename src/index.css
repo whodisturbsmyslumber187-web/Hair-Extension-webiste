@@ -212,3 +212,26 @@
     @apply bg-background text-foreground font-light;
   }
 }
+
+/* About pages — maximum text visibility */
+.about-text-bold h3,
+.about-text-bold h4 {
+  font-weight: 900;
+  -webkit-text-stroke: 0.8px currentColor;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.6);
+}
+
+.about-text-bold p,
+.about-text-bold span,
+.about-text-bold li,
+.about-text-bold td,
+.about-text-bold label,
+.about-text-bold button[data-state] {
+  font-weight: 800;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.about-text-bold th {
+  font-weight: 900;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.7);
+}
