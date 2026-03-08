@@ -18,7 +18,7 @@ const AboutSidebar = () => {
             key={page.path}
             to={page.path}
             className={({ isActive }) =>
-              `block py-2 text-sm font-bold transition-all drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)] ${
+              `block py-2 text-base font-black transition-all drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)] ${
                 isActive
                   ? 'text-primary underline decoration-2 underline-offset-4'
                   : 'text-foreground hover:text-primary hover:underline hover:decoration-1 hover:underline-offset-4'

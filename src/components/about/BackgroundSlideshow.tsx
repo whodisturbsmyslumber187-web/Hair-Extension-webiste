@@ -43,10 +43,9 @@ const BackgroundSlideshow = () => {
           opacity: transitioning ? 0 : 1,
         }}
       />
-      {/* Very light overlay */}
-      <div className="absolute inset-0 bg-background/15" />
-      {/* Minimal edge blending */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-transparent to-background/15" />
+      {/* Overlay for text readability */}
+      <div className="absolute inset-0 bg-background/50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/50" />
     </div>
   );
 };
