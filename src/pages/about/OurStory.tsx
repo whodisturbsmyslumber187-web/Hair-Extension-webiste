@@ -25,9 +25,9 @@ const OurStory = () => {
           <ContentSection>
             <ImageTextBlock
               image={heroImage}
-              imageAlt="LINEA Hair founders"
+              imageAlt="Naya Hair Extensions founders"
               title="Born From a Need"
-              content="LINEA was founded by women who were tired of low-quality hair that tangled after one wash, shed after a week, and never matched the photos online. We went straight to the source — partnering with ethical suppliers to bring you 100% virgin human hair that looks, feels, and moves like your own. No shortcuts. No synthetics. Just premium hair you can trust."
+              content="Naya was founded by women who were tired of low-quality hair that tangled after one wash, shed after a week, and never matched the photos online. We went straight to the source — partnering with ethical suppliers to bring you 100% virgin human hair that looks, feels, and moves like your own. No shortcuts. No synthetics. Just premium hair you can trust."
               imagePosition="left"
             />
           </ContentSection>
