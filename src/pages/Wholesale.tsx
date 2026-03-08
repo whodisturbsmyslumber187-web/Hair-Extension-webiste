@@ -116,7 +116,7 @@ const Wholesale = () => {
                     <span className="text-xs tracking-widest uppercase mb-2">Most Popular</span>
                   )}
                   <h3 className="text-2xl uppercase tracking-wide mb-1">{tier.name}</h3>
-                  <p className="text-2xl font-bold mb-2">{tier.discount}</p>
+                  <p className="text-sm mb-1">Min. order: {tier.minOrder}</p>
                   <p className="text-sm mb-1">Min. order: {tier.minOrder}</p>
                   <p className="text-sm mb-6">{tier.description}</p>
                   <ul className="space-y-2 mb-8 flex-1">
