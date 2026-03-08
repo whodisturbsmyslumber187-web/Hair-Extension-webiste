@@ -22,10 +22,21 @@ interface CartItem {
 
 const Navigation = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [dropdownTimeout, setDropdownTimeout] = useState<ReturnType<typeof setTimeout> | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [offCanvasType, setOffCanvasType] = useState<'favorites' | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isShoppingBagOpen, setIsShoppingBagOpen] = useState(false);
+
+  const handleMouseEnter = (name: string) => {
+    if (dropdownTimeout) clearTimeout(dropdownTimeout);
+    setActiveDropdown(name);
+  };
+
+  const handleMouseLeave = () => {
+    const timeout = setTimeout(() => setActiveDropdown(null), 300);
+    setDropdownTimeout(timeout);
+  };
   
   const [cartItems, setCartItems] = useState<CartItem[]>([
     {
@@ -169,8 +180,8 @@ const Navigation = () => {
             <div
               key={item.name}
               className="relative"
-              onMouseEnter={() => setActiveDropdown(item.name)}
-              onMouseLeave={() => setActiveDropdown(null)}
+              onMouseEnter={() => handleMouseEnter(item.name)}
+              onMouseLeave={handleMouseLeave}
             >
               <Link
                 to={item.href}
@@ -234,13 +245,13 @@ const Navigation = () => {
       {activeDropdown && (
         <div 
           className="absolute top-full left-0 right-0 bg-card border-b border-border z-50"
-          onMouseEnter={() => setActiveDropdown(activeDropdown)}
-          onMouseLeave={() => setActiveDropdown(null)}
+          onMouseEnter={() => handleMouseEnter(activeDropdown)}
+          onMouseLeave={handleMouseLeave}
         >
-          <div className="px-6 py-8">
-            <div className="flex justify-between w-full">
+          <div className="px-6 py-5">
+            <div className="flex justify-between w-full items-start">
               <div className="flex-1">
-                <ul className="space-y-2">
+                <ul className="space-y-1">
                   {navItems
                     .find(item => item.name === activeDropdown)
                     ?.submenuItems.map((subItem, index) => {
@@ -262,7 +273,8 @@ const Navigation = () => {
                     <li key={index}>
                       <Link 
                         to={linkTo}
-                        className="text-nav-foreground hover:text-nav-hover transition-colors duration-200 text-sm font-body tracking-wide block py-2"
+                        className="text-nav-foreground hover:text-nav-hover transition-colors duration-200 text-sm font-body tracking-wide block py-1.5"
+                        onClick={() => setActiveDropdown(null)}
                       >
                         {subItem}
                       </Link>
@@ -271,7 +283,7 @@ const Navigation = () => {
                   })}
                 </ul>
               </div>
-              <div className="flex space-x-6">
+              <div className="flex space-x-4">
                 {navItems
                   .find(item => item.name === activeDropdown)
                   ?.images.map((image, index) => {
@@ -285,7 +297,7 @@ const Navigation = () => {
                       linkTo = "/about/our-story";
                     }
                     return (
-                      <Link key={index} to={linkTo} className="w-[400px] h-[280px] cursor-pointer group relative overflow-hidden block">
+                      <Link key={index} to={linkTo} className="w-[240px] h-[160px] cursor-pointer group relative overflow-hidden block" onClick={() => setActiveDropdown(null)}>
                         <img src={image.src} alt={image.alt} className="w-full h-full object-cover transition-opacity duration-200 group-hover:opacity-90" />
                         <div className="absolute bottom-2 left-2 text-foreground bg-card/80 px-2 py-1 text-xs font-body tracking-wide flex items-center gap-1">
                           <span>{image.label}</span>
