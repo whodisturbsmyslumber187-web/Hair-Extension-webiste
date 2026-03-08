@@ -4,9 +4,10 @@ const StatusBar = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   
   const usps = [
-    "Free shipping over €50",
-    "365 days warranty",
-    "+100,000 happy customers"
+    "Free shipping on orders over $150",
+    "100% virgin human hair guaranteed",
+    "14\" to 40\" lengths available",
+    "30-day quality guarantee"
   ];
 
   useEffect(() => {
@@ -18,11 +19,11 @@ const StatusBar = () => {
   }, [usps.length]);
 
   return (
-    <div className="bg-status-bar text-status-bar-foreground py-2">
+    <div className="bg-primary text-primary-foreground py-2">
       <div className="container mx-auto px-4 text-center">
         <p 
           key={currentIndex}
-          className="text-sm font-light transition-all duration-700 ease-in-out opacity-100 animate-fade-in"
+          className="text-xs font-body tracking-wider transition-all duration-700 ease-in-out opacity-100 animate-fade-in"
         >
           {usps[currentIndex]}
         </p>
