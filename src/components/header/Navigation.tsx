@@ -337,16 +337,28 @@ const Navigation = () => {
                     {item.name}
                   </Link>
                   <div className="mt-3 pl-4 space-y-2">
-                    {item.submenuItems.map((subItem, subIndex) => (
+                    {item.submenuItems.map((subItem, subIndex) => {
+                      let linkTo = "";
+                      if (item.name === "About") {
+                        linkTo = `/about/${subItem.toLowerCase().replace(/\s+/g, '-')}`;
+                      } else if (item.name === "Bundle Deals") {
+                        if (subItem === "3 Bundle + Closure") linkTo = "/bundle-deal?preset=3-closure";
+                        else if (subItem === "4 Bundle + Frontal") linkTo = "/bundle-deal?preset=4-frontal";
+                        else linkTo = "/bundle-deal";
+                      } else {
+                        linkTo = `/category/${subItem.toLowerCase().replace(/\s+/g, '-')}`;
+                      }
+                      return (
                       <Link
                         key={subIndex}
-                        to={item.name === "About" ? `/about/${subItem.toLowerCase().replace(/\s+/g, '-')}` : `/category/${subItem.toLowerCase().replace(/\s+/g, '-')}`}
+                        to={linkTo}
                         className="text-muted-foreground hover:text-primary text-sm font-body block py-1"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {subItem}
                       </Link>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               ))}
