@@ -400,7 +400,7 @@ export const products: Product[] = [
     weights: ["100g", "150g"],
     colors: ["Natural Black #1B", "Jet Black #1", "613 Blonde"],
     description: "Wrap-around ponytail extension for an instant glam look. Secure velcro and comb attachment. 100% human hair.",
-    colorImages: { "Natural Black #1B": hairBundlesStraight, "Jet Black #1": hairBundlesJetblack, "613 Blonde": hairWigBlonde },
+    colorImages: { "Natural Black #1B": hairBundlesStraight, "Jet Black #1": hairBundlesJetblack, "613 Blonde": hairBlondeStraight },
   },
   {
     id: 21,
