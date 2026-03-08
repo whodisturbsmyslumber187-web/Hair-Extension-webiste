@@ -17,7 +17,7 @@ const Sustainability = () => {
         <main className="w-full lg:w-[70vw] lg:ml-auto px-6">
         <PageHeader 
           title="Hair Quality" 
-          subtitle="What sets LINEA hair apart — from source to slay"
+          subtitle="What sets Naya hair apart — from source to slay"
         />
         
         <ContentSection title="Our Sourcing Standards">
