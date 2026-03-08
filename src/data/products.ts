@@ -102,9 +102,9 @@ export const products: Product[] = [
     isNew: true,
     lengths: ["14\"", "16\"", "18\"", "20\"", "22\"", "24\"", "26\"", "28\"", "30\"", "32\"", "34\"", "36\"", "38\"", "40\""],
     weights: ["100g", "150g", "200g", "300g", "400g"],
-    colors: ["Natural Black #1B", "Jet Black #1"],
+    colors: ["Natural Black #1B", "Jet Black #1", "Dark Brown #2", "613 Blonde"],
     description: "100% unprocessed Brazilian virgin straight hair bundles. Silky smooth, no tangling, no shedding. Can be colored, bleached, and styled.",
-    colorImages: { "Natural Black #1B": hairBundlesStraight, "Jet Black #1": hairBundlesJetblack },
+    colorImages: { "Natural Black #1B": hairBundlesStraight, "Jet Black #1": hairBundlesJetblack, "Dark Brown #2": hairBundlesBrown, "613 Blonde": hairWigBlonde },
   },
   {
     id: 2,
