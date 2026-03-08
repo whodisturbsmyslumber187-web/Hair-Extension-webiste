@@ -78,7 +78,7 @@ const CustomerCare = () => {
                 How long does the hair last?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                With proper care (sulfate-free products, silk pillowcase, regular deep conditioning), our hair lasts 12–24 months. Many customers reuse their bundles for multiple installs.
+                The lifespan of your hair depends entirely on how you care for it. Using sulfate-free products, sleeping on a silk or satin pillowcase, deep conditioning regularly, and avoiding excessive heat will all help extend the life of your bundles. The better you treat your hair, the longer it lasts — it's up to you.
               </AccordionContent>
             </AccordionItem>
 
