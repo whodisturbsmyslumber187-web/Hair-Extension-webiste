@@ -12,11 +12,11 @@ interface ProductInfoProps {
   productId?: number;
 }
 
-// Price additions based on length (longer = costs more per 100g)
+// Price additions based on length (per 100g, added to base)
 const lengthPriceAdd: Record<string, number> = {
-  '14"': 0, '16"': 3, '18"': 7, '20"': 12, '22"': 18,
-  '24"': 25, '26"': 35, '28"': 45, '30"': 58, '32"': 72,
-  '34"': 88, '36"': 105, '38"': 125, '40"': 150,
+  '14"': 0, '16"': 10, '18"': 20, '20"': 35, '22"': 50,
+  '24"': 70, '26"': 95, '28"': 120, '30"': 150, '32"': 185,
+  '34"': 220, '36"': 260, '38"': 310, '40"': 365,
 };
 
 // Weight is linear — price per 100g base
