@@ -45,6 +45,20 @@ const ProductInfo = ({ productId, onColorChange }: ProductInfoProps) => {
   const incrementQuantity = () => setQuantity(prev => prev + 1);
   const decrementQuantity = () => setQuantity(prev => Math.max(1, prev - 1));
 
+  // Get the price for a specific length (with current weight)
+  const getLengthPrice = (length: string): string => {
+    if (!product) return "";
+    const price = calculatePrice(product, length, selectedWeight || undefined);
+    return `$${price}`;
+  };
+
+  // Get the price for a specific weight (with current length)
+  const getWeightPrice = (weight: string): string => {
+    if (!product) return "";
+    const price = calculatePrice(product, selectedLength || undefined, weight);
+    return `$${price}`;
+  };
+
   return (
     <div className="space-y-6">
       <div className="hidden lg:block">
@@ -71,7 +85,7 @@ const ProductInfo = ({ productId, onColorChange }: ProductInfoProps) => {
         </div>
       </div>
 
-      {/* Length selector */}
+      {/* Length selector with prices */}
       <div className="space-y-3 py-4 border-b border-border">
         <h3 className="text-sm font-body font-medium text-foreground">
           Length {selectedLength && <span className="font-light text-muted-foreground ml-1">— {selectedLength}</span>}
@@ -81,19 +95,22 @@ const ProductInfo = ({ productId, onColorChange }: ProductInfoProps) => {
             <button
               key={length}
               onClick={() => setSelectedLength(length)}
-              className={`px-3 py-2 text-xs font-body border transition-colors duration-200 ${
+              className={`px-3 py-2 text-xs font-body border transition-colors duration-200 flex flex-col items-center gap-0.5 ${
                 selectedLength === length 
                   ? 'border-primary bg-primary text-primary-foreground' 
                   : 'border-border text-foreground hover:border-primary'
               }`}
             >
-              {length}
+              <span>{length}</span>
+              <span className={`text-[10px] ${selectedLength === length ? 'text-primary-foreground/80' : 'text-muted-foreground'}`}>
+                {getLengthPrice(length)}
+              </span>
             </button>
           ))}
         </div>
       </div>
 
-      {/* Weight selector */}
+      {/* Weight selector with prices */}
       <div className="space-y-3 py-4 border-b border-border">
         <h3 className="text-sm font-body font-medium text-foreground">
           Weight {selectedWeight && <span className="font-light text-muted-foreground ml-1">— {selectedWeight}</span>}
@@ -103,13 +120,16 @@ const ProductInfo = ({ productId, onColorChange }: ProductInfoProps) => {
             <button
               key={weight}
               onClick={() => setSelectedWeight(weight)}
-              className={`px-3 py-2 text-xs font-body border transition-colors duration-200 ${
+              className={`px-3 py-2 text-xs font-body border transition-colors duration-200 flex flex-col items-center gap-0.5 ${
                 selectedWeight === weight 
                   ? 'border-primary bg-primary text-primary-foreground' 
                   : 'border-border text-foreground hover:border-primary'
               }`}
             >
-              {weight}
+              <span>{weight}</span>
+              <span className={`text-[10px] ${selectedWeight === weight ? 'text-primary-foreground/80' : 'text-muted-foreground'}`}>
+                {getWeightPrice(weight)}
+              </span>
             </button>
           ))}
         </div>
@@ -155,7 +175,7 @@ const ProductInfo = ({ productId, onColorChange }: ProductInfoProps) => {
         </div>
 
         <Button className="w-full h-12 bg-primary text-primary-foreground hover:bg-primary-hover font-body font-medium tracking-wide rounded-none">
-          Add to Bag
+          Add to Bag — {displayPrice}
         </Button>
         
         <div className="text-center space-y-1">
