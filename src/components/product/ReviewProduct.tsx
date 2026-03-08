@@ -25,8 +25,7 @@ const ReviewProduct = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const submitReview = () => {
-    // Simple submission logic - in a real app this would send to backend
-    console.log("Review submitted:", { rating, review });
+    // In production, this would send to backend via an edge function
     setIsOpen(false);
     setRating(0);
     setReview("");
