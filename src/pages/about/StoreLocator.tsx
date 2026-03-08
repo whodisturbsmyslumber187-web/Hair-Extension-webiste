@@ -16,7 +16,7 @@ const StoreLocator = () => {
       services: ["In-Store Pickup", "Hair Consultations", "Colour Matching", "Bundle Deals"]
     },
     {
-      name: "LINEA Hair — Houston",
+      name: "Naya Hair — Houston",
       address: "2800 Post Oak Blvd, Houston, TX 77056",
       phone: "+1 (713) 555-0456",
       hours: "Mon-Sat: 10AM-8PM, Sun: 12PM-6PM",
