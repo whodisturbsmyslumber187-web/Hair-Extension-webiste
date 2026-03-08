@@ -93,7 +93,7 @@ const Checkout = () => {
 
   const handleDiscountSubmit = () => {
     // Handle discount code submission
-    console.log("Discount code submitted:", discountCode);
+    // Discount code would be validated server-side
     setShowDiscountInput(false);
   };
 
