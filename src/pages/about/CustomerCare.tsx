@@ -123,7 +123,7 @@ const CustomerCare = () => {
               
               <div className="space-y-2">
                 <label className="text-sm font-light text-foreground">Order Number (Optional)</label>
-                <Input className="rounded-none" placeholder="e.g. LINEA-12345" />
+                <Input className="rounded-none" placeholder="e.g. NAYA-12345" />
               </div>
               
               <div className="space-y-2">

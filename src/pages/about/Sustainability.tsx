@@ -81,7 +81,7 @@ const Sustainability = () => {
         <ContentSection title="Hair Care Tips">
           <div className="space-y-8">
             <p className="text-muted-foreground leading-relaxed">
-              Proper care extends the life of your LINEA hair. Follow these expert tips to keep your hair looking fresh.
+              Proper care extends the life of your Naya hair. Follow these expert tips to keep your hair looking fresh.
             </p>
             
             <div className="grid md:grid-cols-2 gap-8">

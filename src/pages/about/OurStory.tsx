@@ -72,10 +72,10 @@ const OurStory = () => {
             </div>
           </ContentSection>
 
-          <ContentSection title="The LINEA Standard">
+          <ContentSection title="The Naya Standard">
             <div className="bg-muted/10 p-8 space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Every order is double-checked, carefully packaged, and shipped with love. We're not just selling hair — we're delivering confidence. Whether it's your first install or your hundredth, LINEA is designed to make you feel like the most beautiful version of yourself.
+                Every order is double-checked, carefully packaged, and shipped with love. We're not just selling hair — we're delivering confidence. Whether it's your first install or your hundredth, Naya is designed to make you feel like the most beautiful version of yourself.
               </p>
               <div className="grid md:grid-cols-4 gap-6 pt-4">
                 <div className="text-center">

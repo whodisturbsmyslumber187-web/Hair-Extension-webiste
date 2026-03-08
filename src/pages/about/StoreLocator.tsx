@@ -93,7 +93,7 @@ const StoreLocator = () => {
         <ContentSection title="In-Store Experience">
           <div className="space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Nothing beats touching and feeling the hair in person. Visit any LINEA location to compare textures, get colour-matched, and leave with your bundles the same day.
+              Nothing beats touching and feeling the hair in person. Visit any Naya location to compare textures, get colour-matched, and leave with your bundles the same day.
             </p>
             
             <div className="grid md:grid-cols-3 gap-8 mt-12">
