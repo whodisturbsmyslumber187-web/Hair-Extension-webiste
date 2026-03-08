@@ -87,6 +87,18 @@ const Navigation = () => {
         { src: hairWigBlonde, alt: "Lace Wigs", label: "Wigs" }
       ]
     },
+    {
+      name: "Bundle Deals",
+      href: "/bundle-deal",
+      submenuItems: [
+        "3 Bundle + Closure",
+        "4 Bundle + Frontal",
+        "Custom Bundle",
+      ],
+      images: [
+        { src: hairBundlesBodywave, alt: "Bundle Deals", label: "Save up to 20%" }
+      ]
+    },
     { 
       name: "New In", 
       href: "/category/new-in",
