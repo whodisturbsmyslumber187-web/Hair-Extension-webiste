@@ -43,6 +43,12 @@ const benefits = [
   { icon: ShieldCheck, title: "Quality Guarantee", description: "30-day quality guarantee on all wholesale orders" },
 ];
 
+const generateMathChallenge = () => {
+  const a = Math.floor(Math.random() * 10) + 1;
+  const b = Math.floor(Math.random() * 10) + 1;
+  return { question: `${a} + ${b}`, answer: a + b };
+};
+
 const Wholesale = () => {
   const [formData, setFormData] = useState({
     businessName: "",
@@ -53,6 +59,9 @@ const Wholesale = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [captcha, setCaptcha] = useState(generateMathChallenge);
+  const [captchaInput, setCaptchaInput] = useState("");
+  const [honeypot, setHoneypot] = useState("");
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -60,8 +69,15 @@ const Wholesale = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (honeypot) return; // bot trap
     if (!formData.businessName || !formData.contactName || !formData.email) {
       toast.error("Please fill in all required fields");
+      return;
+    }
+    if (parseInt(captchaInput) !== captcha.answer) {
+      toast.error("Incorrect answer — please try again");
+      setCaptcha(generateMathChallenge());
+      setCaptchaInput("");
       return;
     }
     setIsSubmitting(true);
@@ -69,6 +85,8 @@ const Wholesale = () => {
     setIsSubmitting(false);
     toast.success("Application submitted! We'll be in touch within 24 hours.");
     setFormData({ businessName: "", contactName: "", email: "", phone: "", businessType: "", message: "" });
+    setCaptcha(generateMathChallenge());
+    setCaptchaInput("");
   };
 
   return (
@@ -174,6 +192,26 @@ const Wholesale = () => {
                 <div className="space-y-2">
                   <Label htmlFor="message">Tell us about your business</Label>
                   <Textarea id="message" value={formData.message} onChange={(e) => handleChange("message", e.target.value)} placeholder="How many units do you typically order? What textures are you interested in?" rows={5} maxLength={1000} className="bg-black/30 border-white/20 backdrop-blur-sm text-white font-bold placeholder:text-white/40" />
+                </div>
+
+                {/* Honeypot - hidden from humans */}
+                <div className="absolute opacity-0 pointer-events-none h-0 overflow-hidden" aria-hidden="true">
+                  <Input tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+                </div>
+
+                {/* Math CAPTCHA */}
+                <div className="space-y-2">
+                  <Label htmlFor="captcha">Security Check: What is {captcha.question}? *</Label>
+                  <Input
+                    id="captcha"
+                    type="text"
+                    inputMode="numeric"
+                    value={captchaInput}
+                    onChange={(e) => setCaptchaInput(e.target.value)}
+                    placeholder="Enter your answer"
+                    maxLength={5}
+                    className="bg-black/30 border-white/20 backdrop-blur-sm text-white font-bold placeholder:text-white/40 max-w-[200px]"
+                  />
                 </div>
 
                 <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
