@@ -110,6 +110,130 @@
   }
 }
 
+/* ============ NOIR & GOLD ============ */
+.theme-noir-gold {
+  --background: 0 0% 7%;
+  --foreground: 45 30% 90%;
+  --status-bar: 45 50% 40%;
+  --status-bar-foreground: 0 0% 5%;
+  --nav-background: 0 0% 7%;
+  --nav-foreground: 45 20% 80%;
+  --nav-hover: 45 70% 55%;
+  --primary: 45 70% 45%;
+  --primary-foreground: 0 0% 5%;
+  --primary-hover: 45 70% 38%;
+  --secondary: 0 0% 12%;
+  --secondary-foreground: 45 20% 80%;
+  --muted: 0 0% 14%;
+  --muted-foreground: 0 0% 55%;
+  --accent: 0 0% 14%;
+  --accent-foreground: 45 30% 90%;
+  --border: 0 0% 18%;
+  --input: 0 0% 18%;
+  --ring: 45 70% 45%;
+  --card: 0 0% 9%;
+  --card-foreground: 45 30% 90%;
+  --popover: 0 0% 9%;
+  --popover-foreground: 45 30% 90%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --rose-gold: 45 70% 45%;
+  --rose-gold-foreground: 0 0% 5%;
+}
+
+/* ============ ROYAL EMERALD ============ */
+.theme-royal-emerald {
+  --background: 150 25% 6%;
+  --foreground: 45 30% 90%;
+  --status-bar: 150 40% 20%;
+  --status-bar-foreground: 45 30% 90%;
+  --nav-background: 150 25% 6%;
+  --nav-foreground: 45 20% 80%;
+  --nav-hover: 45 70% 55%;
+  --primary: 45 70% 45%;
+  --primary-foreground: 150 25% 6%;
+  --primary-hover: 45 70% 38%;
+  --secondary: 150 15% 12%;
+  --secondary-foreground: 45 20% 80%;
+  --muted: 150 10% 14%;
+  --muted-foreground: 150 10% 50%;
+  --accent: 150 15% 14%;
+  --accent-foreground: 45 30% 90%;
+  --border: 150 10% 18%;
+  --input: 150 10% 18%;
+  --ring: 45 70% 45%;
+  --card: 150 20% 8%;
+  --card-foreground: 45 30% 90%;
+  --popover: 150 20% 8%;
+  --popover-foreground: 45 30% 90%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --rose-gold: 45 70% 50%;
+  --rose-gold-foreground: 0 0% 5%;
+}
+
+/* ============ MIDNIGHT RUBY ============ */
+.theme-midnight-ruby {
+  --background: 280 20% 6%;
+  --foreground: 0 15% 92%;
+  --status-bar: 350 60% 25%;
+  --status-bar-foreground: 0 0% 95%;
+  --nav-background: 280 20% 6%;
+  --nav-foreground: 0 10% 78%;
+  --nav-hover: 350 60% 50%;
+  --primary: 350 60% 35%;
+  --primary-foreground: 0 0% 98%;
+  --primary-hover: 350 60% 28%;
+  --secondary: 280 12% 12%;
+  --secondary-foreground: 0 10% 78%;
+  --muted: 280 10% 14%;
+  --muted-foreground: 280 8% 50%;
+  --accent: 280 12% 14%;
+  --accent-foreground: 0 15% 92%;
+  --border: 280 10% 18%;
+  --input: 280 10% 18%;
+  --ring: 350 60% 35%;
+  --card: 280 18% 8%;
+  --card-foreground: 0 15% 92%;
+  --popover: 280 18% 8%;
+  --popover-foreground: 0 15% 92%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --rose-gold: 45 70% 45%;
+  --rose-gold-foreground: 0 0% 5%;
+}
+
+/* ============ IVORY & CHAMPAGNE ============ */
+.theme-ivory-champagne {
+  --background: 42 40% 96%;
+  --foreground: 30 30% 15%;
+  --status-bar: 35 50% 30%;
+  --status-bar-foreground: 42 40% 96%;
+  --nav-background: 42 40% 96%;
+  --nav-foreground: 30 25% 20%;
+  --nav-hover: 35 60% 40%;
+  --primary: 35 60% 38%;
+  --primary-foreground: 42 40% 96%;
+  --primary-hover: 35 60% 30%;
+  --secondary: 35 20% 92%;
+  --secondary-foreground: 30 25% 25%;
+  --muted: 35 15% 90%;
+  --muted-foreground: 30 10% 45%;
+  --accent: 35 20% 90%;
+  --accent-foreground: 30 30% 15%;
+  --border: 35 15% 85%;
+  --input: 35 15% 85%;
+  --ring: 35 60% 38%;
+  --card: 40 30% 98%;
+  --card-foreground: 30 30% 15%;
+  --popover: 40 30% 98%;
+  --popover-foreground: 30 30% 15%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --rose-gold: 35 50% 50%;
+  --rose-gold-foreground: 0 0% 100%;
+}
+
 @layer base {
   * {
     @apply border-border;

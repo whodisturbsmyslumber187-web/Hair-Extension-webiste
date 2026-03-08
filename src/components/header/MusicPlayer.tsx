@@ -2,91 +2,176 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
 /**
- * Ambient music player using Web Audio API.
- * Generates a soothing, luxurious ambient soundscape — no external files needed.
+ * Mall-style shopping music player using Web Audio API.
+ * Generates a catchy, upbeat lofi/jazzy melody — no external files needed.
  */
 const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioContextRef = useRef<AudioContext | null>(null);
   const gainNodeRef = useRef<GainNode | null>(null);
-  const oscillatorsRef = useRef<OscillatorNode[]>([]);
+  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const isStoppedRef = useRef(false);
 
-  const createAmbientSound = useCallback(() => {
+  const createShoppingMusic = useCallback(() => {
     const ctx = new AudioContext();
     audioContextRef.current = ctx;
+    isStoppedRef.current = false;
 
     const masterGain = ctx.createGain();
-    masterGain.gain.value = 0.06; // Very quiet background
+    masterGain.gain.value = 0.12;
     masterGain.connect(ctx.destination);
     gainNodeRef.current = masterGain;
 
-    // Warm pad chord (Cmaj7 voiced)
-    const frequencies = [130.81, 164.81, 196.00, 246.94]; // C3, E3, G3, B3
-    const oscs: OscillatorNode[] = [];
+    // Compressor for polish
+    const compressor = ctx.createDynamicsCompressor();
+    compressor.threshold.value = -20;
+    compressor.ratio.value = 4;
+    compressor.connect(masterGain);
 
-    frequencies.forEach((freq, i) => {
+    // Note frequencies
+    const notes: Record<string, number> = {
+      C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23, G4: 392.00,
+      A4: 440.00, B4: 493.88, C5: 523.25, D5: 587.33, E5: 659.25,
+      F5: 698.46, G5: 783.99, A5: 880.00,
+      C3: 130.81, E3: 164.81, G3: 196.00, A3: 220.00, B3: 246.94,
+      D3: 146.83, F3: 174.61,
+    };
+
+    // Play a single note with envelope
+    const playNote = (freq: number, startTime: number, duration: number, volume: number = 0.3, type: OscillatorType = "triangle") => {
+      if (isStoppedRef.current) return;
       const osc = ctx.createOscillator();
-      const oscGain = ctx.createGain();
-      oscGain.gain.value = 0.3 - i * 0.05;
-      
-      osc.type = "sine";
+      const env = ctx.createGain();
+      osc.type = type;
       osc.frequency.value = freq;
-      
-      // Slow detune for warmth
-      osc.detune.value = Math.sin(i) * 5;
-      
-      osc.connect(oscGain);
-      oscGain.connect(masterGain);
-      osc.start();
-      oscs.push(osc);
 
-      // Second layer slightly detuned
-      const osc2 = ctx.createOscillator();
-      const osc2Gain = ctx.createGain();
-      osc2Gain.gain.value = 0.15;
-      osc2.type = "sine";
-      osc2.frequency.value = freq * 1.002; // Slight chorus
-      osc2.connect(osc2Gain);
-      osc2Gain.connect(masterGain);
-      osc2.start();
-      oscs.push(osc2);
-    });
+      env.gain.setValueAtTime(0, startTime);
+      env.gain.linearRampToValueAtTime(volume, startTime + 0.02);
+      env.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
 
-    // High shimmer
-    const shimmer = ctx.createOscillator();
-    const shimmerGain = ctx.createGain();
-    shimmerGain.gain.value = 0.02;
-    shimmer.type = "sine";
-    shimmer.frequency.value = 523.25; // C5
-    shimmer.connect(shimmerGain);
-    shimmerGain.connect(masterGain);
-    shimmer.start();
-    oscs.push(shimmer);
+      osc.connect(env);
+      env.connect(compressor);
+      osc.start(startTime);
+      osc.stop(startTime + duration);
+    };
 
-    oscillatorsRef.current = oscs;
+    // Chord patterns (jazz/bossa feel)
+    const chordProgressions = [
+      // Cmaj7 - Dm7 - Em7 - Fmaj7 - G7 - Am7 - Dm7 - G7
+      [
+        [notes.C3, notes.E4, notes.G4, notes.B4],
+        [notes.D3, notes.F4, notes.A4, notes.C5],
+        [notes.E3, notes.G4, notes.B4, notes.D5],
+        [notes.F3, notes.A4, notes.C5, notes.E5],
+        [notes.G3, notes.B4, notes.D5, notes.F5],
+        [notes.A3, notes.C5, notes.E5, notes.G5],
+        [notes.D3, notes.F4, notes.A4, notes.C5],
+        [notes.G3, notes.B4, notes.D5, notes.F5],
+      ],
+      // Am7 - Dm7 - G7 - Cmaj7 - Fmaj7 - Bm7b5 - E7 - Am7
+      [
+        [notes.A3, notes.C5, notes.E5, notes.G5],
+        [notes.D3, notes.F4, notes.A4, notes.C5],
+        [notes.G3, notes.B4, notes.D5, notes.F5],
+        [notes.C3, notes.E4, notes.G4, notes.B4],
+        [notes.F3, notes.A4, notes.C5, notes.E5],
+        [notes.B3, notes.D5, notes.F5, notes.A5],
+        [notes.E3, notes.G4, notes.B4, notes.D5],
+        [notes.A3, notes.C5, notes.E5, notes.G5],
+      ],
+    ];
 
-    // Gentle volume modulation
-    let time = 0;
-    intervalRef.current = setInterval(() => {
-      time += 0.05;
-      if (masterGain.gain) {
-        masterGain.gain.value = 0.04 + Math.sin(time * 0.3) * 0.02;
+    // Melody patterns
+    const melodies = [
+      [notes.E5, notes.D5, notes.C5, notes.D5, notes.E5, notes.G5, notes.A5, notes.G5,
+       notes.F5, notes.E5, notes.D5, notes.C5, notes.D5, notes.E5, notes.C5, notes.D5],
+      [notes.G5, notes.A5, notes.G5, notes.E5, notes.D5, notes.C5, notes.E5, notes.G5,
+       notes.A5, notes.G5, notes.F5, notes.E5, notes.D5, notes.E5, notes.G5, notes.E5],
+      [notes.C5, notes.E5, notes.G5, notes.A5, notes.G5, notes.E5, notes.D5, notes.C5,
+       notes.D5, notes.F5, notes.A5, notes.G5, notes.F5, notes.E5, notes.D5, notes.C5],
+    ];
+
+    const bpm = 105;
+    const beatDuration = 60 / bpm;
+    const barDuration = beatDuration * 4;
+
+    let currentBar = 0;
+
+    const playBar = () => {
+      if (isStoppedRef.current || !audioContextRef.current) return;
+
+      const now = ctx.currentTime;
+      const progIdx = currentBar % 2;
+      const progression = chordProgressions[progIdx];
+      const chordIdx = (currentBar % 8);
+      const chord = progression[chordIdx];
+
+      // Bass note
+      playNote(chord[0], now, barDuration * 0.9, 0.25, "sine");
+
+      // Chord stabs (bossa rhythm)
+      playNote(chord[1], now + beatDuration * 0.5, beatDuration * 0.4, 0.08, "triangle");
+      playNote(chord[2], now + beatDuration * 0.5, beatDuration * 0.4, 0.07, "triangle");
+      playNote(chord[3], now + beatDuration * 0.5, beatDuration * 0.4, 0.06, "triangle");
+
+      playNote(chord[1], now + beatDuration * 1.5, beatDuration * 0.3, 0.06, "triangle");
+      playNote(chord[2], now + beatDuration * 1.5, beatDuration * 0.3, 0.05, "triangle");
+
+      playNote(chord[1], now + beatDuration * 2.5, beatDuration * 0.4, 0.08, "triangle");
+      playNote(chord[2], now + beatDuration * 2.5, beatDuration * 0.4, 0.07, "triangle");
+      playNote(chord[3], now + beatDuration * 2.5, beatDuration * 0.4, 0.06, "triangle");
+
+      playNote(chord[1], now + beatDuration * 3.25, beatDuration * 0.3, 0.05, "triangle");
+
+      // Melody
+      const melodyIdx = currentBar % melodies.length;
+      const melody = melodies[melodyIdx];
+      const notesPerBar = 8;
+      const noteSpacing = barDuration / notesPerBar;
+
+      for (let i = 0; i < notesPerBar; i++) {
+        const mNote = melody[(chordIdx * 2 + i) % melody.length];
+        // Add slight swing
+        const swing = i % 2 === 1 ? noteSpacing * 0.08 : 0;
+        const vol = 0.08 + Math.sin(i * 0.7) * 0.03;
+        playNote(mNote, now + i * noteSpacing + swing, noteSpacing * 0.7, vol, "sine");
       }
-    }, 100);
+
+      // Hi-hat pattern (noise-like)
+      for (let i = 0; i < 8; i++) {
+        const hihatOsc = ctx.createOscillator();
+        const hihatGain = ctx.createGain();
+        hihatOsc.type = "square";
+        hihatOsc.frequency.value = 8000 + Math.random() * 2000;
+        const t = now + i * (barDuration / 8);
+        hihatGain.gain.setValueAtTime(0, t);
+        hihatGain.gain.linearRampToValueAtTime(i % 2 === 0 ? 0.015 : 0.008, t + 0.005);
+        hihatGain.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
+        hihatOsc.connect(hihatGain);
+        hihatGain.connect(compressor);
+        hihatOsc.start(t);
+        hihatOsc.stop(t + 0.06);
+      }
+
+      currentBar++;
+      const timeout = setTimeout(playBar, barDuration * 1000);
+      timeoutsRef.current.push(timeout);
+    };
+
+    playBar();
   }, []);
 
   const stopSound = useCallback(() => {
+    isStoppedRef.current = true;
+    timeoutsRef.current.forEach(t => clearTimeout(t));
+    timeoutsRef.current = [];
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
-    oscillatorsRef.current.forEach(osc => {
-      try { osc.stop(); } catch {}
-    });
-    oscillatorsRef.current = [];
     if (audioContextRef.current) {
-      audioContextRef.current.close();
+      audioContextRef.current.close().catch(() => {});
       audioContextRef.current = null;
     }
   }, []);
@@ -96,7 +181,7 @@ const MusicPlayer = () => {
       stopSound();
       setIsPlaying(false);
     } else {
-      createAmbientSound();
+      createShoppingMusic();
       setIsPlaying(true);
     }
   };
@@ -109,15 +194,14 @@ const MusicPlayer = () => {
     <button
       onClick={toggleMusic}
       className="p-2 text-nav-foreground hover:text-nav-hover transition-colors duration-200 relative group"
-      aria-label={isPlaying ? "Mute music" : "Play ambient music"}
-      title={isPlaying ? "Mute music" : "Play ambient music"}
+      aria-label={isPlaying ? "Mute music" : "Play shopping music"}
+      title={isPlaying ? "Mute music" : "Play shopping music"}
     >
       {isPlaying ? (
         <Volume2 className="w-4 h-4" />
       ) : (
         <VolumeX className="w-4 h-4" />
       )}
-      {/* Subtle pulse when playing */}
       {isPlaying && (
         <span className="absolute inset-0 rounded-full animate-ping bg-primary/10 pointer-events-none" />
       )}
