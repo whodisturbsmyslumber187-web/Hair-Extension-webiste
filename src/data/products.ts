@@ -431,7 +431,7 @@ export const products: Product[] = [
     weights: ["100g", "150g", "200g"],
     colors: ["613 Blonde", "Honey Blonde #27"],
     description: "Premium 613 blonde straight virgin bundles. Pre-bleached and ready to tone. No chemical smell. Silky and manageable.",
-    colorImages: { "613 Blonde": hairWigBlonde, "Honey Blonde #27": hairBundlesHoneyBlonde },
+    colorImages: { "613 Blonde": hairBlondeStraight, "Honey Blonde #27": hairBundlesHoneyBlonde },
   },
   {
     id: 23,
