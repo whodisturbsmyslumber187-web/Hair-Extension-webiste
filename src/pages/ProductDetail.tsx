@@ -1,3 +1,4 @@
+import { useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Header from "../components/header/Header";
@@ -19,9 +20,14 @@ import {
 const ProductDetail = () => {
   const { productId } = useParams();
   const product = getProductById(Number(productId));
+  const [selectedColor, setSelectedColor] = useState<string>("");
   
   const productName = product?.name || "Product";
   const productCategory = product?.category || "Bundles";
+
+  const handleColorChange = useCallback((color: string) => {
+    setSelectedColor(color);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -52,10 +58,10 @@ const ProductDetail = () => {
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-            <ProductImageGallery productId={Number(productId)} />
+            <ProductImageGallery productId={Number(productId)} selectedColor={selectedColor} />
             
             <div className="lg:pl-12 mt-8 lg:mt-0 lg:sticky lg:top-6 lg:h-fit">
-              <ProductInfo productId={Number(productId)} />
+              <ProductInfo productId={Number(productId)} onColorChange={handleColorChange} />
               <ProductDescription productId={Number(productId)} />
             </div>
           </div>

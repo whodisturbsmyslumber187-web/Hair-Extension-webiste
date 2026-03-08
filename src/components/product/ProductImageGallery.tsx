@@ -1,12 +1,13 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ImageZoom from "./ImageZoom";
 import { getProductById } from "@/data/products";
 
 interface ProductImageGalleryProps {
   productId?: number;
+  selectedColor?: string;
 }
 
-const ProductImageGallery = ({ productId }: ProductImageGalleryProps) => {
+const ProductImageGallery = ({ productId, selectedColor }: ProductImageGalleryProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isZoomOpen, setIsZoomOpen] = useState(false);
   const [zoomInitialIndex, setZoomInitialIndex] = useState(0);
@@ -14,9 +15,20 @@ const ProductImageGallery = ({ productId }: ProductImageGalleryProps) => {
   const touchEndX = useRef<number | null>(null);
 
   const product = productId ? getProductById(productId) : null;
-  const productImages = product 
-    ? [product.image, product.hoverImage] 
-    : [];
+  
+  // Determine the primary image based on selected color
+  const primaryImage = selectedColor && product?.colorImages?.[selectedColor]
+    ? product.colorImages[selectedColor]
+    : product?.image || "";
+  
+  const secondaryImage = product?.hoverImage || "";
+  
+  const productImages = product ? [primaryImage, secondaryImage].filter(Boolean) : [];
+
+  // Reset to first image when color changes
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [selectedColor]);
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
@@ -57,14 +69,14 @@ const ProductImageGallery = ({ productId }: ProductImageGalleryProps) => {
         <div className="space-y-4">
           {productImages.map((image, index) => (
             <div 
-              key={index} 
+              key={`${selectedColor}-${index}`} 
               className="w-full aspect-square overflow-hidden cursor-pointer group"
               onClick={() => handleImageClick(index)}
             >
               <img
                 src={image}
                 alt={`Product view ${index + 1}`}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
               />
             </div>
           ))}
@@ -83,7 +95,7 @@ const ProductImageGallery = ({ productId }: ProductImageGalleryProps) => {
             <img
               src={productImages[currentImageIndex]}
               alt={`Product view ${currentImageIndex + 1}`}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 select-none"
+              className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 select-none"
             />
           </div>
           <div className="flex justify-center mt-4 gap-2">
