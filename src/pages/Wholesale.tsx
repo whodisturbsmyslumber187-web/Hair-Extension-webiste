@@ -43,6 +43,12 @@ const benefits = [
   { icon: ShieldCheck, title: "Quality Guarantee", description: "30-day quality guarantee on all wholesale orders" },
 ];
 
+const generateMathChallenge = () => {
+  const a = Math.floor(Math.random() * 10) + 1;
+  const b = Math.floor(Math.random() * 10) + 1;
+  return { question: `${a} + ${b}`, answer: a + b };
+};
+
 const Wholesale = () => {
   const [formData, setFormData] = useState({
     businessName: "",
@@ -53,6 +59,9 @@ const Wholesale = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [captcha, setCaptcha] = useState(generateMathChallenge);
+  const [captchaInput, setCaptchaInput] = useState("");
+  const [honeypot, setHoneypot] = useState("");
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
