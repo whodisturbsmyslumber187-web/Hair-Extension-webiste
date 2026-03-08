@@ -9,7 +9,7 @@ import AboutSidebar from "../../components/about/AboutSidebar";
 const StoreLocator = () => {
   const stores = [
     {
-      name: "LINEA Hair — Atlanta",
+      name: "Naya Hair — Atlanta",
       address: "3500 Peachtree Road NE, Atlanta, GA 30326",
       phone: "+1 (404) 555-0123",
       hours: "Mon-Sat: 10AM-8PM, Sun: 12PM-6PM",
