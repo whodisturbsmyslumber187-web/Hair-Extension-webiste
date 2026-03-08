@@ -18,6 +18,8 @@ import CustomerCare from "./pages/about/CustomerCare";
 import StoreLocator from "./pages/about/StoreLocator";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import Support from "./pages/Support";
+import FloatingChatButton from "./components/chat/FloatingChatButton";
 
 const queryClient = new QueryClient();
 
