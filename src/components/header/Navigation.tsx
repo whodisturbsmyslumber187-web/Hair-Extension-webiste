@@ -241,6 +241,8 @@ const Navigation = () => {
                       if (subItem === "3 Bundle + Closure") linkTo = "/bundle-deal?preset=3-closure";
                       else if (subItem === "4 Bundle + Frontal") linkTo = "/bundle-deal?preset=4-frontal";
                       else linkTo = "/bundle-deal";
+                    } else if (activeDropdown === "New In") {
+                      linkTo = "/category/new-in";
                     } else {
                       linkTo = `/category/${subItem.toLowerCase().replace(/\s+/g, '-')}`;
                     }
