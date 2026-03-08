@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "shop": "Tienda",
+    "newIn": "Novedades",
+    "about": "Nosotras",
+    "search": "Buscar",
+    "favorites": "Favoritos",
+    "cart": "Bolsa de compras",
+    "searchPlaceholder": "Buscar extensiones de cabello...",
+    "popularSearches": "Búsquedas populares"
+  },
+  "categories": {
+    "bundles": "Mechones",
+    "wigs": "Pelucas",
+    "frontals": "Frontales",
+    "closures": "Closures",
+    "clipIns": "Clip-Ins",
+    "extensions": "Extensiones",
+    "tapeIns": "Tape-Ins"
+  },
+  "hero": {
+    "title": "Cabello Virgen Premium",
+    "subtitle": "Cabello humano 100% · Todas las texturas · 14\" a 40\""
+  },
+  "home": {
+    "bestsellers": "Más vendidos",
+    "newArrivals": "Novedades"
+  },
+  "product": {
+    "length": "Largo",
+    "weight": "Peso",
+    "color": "Color",
+    "quantity": "Cantidad",
+    "addToBag": "Agregar a la bolsa",
+    "from": "desde",
+    "selected": "Seleccionado",
+    "selectOptions": "Selecciona opciones para ver el precio exacto",
+    "shippingAtCheckout": "Envío calculado al finalizar la compra",
+    "qualityGuarantee": "Garantía de calidad de 30 días",
+    "total": "Total",
+    "description": "Descripción",
+    "details": "Detalles",
+    "shipping": "Envío",
+    "reviews": "Reseñas"
+  },
+  "footer": {
+    "tagline": "Extensiones de cabello virgen 100% premium, mechones, pelucas y frontales. Calidad de lujo para la mujer moderna.",
+    "contact": "Contacto",
+    "hours": "Horario",
+    "monFri": "Lun–Vie: 9AM – 6PM",
+    "sat": "Sáb: 10AM – 4PM",
+    "shop": "Tienda",
+    "support": "Soporte",
+    "connect": "Síguenos",
+    "lengthGuide": "Guía de largos",
+    "hairCare": "Cuidado del cabello",
+    "returnsExchanges": "Devoluciones y cambios",
+    "shippingInfo": "Información de envío",
+    "contactUs": "Contáctanos",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "youtube": "YouTube",
+    "newsletter": "Newsletter",
+    "privacyPolicy": "Política de privacidad",
+    "termsOfService": "Términos de servicio",
+    "allRightsReserved": "Todos los derechos reservados. Plantilla creada por"
+  },
+  "statusBar": {
+    "usp1": "Cabello 100% virgen garantizado",
+    "usp2": "Largos de 14\" a 40\" disponibles",
+    "usp3": "Garantía de calidad de 30 días",
+    "usp4": "Calidad premium — envío calculado al finalizar"
+  },
+  "wishlist": {
+    "title": "Tu lista de deseos",
+    "empty": "Aún no has agregado favoritos. Explora nuestra colección y haz clic en el corazón para guardar los artículos que te gustan."
+  },
+  "cart": {
+    "title": "Tu bolsa",
+    "empty": "Tu bolsa está vacía",
+    "subtotal": "Subtotal",
+    "checkout": "Finalizar compra",
+    "continueShopping": "Seguir comprando"
+  },
+  "about": {
+    "ourStory": "Nuestra historia",
+    "hairCareGuide": "Guía de cuidado",
+    "sizeGuide": "Guía de tallas",
+    "customerCare": "Atención al cliente",
+    "storeLocator": "Ubicación de tiendas"
+  },
+  "editorial": {
+    "title": "El arte del cabello",
+    "subtitle": "Desde mechones vírgenes hasta pelucas personalizadas, cada pieza está seleccionada para la perfección."
+  },
+  "fiftyFifty": {
+    "title1": "Mechones y Closures",
+    "subtitle1": "Completa tu instalación",
+    "title2": "Pelucas de encaje",
+    "subtitle2": "Lujo listo para usar"
+  }
+}

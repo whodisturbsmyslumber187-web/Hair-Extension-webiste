@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const StatusBar = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { t } = useTranslation();
   
   const usps = [
-    "100% virgin human hair guaranteed",
-    "14\" to 40\" lengths available",
-    "30-day quality guarantee",
-    "Premium quality — shipping calculated at checkout"
+    t("statusBar.usp1"),
+    t("statusBar.usp2"),
+    t("statusBar.usp3"),
+    t("statusBar.usp4"),
   ];
 
   useEffect(() => {

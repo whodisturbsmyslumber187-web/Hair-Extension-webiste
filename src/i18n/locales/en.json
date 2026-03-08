@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "shop": "Shop",
+    "newIn": "New In",
+    "about": "About",
+    "search": "Search",
+    "favorites": "Favorites",
+    "cart": "Shopping Bag",
+    "searchPlaceholder": "Search for hair extensions...",
+    "popularSearches": "Popular Searches"
+  },
+  "categories": {
+    "bundles": "Bundles",
+    "wigs": "Wigs",
+    "frontals": "Frontals",
+    "closures": "Closures",
+    "clipIns": "Clip-Ins",
+    "extensions": "Extensions",
+    "tapeIns": "Tape-Ins"
+  },
+  "hero": {
+    "title": "Premium Virgin Hair",
+    "subtitle": "100% real human hair · All textures · 14\" to 40\""
+  },
+  "home": {
+    "bestsellers": "Bestsellers",
+    "newArrivals": "New Arrivals"
+  },
+  "product": {
+    "length": "Length",
+    "weight": "Weight",
+    "color": "Color",
+    "quantity": "Quantity",
+    "addToBag": "Add to Bag",
+    "from": "from",
+    "selected": "Selected",
+    "selectOptions": "Select options for exact price",
+    "shippingAtCheckout": "Shipping calculated at checkout",
+    "qualityGuarantee": "30-day quality guarantee",
+    "total": "Total",
+    "description": "Description",
+    "details": "Details",
+    "shipping": "Shipping",
+    "reviews": "Reviews"
+  },
+  "footer": {
+    "tagline": "Premium 100% virgin hair extensions, bundles, wigs & frontals. Luxury quality for the modern woman.",
+    "contact": "Contact",
+    "hours": "Hours",
+    "monFri": "Mon–Fri: 9AM – 6PM",
+    "sat": "Sat: 10AM – 4PM",
+    "shop": "Shop",
+    "support": "Support",
+    "connect": "Connect",
+    "lengthGuide": "Length Guide",
+    "hairCare": "Hair Care",
+    "returnsExchanges": "Returns & Exchanges",
+    "shippingInfo": "Shipping Info",
+    "contactUs": "Contact Us",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "youtube": "YouTube",
+    "newsletter": "Newsletter",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "allRightsReserved": "All rights reserved. Template made by"
+  },
+  "statusBar": {
+    "usp1": "100% virgin human hair guaranteed",
+    "usp2": "14\" to 40\" lengths available",
+    "usp3": "30-day quality guarantee",
+    "usp4": "Premium quality — shipping calculated at checkout"
+  },
+  "wishlist": {
+    "title": "Your Wishlist",
+    "empty": "You haven't added any favorites yet. Browse our collection and click the heart icon to save items you love."
+  },
+  "cart": {
+    "title": "Your Bag",
+    "empty": "Your bag is empty",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout",
+    "continueShopping": "Continue Shopping"
+  },
+  "about": {
+    "ourStory": "Our Story",
+    "hairCareGuide": "Hair Care Guide",
+    "sizeGuide": "Size Guide",
+    "customerCare": "Customer Care",
+    "storeLocator": "Store Locator"
+  },
+  "editorial": {
+    "title": "The Art of Hair",
+    "subtitle": "From raw virgin bundles to custom-colored wigs, every piece is curated for perfection."
+  },
+  "fiftyFifty": {
+    "title1": "Bundles & Closures",
+    "subtitle1": "Complete your install",
+    "title2": "Lace Wigs",
+    "subtitle2": "Ready to wear luxury"
+  }
+}

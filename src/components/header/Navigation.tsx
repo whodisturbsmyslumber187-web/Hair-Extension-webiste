@@ -1,7 +1,9 @@
 import { ArrowRight, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import ShoppingBag from "./ShoppingBag";
+import LanguageSwitcher from "./LanguageSwitcher";
 import hairBundlesStraight from "@/assets/hair-bundles-straight.jpg";
 import hairBundlesBodywave from "@/assets/hair-bundles-bodywave.jpg";
 import hairFrontal from "@/assets/hair-frontal.jpg";
@@ -18,6 +20,7 @@ interface CartItem {
 }
 
 const Navigation = () => {
+  const { t } = useTranslation();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [offCanvasType, setOffCanvasType] = useState<'favorites' | null>(null);
@@ -58,59 +61,62 @@ const Navigation = () => {
   };
 
   const popularSearches = [
-    "Straight Bundles",
+    t("categories.bundles"),
     "Body Wave",
-    "613 Blonde Wig",
-    "Lace Frontal",
-    "Clip-In Extensions",
-    "Deep Wave Bundles"
+    "613 Blonde",
+    t("categories.frontals"),
+    t("categories.clipIns"),
+    "Deep Wave",
   ];
   
   const navItems = [
     { 
-      name: "Shop", 
+      name: t("nav.shop"), 
+      key: "Shop",
       href: "/category/all",
       submenuItems: [
-        "Bundles",
-        "Wigs", 
-        "Frontals",
-        "Closures",
-        "Clip-Ins",
-        "Extensions",
-        "Tape-Ins",
+        { label: t("categories.bundles"), slug: "bundles" },
+        { label: t("categories.wigs"), slug: "wigs" },
+        { label: t("categories.frontals"), slug: "frontals" },
+        { label: t("categories.closures"), slug: "closures" },
+        { label: t("categories.clipIns"), slug: "clip-ins" },
+        { label: t("categories.extensions"), slug: "extensions" },
+        { label: t("categories.tapeIns"), slug: "tape-ins" },
       ],
       images: [
-        { src: hairBundlesStraight, alt: "Virgin Hair Bundles", label: "Bundles" },
-        { src: hairWigBlonde, alt: "Lace Wigs", label: "Wigs" }
+        { src: hairBundlesStraight, alt: "Virgin Hair Bundles", label: t("categories.bundles"), link: "/category/bundles" },
+        { src: hairWigBlonde, alt: "Lace Wigs", label: t("categories.wigs"), link: "/category/wigs" }
       ]
     },
     { 
-      name: "New In", 
+      name: t("nav.newIn"), 
+      key: "New In",
       href: "/category/new-in",
       submenuItems: [
-        "Straight Bundles",
-        "Deep Wave Bundles",
-        "Blonde Bundles",
-        "HD Lace Closures",
-        "613 Blonde Wigs",
+        { label: "Straight Bundles", slug: "straight-bundles" },
+        { label: "Deep Wave Bundles", slug: "deep-wave-bundles" },
+        { label: "Blonde Bundles", slug: "blonde-bundles" },
+        { label: "HD Lace Closures", slug: "hd-lace-closures" },
+        { label: "613 Blonde Wigs", slug: "613-blonde-wigs" },
       ],
       images: [
-        { src: hairBundlesBodywave, alt: "Body Wave Bundles", label: "Body Wave" },
-        { src: hairFrontal, alt: "Lace Frontal", label: "Frontals" }
+        { src: hairBundlesBodywave, alt: "Body Wave Bundles", label: "Body Wave", link: "/category/new-in" },
+        { src: hairFrontal, alt: "Lace Frontal", label: t("categories.frontals"), link: "/category/frontals" }
       ]
     },
     { 
-      name: "About", 
+      name: t("nav.about"), 
+      key: "About",
       href: "/about/our-story",
       submenuItems: [
-        "Our Story",
-        "Hair Care Guide",
-        "Size Guide",
-        "Customer Care",
-        "Store Locator"
+        { label: t("about.ourStory"), slug: "our-story" },
+        { label: t("about.hairCareGuide"), slug: "hair-care-guide" },
+        { label: t("about.sizeGuide"), slug: "size-guide" },
+        { label: t("about.customerCare"), slug: "customer-care" },
+        { label: t("about.storeLocator"), slug: "store-locator" },
       ],
       images: [
-        { src: hairClosure, alt: "Premium Hair", label: "Our quality promise" }
+        { src: hairClosure, alt: "Premium Hair", label: t("about.ourStory"), link: "/about/our-story" }
       ]
     }
   ];
@@ -138,12 +144,12 @@ const Navigation = () => {
         </button>
 
         {/* Left navigation */}
-        <div className="hidden lg:flex space-x-8">
+        <div className="hidden lg:flex space-x-8 rtl:space-x-reverse">
           {navItems.map((item) => (
             <div
-              key={item.name}
+              key={item.key}
               className="relative"
-              onMouseEnter={() => setActiveDropdown(item.name)}
+              onMouseEnter={() => setActiveDropdown(item.key)}
               onMouseLeave={() => setActiveDropdown(null)}
             >
               <Link
@@ -166,10 +172,11 @@ const Navigation = () => {
         </div>
 
         {/* Right icons */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-1 rtl:space-x-reverse">
+          <LanguageSwitcher />
           <button 
             className="p-2 text-nav-foreground hover:text-nav-hover transition-colors duration-200"
-            aria-label="Search"
+            aria-label={t("nav.search")}
             onClick={() => setIsSearchOpen(!isSearchOpen)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
@@ -178,7 +185,7 @@ const Navigation = () => {
           </button>
           <button 
             className="hidden lg:block p-2 text-nav-foreground hover:text-nav-hover transition-colors duration-200"
-            aria-label="Favorites"
+            aria-label={t("nav.favorites")}
             onClick={() => setOffCanvasType('favorites')}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
@@ -187,7 +194,7 @@ const Navigation = () => {
           </button>
           <button 
             className="p-2 text-nav-foreground hover:text-nav-hover transition-colors duration-200 relative"
-            aria-label="Shopping bag"
+            aria-label={t("nav.cart")}
             onClick={() => setIsShoppingBagOpen(true)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
@@ -214,42 +221,31 @@ const Navigation = () => {
               <div className="flex-1">
                 <ul className="space-y-2">
                   {navItems
-                    .find(item => item.name === activeDropdown)
+                    .find(item => item.key === activeDropdown)
                     ?.submenuItems.map((subItem, index) => (
                     <li key={index}>
                       <Link 
-                        to={activeDropdown === "About" ? `/about/${subItem.toLowerCase().replace(/\s+/g, '-')}` : `/category/${subItem.toLowerCase().replace(/\s+/g, '-')}`}
+                        to={activeDropdown === "About" ? `/about/${subItem.slug}` : `/category/${subItem.slug}`}
                         className="text-nav-foreground hover:text-nav-hover transition-colors duration-200 text-sm font-body tracking-wide block py-2"
                       >
-                        {subItem}
+                        {subItem.label}
                       </Link>
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="flex space-x-6">
+              <div className="flex space-x-6 rtl:space-x-reverse">
                 {navItems
-                  .find(item => item.name === activeDropdown)
-                  ?.images.map((image, index) => {
-                    let linkTo = "/";
-                    if (activeDropdown === "Shop") {
-                      if (image.label === "Bundles") linkTo = "/category/bundles";
-                      else if (image.label === "Wigs") linkTo = "/category/wigs";
-                    } else if (activeDropdown === "New In") {
-                      linkTo = "/category/new-in";
-                    } else if (activeDropdown === "About") {
-                      linkTo = "/about/our-story";
-                    }
-                    return (
-                      <Link key={index} to={linkTo} className="w-[400px] h-[280px] cursor-pointer group relative overflow-hidden block">
-                        <img src={image.src} alt={image.alt} className="w-full h-full object-cover transition-opacity duration-200 group-hover:opacity-90" />
-                        <div className="absolute bottom-2 left-2 text-foreground bg-card/80 px-2 py-1 text-xs font-body tracking-wide flex items-center gap-1">
-                          <span>{image.label}</span>
-                          <ArrowRight size={12} />
-                        </div>
-                      </Link>
-                    );
-                  })}
+                  .find(item => item.key === activeDropdown)
+                  ?.images.map((image, index) => (
+                    <Link key={index} to={image.link} className="w-[400px] h-[280px] cursor-pointer group relative overflow-hidden block">
+                      <img src={image.src} alt={image.alt} className="w-full h-full object-cover transition-opacity duration-200 group-hover:opacity-90" />
+                      <div className="absolute bottom-2 start-2 text-foreground bg-card/80 px-2 py-1 text-xs font-body tracking-wide flex items-center gap-1">
+                        <span>{image.label}</span>
+                        <ArrowRight size={12} className="rtl:rotate-180" />
+                      </div>
+                    </Link>
+                  ))}
               </div>
             </div>
           </div>
@@ -263,19 +259,19 @@ const Navigation = () => {
             <div className="max-w-2xl mx-auto">
               <div className="relative mb-8">
                 <div className="flex items-center border-b border-border pb-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-muted-foreground mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-muted-foreground me-3">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                   </svg>
                   <input
                     type="text"
-                    placeholder="Search for hair extensions..."
+                    placeholder={t("nav.searchPlaceholder")}
                     className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground outline-none text-lg font-body"
                     autoFocus
                   />
                 </div>
               </div>
               <div>
-                <h3 className="text-foreground text-sm font-body tracking-wide mb-4">Popular Searches</h3>
+                <h3 className="text-foreground text-sm font-body tracking-wide mb-4">{t("nav.popularSearches")}</h3>
                 <div className="flex flex-wrap gap-3">
                   {popularSearches.map((search, index) => (
                     <button
@@ -298,7 +294,7 @@ const Navigation = () => {
           <div className="px-6 py-8">
             <div className="space-y-6">
               {navItems.map((item) => (
-                <div key={item.name}>
+                <div key={item.key}>
                   <Link
                     to={item.href}
                     className="text-foreground hover:text-primary transition-colors duration-200 text-lg font-light block py-2"
@@ -306,15 +302,15 @@ const Navigation = () => {
                   >
                     {item.name}
                   </Link>
-                  <div className="mt-3 pl-4 space-y-2">
+                  <div className="mt-3 ps-4 space-y-2">
                     {item.submenuItems.map((subItem, subIndex) => (
                       <Link
                         key={subIndex}
-                        to={item.name === "About" ? `/about/${subItem.toLowerCase().replace(/\s+/g, '-')}` : `/category/${subItem.toLowerCase().replace(/\s+/g, '-')}`}
+                        to={item.key === "About" ? `/about/${subItem.slug}` : `/category/${subItem.slug}`}
                         className="text-muted-foreground hover:text-primary text-sm font-body block py-1"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        {subItem}
+                        {subItem.label}
                       </Link>
                     ))}
                   </div>
@@ -340,16 +336,16 @@ const Navigation = () => {
       {offCanvasType === 'favorites' && (
         <div className="fixed inset-0 z-50 h-screen">
           <div className="absolute inset-0 bg-foreground/30 h-screen" onClick={() => setOffCanvasType(null)} />
-          <div className="absolute right-0 top-0 h-screen w-96 bg-background border-l border-border animate-slide-in-right flex flex-col">
+          <div className="absolute end-0 top-0 h-screen w-96 bg-background border-s border-border animate-slide-in-right flex flex-col">
             <div className="flex items-center justify-between p-6 border-b border-border">
-              <h2 className="text-lg font-light text-foreground">Your Wishlist</h2>
+              <h2 className="text-lg font-light text-foreground">{t("wishlist.title")}</h2>
               <button onClick={() => setOffCanvasType(null)} className="p-2 text-foreground hover:text-muted-foreground transition-colors" aria-label="Close">
                 <X size={20} />
               </button>
             </div>
             <div className="p-6">
               <p className="text-muted-foreground text-sm font-body mb-6">
-                You haven't added any favorites yet. Browse our collection and click the heart icon to save items you love.
+                {t("wishlist.empty")}
               </p>
             </div>
           </div>
