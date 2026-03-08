@@ -9,7 +9,7 @@ interface Store {
 
 const stores: Store[] = [
   {
-    name: "LINEA Madison Avenue",
+    name: "Naya Hair — Atlanta",
     address: "789 Madison Avenue, New York, NY 10065",
     phone: "+1 (212) 555-0123",
     hours: "Mon-Sat: 10AM-8PM, Sun: 12PM-6PM",
