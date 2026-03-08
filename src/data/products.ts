@@ -115,15 +115,15 @@ const deepwaveColorMap: Record<string, string> = {
   "Honey Blonde #27": hairBundlesHoneyBlonde,
 };
 
-// ─── Products (all prices +15%) ───
+// ─── Products (all prices +12% markup) ───
 export const products: Product[] = [
   {
     id: 1,
     name: "Straight Virgin Bundles",
     category: "Bundles",
     subcategory: "Straight",
-    price: "$63",
-    priceNum: 63,
+    price: "$71",
+    priceNum: 71,
     image: hairBundlesStraight,
     hoverImage: hairHero,
     isNew: true,
