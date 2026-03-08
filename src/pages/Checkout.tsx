@@ -45,6 +45,7 @@ const Checkout = () => {
   });
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentComplete, setPaymentComplete] = useState(false);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
   
   // Mock cart data - in a real app this would come from state management
   const [cartItems, setCartItems] = useState([
