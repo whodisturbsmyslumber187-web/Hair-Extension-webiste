@@ -5,7 +5,7 @@ const aboutPages = [
   { name: 'Hair Quality', path: '/about/sustainability' },
   { name: 'Length Guide', path: '/about/size-guide' },
   { name: 'Customer Care', path: '/about/customer-care' },
-  { name: 'Store Locator', path: '/about/store-locator' }
+  { name: 'Shipping & Info', path: '/about/store-locator' }
 ];
 
 const AboutSidebar = () => {
