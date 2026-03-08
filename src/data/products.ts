@@ -11,7 +11,10 @@ import hairBundlesJetblack from "@/assets/hair-bundles-jetblack.jpg";
 import hairBlondeBodywave from "@/assets/hair-blonde-bodywave.jpg";
 import hairBlondeDeepwave from "@/assets/hair-blonde-deepwave.jpg";
 import hairBlondeStraight from "@/assets/hair-blonde-straight.jpg";
-import hairBlondeFrontal from "@/assets/hair-blonde-frontal.jpg";
+import hairClosureBodywave from "@/assets/hair-closure-bodywave.jpg";
+import hairFrontalDeepwave from "@/assets/hair-frontal-deepwave.jpg";
+import hairWigBodywave from "@/assets/hair-wig-bodywave.jpg";
+import hairMicroLoop from "@/assets/hair-micro-loop.jpg";
 
 export interface Product {
   id: number;
