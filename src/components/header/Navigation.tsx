@@ -254,6 +254,8 @@ const Navigation = () => {
                       else linkTo = "/bundle-deal";
                     } else if (activeDropdown === "New In") {
                       linkTo = "/category/new-in";
+                    } else if (activeDropdown === "Wholesale") {
+                      linkTo = "/wholesale";
                     } else {
                       linkTo = `/category/${subItem.toLowerCase().replace(/\s+/g, '-')}`;
                     }
