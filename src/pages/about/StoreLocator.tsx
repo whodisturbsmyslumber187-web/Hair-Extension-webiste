@@ -2,35 +2,9 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import PageHeader from "../../components/about/PageHeader";
 import ContentSection from "../../components/about/ContentSection";
-import StoreMap from "../../components/about/StoreMap";
-import { Button } from "../../components/ui/button";
 import AboutSidebar from "../../components/about/AboutSidebar";
 
 const StoreLocator = () => {
-  const stores = [
-    {
-      name: "Naya Hair — Atlanta",
-      address: "3500 Peachtree Road NE, Atlanta, GA 30326",
-      phone: "+1 (404) 555-0123",
-      hours: "Mon-Sat: 10AM-8PM, Sun: 12PM-6PM",
-      services: ["In-Store Pickup", "Hair Consultations", "Colour Matching", "Bundle Deals"]
-    },
-    {
-      name: "Naya Hair — Houston",
-      address: "2800 Post Oak Blvd, Houston, TX 77056",
-      phone: "+1 (713) 555-0456",
-      hours: "Mon-Sat: 10AM-8PM, Sun: 12PM-6PM",
-      services: ["In-Store Pickup", "Hair Consultations", "VIP Appointments", "Custom Orders"]
-    },
-    {
-      name: "Naya Hair — London",
-      address: "45 Oxford Street, London W1D 2DZ",
-      phone: "+44 20 7555 0789",
-      hours: "Mon-Sat: 10AM-7PM, Sun: 12PM-5PM",
-      services: ["In-Store Pickup", "Hair Consultations", "Texture Matching", "Express Orders"]
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -42,85 +16,92 @@ const StoreLocator = () => {
         
         <main className="w-full lg:w-[70vw] lg:ml-auto px-6">
         <PageHeader 
-          title="Store Locator" 
-          subtitle="Visit us in person to see and feel the quality before you buy"
+          title="Shop Online" 
+          subtitle="We're 100% online — luxury hair delivered straight to your door"
         />
         
-        <ContentSection title="Find a Store">
-          <StoreMap />
-        </ContentSection>
-
-        <ContentSection title="Our Locations">
-          <div className="grid gap-8">
-            {stores.map((store, index) => (
-              <div key={index} className="bg-background p-8 border border-border">
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div className="space-y-4">
-                    <h3 className="text-xl font-light text-foreground">{store.name}</h3>
-                    <div className="space-y-2 text-muted-foreground">
-                      <p>{store.address}</p>
-                      <p>{store.phone}</p>
-                      <p>{store.hours}</p>
-                    </div>
-                    
-                    <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                      <Button variant="outline" className="rounded-none">
-                        Get Directions
-                      </Button>
-                      <Button className="rounded-none">
-                        Book Appointment
-                      </Button>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-light text-foreground">Services Available</h4>
-                    <ul className="grid grid-cols-2 gap-2">
-                      {store.services.map((service, serviceIndex) => (
-                        <li key={serviceIndex} className="text-sm text-muted-foreground flex items-center">
-                          <span className="w-2 h-2 bg-primary rounded-full mr-3 flex-shrink-0"></span>
-                          {service}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </ContentSection>
-
-        <ContentSection title="In-Store Experience">
+        <ContentSection title="Why We're Online Only">
           <div className="space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Nothing beats touching and feeling the hair in person. Visit any Naya location to compare textures, get colour-matched, and leave with your bundles the same day.
+              By operating exclusively online, we cut out expensive retail overhead and pass those savings directly to you. That means premium, Grade 12A virgin hair at prices you won't find in any salon or beauty supply store.
             </p>
             
-            <div className="grid md:grid-cols-3 gap-8 mt-12">
-              <div className="space-y-3">
-                <h4 className="text-lg font-light text-foreground">Hair Consultations</h4>
+            <div className="grid md:grid-cols-3 gap-8 mt-8">
+              <div className="space-y-3 bg-muted/10 p-6">
+                <h4 className="text-lg font-light text-foreground">Lower Prices</h4>
                 <p className="text-muted-foreground text-sm">
-                  Our hair specialists will help you choose the right texture, length, and number of bundles for your desired look.
+                  No storefront means no inflated prices. You get the same luxury-grade hair at a fraction of salon markup.
                 </p>
               </div>
-              <div className="space-y-3">
-                <h4 className="text-lg font-light text-foreground">Same-Day Pickup</h4>
+              <div className="space-y-3 bg-muted/10 p-6">
+                <h4 className="text-lg font-light text-foreground">Fast Shipping</h4>
                 <p className="text-muted-foreground text-sm">
-                  Order online and pick up in store within hours. Skip the shipping wait and get your hair today.
+                  Orders ship within 24 hours. Standard delivery in 5–7 days, express in 2–3 days, or next-day if you need it ASAP.
                 </p>
               </div>
-              <div className="space-y-3">
-                <h4 className="text-lg font-light text-foreground">VIP Appointments</h4>
+              <div className="space-y-3 bg-muted/10 p-6">
+                <h4 className="text-lg font-light text-foreground">24/7 Support</h4>
                 <p className="text-muted-foreground text-sm">
-                  Book a private appointment for a one-on-one session with our team. Perfect for custom orders and bulk purchases.
+                  Our team is always available via WhatsApp, email, and Instagram DM to help you pick the perfect hair.
                 </p>
               </div>
             </div>
+          </div>
+        </ContentSection>
+
+        <ContentSection title="We Ship Worldwide">
+          <div className="grid md:grid-cols-2 gap-12">
+            <div className="space-y-6">
+              <h3 className="text-xl font-light text-foreground">Shipping Options</h3>
+              <div className="space-y-4">
+                <div className="flex justify-between py-3 border-b border-border">
+                  <span className="text-muted-foreground">Standard (5–7 days)</span>
+                  <span className="text-foreground">Free over €150</span>
+                </div>
+                <div className="flex justify-between py-3 border-b border-border">
+                  <span className="text-muted-foreground">Express (2–3 days)</span>
+                  <span className="text-foreground">€15</span>
+                </div>
+                <div className="flex justify-between py-3 border-b border-border">
+                  <span className="text-muted-foreground">Next-Day</span>
+                  <span className="text-foreground">€35</span>
+                </div>
+              </div>
+            </div>
             
-            <div className="pt-8">
-              <Button size="lg" className="rounded-none">
-                Book Your Appointment
-              </Button>
+            <div className="space-y-6">
+              <h3 className="text-xl font-light text-foreground">Where We Ship</h3>
+              <div className="space-y-3 text-muted-foreground">
+                <p>🇺🇸 United States</p>
+                <p>🇬🇧 United Kingdom</p>
+                <p>🇪🇺 Europe (all EU countries)</p>
+                <p>🇨🇦 Canada</p>
+                <p>🇦🇪 UAE & Middle East</p>
+                <p>🌍 Rest of world — contact us for rates</p>
+              </div>
+            </div>
+          </div>
+        </ContentSection>
+
+        <ContentSection title="Need Help Choosing?">
+          <div className="bg-muted/10 p-8">
+            <h3 className="text-xl font-light text-foreground mb-4">Free Virtual Consultation</h3>
+            <p className="text-muted-foreground mb-6">
+              Not sure which texture, length, or bundle count is right for you? Send us a message on WhatsApp or Instagram with a photo of your desired look, and our hair specialists will recommend the perfect package — completely free.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="text-center">
+                <p className="text-sm font-medium text-foreground mb-1">WhatsApp</p>
+                <p className="text-sm text-muted-foreground">+1 (555) 123-4567</p>
+              </div>
+              <div className="text-center">
+                <p className="text-sm font-medium text-foreground mb-1">Email</p>
+                <p className="text-sm text-muted-foreground">care@nayahair.com</p>
+              </div>
+              <div className="text-center">
+                <p className="text-sm font-medium text-foreground mb-1">Instagram</p>
+                <p className="text-sm text-muted-foreground">@nayahair</p>
+              </div>
             </div>
           </div>
         </ContentSection>
