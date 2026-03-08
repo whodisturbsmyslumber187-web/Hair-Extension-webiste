@@ -1,28 +1,35 @@
-import founders from "@/assets/founders.png";
+import hairClosure from "@/assets/hair-closure.jpg";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+
 const EditorialSection = () => {
-  return <section className="w-full mb-16 px-6">
+  return (
+    <section className="w-full mb-16 px-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div className="space-y-4 max-w-[630px]">
-          <h2 className="text-2xl font-normal text-foreground leading-tight md:text-xl">
-            Jewelry Drawn From Shadows and Lines
+          <h2 className="text-2xl md:text-3xl font-light text-foreground leading-tight" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+            Your Hair, Your Crown
           </h2>
-          <p className="text-sm font-light text-foreground leading-relaxed">Linea was born from the meeting of two minds who saw beauty not just in ornament, but in structure. With backgrounds spanning architecture and fine arts, the founders believed that jewelry could be more than decoration — it could be an extension of space, light, and line.
-
-        </p>
-          <Link to="/about/our-story" className="inline-flex items-center gap-1 text-sm font-light text-foreground hover:text-foreground/80 transition-colors duration-200">
-            <span>Read our full story</span>
+          <p className="text-sm font-body font-light text-muted-foreground leading-relaxed">
+            At Naya, we believe every woman deserves to feel like royalty. Our premium virgin hair is ethically sourced, carefully curated, and quality-tested to ensure you receive nothing but the best. From straight to deep wave, 14" to 40" — we have your perfect match.
+          </p>
+          <p className="text-sm font-body font-light text-muted-foreground leading-relaxed">
+            Each bundle is 100% unprocessed human hair that can be colored, bleached, and heat-styled to create your dream look. No tangling, no shedding — just gorgeous, long-lasting hair.
+          </p>
+          <Link to="/about/our-story" className="inline-flex items-center gap-1 text-sm font-body text-primary hover:text-primary-hover transition-colors duration-200">
+            <span>Learn more about our quality</span>
             <ArrowRight size={12} />
           </Link>
         </div>
         
         <div className="order-first md:order-last">
           <div className="w-full aspect-square overflow-hidden">
-            <img src={founders} alt="Linea founders - two women in minimalist jewelry" className="w-full h-full object-cover" />
+            <img src={hairClosure} alt="Premium lace closure" className="w-full h-full object-cover" />
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default EditorialSection;

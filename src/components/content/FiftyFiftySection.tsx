@@ -1,5 +1,5 @@
-import earringsCollection from "@/assets/earrings-collection.png";
-import linkBracelet from "@/assets/link-bracelet.png";
+import hairBundlesStraight from "@/assets/hair-bundles-straight.jpg";
+import hairBundlesBodywave from "@/assets/hair-bundles-bodywave.jpg";
 import { Link } from "react-router-dom";
 
 const FiftyFiftySection = () => {
@@ -7,41 +7,41 @@ const FiftyFiftySection = () => {
     <section className="w-full mb-16 px-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <Link to="/category/earrings" className="block">
+          <Link to="/category/bundles" className="block">
             <div className="w-full aspect-square mb-3 overflow-hidden">
               <img 
-                src={earringsCollection} 
-                alt="Earrings collection" 
+                src={hairBundlesStraight} 
+                alt="Straight virgin hair bundles" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
           </Link>
-          <div className="">
-            <h3 className="text-sm font-normal text-foreground mb-1">
-              Organic Forms
+          <div>
+            <h3 className="text-sm font-body font-medium text-foreground mb-1">
+              Virgin Bundles
             </h3>
-            <p className="text-sm font-light text-foreground">
-              Nature-inspired pieces with fluid, sculptural details
+            <p className="text-sm font-body font-light text-muted-foreground">
+              100% unprocessed human hair, 14" to 40" in all textures
             </p>
           </div>
         </div>
 
         <div>
-          <Link to="/category/bracelets" className="block">
+          <Link to="/category/wigs" className="block">
             <div className="w-full aspect-square mb-3 overflow-hidden">
               <img 
-                src={linkBracelet} 
-                alt="Chain link bracelet" 
+                src={hairBundlesBodywave} 
+                alt="Body wave hair bundles" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
           </Link>
-          <div className="">
-            <h3 className="text-sm font-normal text-foreground mb-1">
-              Chain Collection
+          <div>
+            <h3 className="text-sm font-body font-medium text-foreground mb-1">
+              Body Wave Collection
             </h3>
-            <p className="text-sm font-light text-foreground">
-              Refined links and connections in precious metals
+            <p className="text-sm font-body font-light text-muted-foreground">
+              Luxurious waves that hold their pattern wash after wash
             </p>
           </div>
         </div>

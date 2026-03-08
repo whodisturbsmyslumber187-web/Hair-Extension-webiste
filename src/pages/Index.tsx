@@ -12,9 +12,20 @@ const Index = () => {
       <Header />
       
       <main className="pt-6">
-        <FiftyFiftySection />
-        <ProductCarousel />
         <LargeHero />
+        
+        <div className="mb-4 px-6">
+          <h2 className="text-sm font-body tracking-wide text-foreground">Bestsellers</h2>
+        </div>
+        <ProductCarousel />
+        
+        <FiftyFiftySection />
+        
+        <div className="mb-4 px-6">
+          <h2 className="text-sm font-body tracking-wide text-foreground">New Arrivals</h2>
+        </div>
+        <ProductCarousel filterCategory="Bundles" />
+        
         <OneThirdTwoThirdsSection />
         <EditorialSection />
       </main>

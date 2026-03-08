@@ -6,6 +6,7 @@ import ProductImageGallery from "../components/product/ProductImageGallery";
 import ProductInfo from "../components/product/ProductInfo";
 import ProductDescription from "../components/product/ProductDescription";
 import ProductCarousel from "../components/content/ProductCarousel";
+import { getProductById } from "@/data/products";
 import { 
   Breadcrumb, 
   BreadcrumbItem, 
@@ -17,6 +18,10 @@ import {
 
 const ProductDetail = () => {
   const { productId } = useParams();
+  const product = getProductById(Number(productId));
+  
+  const productName = product?.name || "Product";
+  const productCategory = product?.category || "Bundles";
 
   return (
     <div className="min-h-screen bg-background">
@@ -24,7 +29,6 @@ const ProductDetail = () => {
       
       <main className="pt-6">
         <section className="w-full px-6">
-          {/* Breadcrumb - Show above image on smaller screens */}
           <div className="lg:hidden mb-6">
             <Breadcrumb>
               <BreadcrumbList>
@@ -36,39 +40,39 @@ const ProductDetail = () => {
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
                   <BreadcrumbLink asChild>
-                    <Link to="/category/earrings">Earrings</Link>
+                    <Link to={`/category/${productCategory.toLowerCase()}`}>{productCategory}</Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Pantheon</BreadcrumbPage>
+                  <BreadcrumbPage>{productName}</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-            <ProductImageGallery />
+            <ProductImageGallery productId={Number(productId)} />
             
             <div className="lg:pl-12 mt-8 lg:mt-0 lg:sticky lg:top-6 lg:h-fit">
-              <ProductInfo />
-              <ProductDescription />
+              <ProductInfo productId={Number(productId)} />
+              <ProductDescription productId={Number(productId)} />
             </div>
           </div>
         </section>
         
         <section className="w-full mt-16 lg:mt-24">
           <div className="mb-4 px-6">
-            <h2 className="text-sm font-light text-foreground">You might also like</h2>
+            <h2 className="text-sm font-body tracking-wide text-foreground">You might also like</h2>
           </div>
           <ProductCarousel />
         </section>
         
         <section className="w-full">
           <div className="mb-4 px-6">
-            <h2 className="text-sm font-light text-foreground">Our other Earrings</h2>
+            <h2 className="text-sm font-body tracking-wide text-foreground">More {productCategory}</h2>
           </div>
-          <ProductCarousel />
+          <ProductCarousel filterCategory={productCategory} />
         </section>
       </main>
       

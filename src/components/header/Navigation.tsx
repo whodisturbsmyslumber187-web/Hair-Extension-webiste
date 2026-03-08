@@ -1,12 +1,12 @@
-import { ArrowRight, X, Minus, Plus } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import ShoppingBag from "./ShoppingBag";
-import pantheonImage from "@/assets/pantheon.jpg";
-import eclipseImage from "@/assets/eclipse.jpg";
-import haloImage from "@/assets/halo.jpg";
+import hairBundlesStraight from "@/assets/hair-bundles-straight.jpg";
+import hairBundlesBodywave from "@/assets/hair-bundles-bodywave.jpg";
+import hairFrontal from "@/assets/hair-frontal.jpg";
+import hairWigBlonde from "@/assets/hair-wig-blonde.jpg";
+import hairClosure from "@/assets/hair-closure.jpg";
 
 interface CartItem {
   id: number;
@@ -24,32 +24,23 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isShoppingBagOpen, setIsShoppingBagOpen] = useState(false);
   
-  // Shopping bag state with 3 mock items
   const [cartItems, setCartItems] = useState<CartItem[]>([
     {
       id: 1,
-      name: "Pantheon",
-      price: "€2,850",
-      image: pantheonImage,
-      quantity: 1,
-      category: "Earrings"
+      name: "Straight Virgin Bundles 20\"",
+      price: "$85",
+      image: hairBundlesStraight,
+      quantity: 2,
+      category: "Bundles"
     },
     {
-      id: 2,
-      name: "Eclipse",
-      price: "€3,200", 
-      image: eclipseImage,
+      id: 5,
+      name: "613 Blonde Wig 24\"",
+      price: "$285",
+      image: hairWigBlonde,
       quantity: 1,
-      category: "Bracelets"
+      category: "Wigs"
     },
-    {
-      id: 3,
-      name: "Halo",
-      price: "€1,950",
-      image: haloImage, 
-      quantity: 1,
-      category: "Earrings"
-    }
   ]);
 
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -65,61 +56,47 @@ const Navigation = () => {
       );
     }
   };
-  
-  // Preload dropdown images for faster display
-  useEffect(() => {
-    const imagesToPreload = [
-      "/rings-collection.png",
-      "/earrings-collection.png", 
-      "/arcus-bracelet.png",
-      "/span-bracelet.png",
-      "/founders.png"
-    ];
-    
-    imagesToPreload.forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
 
   const popularSearches = [
-    "Gold Rings",
-    "Silver Necklaces", 
-    "Pearl Earrings",
-    "Designer Bracelets",
-    "Wedding Rings",
-    "Vintage Collection"
+    "Straight Bundles",
+    "Body Wave",
+    "613 Blonde Wig",
+    "Lace Frontal",
+    "Clip-In Extensions",
+    "Deep Wave Bundles"
   ];
   
   const navItems = [
     { 
       name: "Shop", 
-      href: "/category/shop",
+      href: "/category/all",
       submenuItems: [
-        "Rings",
-        "Necklaces", 
-        "Earrings",
-        "Bracelets",
-        "Watches"
+        "Bundles",
+        "Wigs", 
+        "Frontals",
+        "Closures",
+        "Clip-Ins",
+        "Extensions",
+        "Tape-Ins",
       ],
       images: [
-        { src: "/rings-collection.png", alt: "Rings Collection", label: "Rings" },
-        { src: "/earrings-collection.png", alt: "Earrings Collection", label: "Earrings" }
+        { src: hairBundlesStraight, alt: "Virgin Hair Bundles", label: "Bundles" },
+        { src: hairWigBlonde, alt: "Lace Wigs", label: "Wigs" }
       ]
     },
     { 
-      name: "New in", 
+      name: "New In", 
       href: "/category/new-in",
       submenuItems: [
-        "This Week's Arrivals",
-        "Spring Collection",
-        "Featured Designers",
-        "Limited Edition",
-        "Pre-Orders"
+        "Straight Bundles",
+        "Deep Wave Bundles",
+        "Blonde Bundles",
+        "HD Lace Closures",
+        "613 Blonde Wigs",
       ],
       images: [
-        { src: "/arcus-bracelet.png", alt: "Arcus Bracelet", label: "Arcus Bracelet" },
-        { src: "/span-bracelet.png", alt: "Span Bracelet", label: "Span Bracelet" }
+        { src: hairBundlesBodywave, alt: "Body Wave Bundles", label: "Body Wave" },
+        { src: hairFrontal, alt: "Lace Frontal", label: "Frontals" }
       ]
     },
     { 
@@ -127,13 +104,13 @@ const Navigation = () => {
       href: "/about/our-story",
       submenuItems: [
         "Our Story",
-        "Sustainability",
+        "Hair Care Guide",
         "Size Guide",
         "Customer Care",
         "Store Locator"
       ],
       images: [
-        { src: "/founders.png", alt: "Company Founders", label: "Read our story" }
+        { src: hairClosure, alt: "Premium Hair", label: "Our quality promise" }
       ]
     }
   ];
@@ -142,31 +119,25 @@ const Navigation = () => {
     <nav 
       className="relative" 
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.9)',
-        backdropFilter: 'blur(10px)'
+        backgroundColor: 'hsla(20, 33%, 98%, 0.92)',
+        backdropFilter: 'blur(12px)'
       }}
     >
       <div className="flex items-center justify-between h-16 px-6">
-        {/* Mobile hamburger button */}
+        {/* Mobile hamburger */}
         <button
           className="lg:hidden p-2 mt-0.5 text-nav-foreground hover:text-nav-hover transition-colors duration-200"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
           <div className="w-5 h-5 relative">
-            <span className={`absolute block w-5 h-px bg-current transform transition-all duration-300 ${
-              isMobileMenuOpen ? 'rotate-45 top-2.5' : 'top-1.5'
-            }`}></span>
-            <span className={`absolute block w-5 h-px bg-current transform transition-all duration-300 top-2.5 ${
-              isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
-            }`}></span>
-            <span className={`absolute block w-5 h-px bg-current transform transition-all duration-300 ${
-              isMobileMenuOpen ? '-rotate-45 top-2.5' : 'top-3.5'
-            }`}></span>
+            <span className={`absolute block w-5 h-px bg-current transform transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 top-2.5' : 'top-1.5'}`}></span>
+            <span className={`absolute block w-5 h-px bg-current transform transition-all duration-300 top-2.5 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+            <span className={`absolute block w-5 h-px bg-current transform transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 top-2.5' : 'top-3.5'}`}></span>
           </div>
         </button>
 
-        {/* Left navigation - Hidden on tablets and mobile */}
+        {/* Left navigation */}
         <div className="hidden lg:flex space-x-8">
           {navItems.map((item) => (
             <div
@@ -177,7 +148,7 @@ const Navigation = () => {
             >
               <Link
                 to={item.href}
-                className="text-nav-foreground hover:text-nav-hover transition-colors duration-200 text-sm font-light py-6 block"
+                className="text-nav-foreground hover:text-nav-hover transition-colors duration-200 text-sm font-body tracking-wide py-6 block"
               >
                 {item.name}
               </Link>
@@ -188,11 +159,9 @@ const Navigation = () => {
         {/* Center logo */}
         <div className="absolute left-1/2 transform -translate-x-1/2">
           <Link to="/" className="block">
-            <img 
-              src="/LINEA-1.svg" 
-              alt="LINEA" 
-              className="h-6 w-auto"
-            />
+            <span className="text-xl tracking-[0.2em] font-semibold text-foreground" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              NAYA
+            </span>
           </Link>
         </div>
 
@@ -225,7 +194,7 @@ const Navigation = () => {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
             </svg>
             {totalItems > 0 && (
-              <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[30%] text-[0.5rem] font-semibold text-black pointer-events-none">
+              <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[30%] text-[0.5rem] font-semibold font-body text-foreground pointer-events-none">
                 {totalItems}
               </span>
             )}
@@ -236,60 +205,48 @@ const Navigation = () => {
       {/* Full width dropdown */}
       {activeDropdown && (
         <div 
-          className="absolute top-full left-0 right-0 bg-nav border-b border-border z-50"
+          className="absolute top-full left-0 right-0 bg-card border-b border-border z-50"
           onMouseEnter={() => setActiveDropdown(activeDropdown)}
           onMouseLeave={() => setActiveDropdown(null)}
         >
           <div className="px-6 py-8">
             <div className="flex justify-between w-full">
-              {/* Left side - Menu items */}
               <div className="flex-1">
                 <ul className="space-y-2">
-                   {navItems
-                     .find(item => item.name === activeDropdown)
-                     ?.submenuItems.map((subItem, index) => (
-                      <li key={index}>
-                        <Link 
-                          to={activeDropdown === "About" ? `/about/${subItem.toLowerCase().replace(/\s+/g, '-')}` : `/category/${subItem.toLowerCase()}`}
-                          className="text-nav-foreground hover:text-nav-hover transition-colors duration-200 text-sm font-light block py-2"
-                        >
-                          {subItem}
-                        </Link>
-                      </li>
-                   ))}
+                  {navItems
+                    .find(item => item.name === activeDropdown)
+                    ?.submenuItems.map((subItem, index) => (
+                    <li key={index}>
+                      <Link 
+                        to={activeDropdown === "About" ? `/about/${subItem.toLowerCase().replace(/\s+/g, '-')}` : `/category/${subItem.toLowerCase().replace(/\s+/g, '-')}`}
+                        className="text-nav-foreground hover:text-nav-hover transition-colors duration-200 text-sm font-body tracking-wide block py-2"
+                      >
+                        {subItem}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
-
-              {/* Right side - Images */}
               <div className="flex space-x-6">
                 {navItems
                   .find(item => item.name === activeDropdown)
                   ?.images.map((image, index) => {
-                    // Determine the link destination based on dropdown and image
                     let linkTo = "/";
                     if (activeDropdown === "Shop") {
-                      if (image.label === "Rings") linkTo = "/category/rings";
-                      else if (image.label === "Earrings") linkTo = "/category/earrings";
-                    } else if (activeDropdown === "New in") {
-                      if (image.label === "Arcus Bracelet") linkTo = "/product/arcus-bracelet";
-                      else if (image.label === "Span Bracelet") linkTo = "/product/span-bracelet";
+                      if (image.label === "Bundles") linkTo = "/category/bundles";
+                      else if (image.label === "Wigs") linkTo = "/category/wigs";
+                    } else if (activeDropdown === "New In") {
+                      linkTo = "/category/new-in";
                     } else if (activeDropdown === "About") {
                       linkTo = "/about/our-story";
                     }
-                    
                     return (
                       <Link key={index} to={linkTo} className="w-[400px] h-[280px] cursor-pointer group relative overflow-hidden block">
-                        <img 
-                          src={image.src}
-                          alt={image.alt}
-                          className="w-full h-full object-cover transition-opacity duration-200 group-hover:opacity-90"
-                        />
-                        {(activeDropdown === "Shop" || activeDropdown === "New in" || activeDropdown === "About") && (
-                          <div className="absolute bottom-2 left-2 text-white text-xs font-light flex items-center gap-1">
-                            <span>{image.label}</span>
-                            <ArrowRight size={12} />
-                          </div>
-                        )}
+                        <img src={image.src} alt={image.alt} className="w-full h-full object-cover transition-opacity duration-200 group-hover:opacity-90" />
+                        <div className="absolute bottom-2 left-2 text-foreground bg-card/80 px-2 py-1 text-xs font-body tracking-wide flex items-center gap-1">
+                          <span>{image.label}</span>
+                          <ArrowRight size={12} />
+                        </div>
                       </Link>
                     );
                   })}
@@ -301,34 +258,29 @@ const Navigation = () => {
 
       {/* Search overlay */}
       {isSearchOpen && (
-        <div 
-          className="absolute top-full left-0 right-0 bg-nav border-b border-border z-50"
-        >
+        <div className="absolute top-full left-0 right-0 bg-card border-b border-border z-50">
           <div className="px-6 py-8">
             <div className="max-w-2xl mx-auto">
-              {/* Search input */}
               <div className="relative mb-8">
                 <div className="flex items-center border-b border-border pb-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-nav-foreground mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-muted-foreground mr-3">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                   </svg>
                   <input
                     type="text"
-                    placeholder="Search for jewelry..."
-                    className="flex-1 bg-transparent text-nav-foreground placeholder:text-nav-foreground/60 outline-none text-lg"
+                    placeholder="Search for hair extensions..."
+                    className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground outline-none text-lg font-body"
                     autoFocus
                   />
                 </div>
               </div>
-
-              {/* Popular searches */}
               <div>
-                <h3 className="text-nav-foreground text-sm font-light mb-4">Popular Searches</h3>
+                <h3 className="text-foreground text-sm font-body tracking-wide mb-4">Popular Searches</h3>
                 <div className="flex flex-wrap gap-3">
                   {popularSearches.map((search, index) => (
                     <button
                       key={index}
-                      className="text-nav-foreground hover:text-nav-hover text-sm font-light py-2 px-4 border border-border rounded-full transition-colors duration-200 hover:border-nav-hover"
+                      className="text-foreground hover:text-primary text-sm font-body py-2 px-4 border border-border rounded-full transition-colors duration-200 hover:border-primary"
                     >
                       {search}
                     </button>
@@ -340,32 +292,32 @@ const Navigation = () => {
         </div>
       )}
 
-      {/* Mobile navigation menu */}
+      {/* Mobile navigation */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-nav border-b border-border z-50">
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-card border-b border-border z-50">
           <div className="px-6 py-8">
             <div className="space-y-6">
-              {navItems.map((item, index) => (
+              {navItems.map((item) => (
                 <div key={item.name}>
                   <Link
                     to={item.href}
-                    className="text-nav-foreground hover:text-nav-hover transition-colors duration-200 text-lg font-light block py-2"
+                    className="text-foreground hover:text-primary transition-colors duration-200 text-lg font-light block py-2"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
                   </Link>
-                   <div className="mt-3 pl-4 space-y-2">
-                     {item.submenuItems.map((subItem, subIndex) => (
-                       <Link
-                         key={subIndex}
-                         to={item.name === "About" ? `/about/${subItem.toLowerCase().replace(/\s+/g, '-')}` : `/category/${subItem.toLowerCase()}`}
-                         className="text-nav-foreground/70 hover:text-nav-hover text-sm font-light block py-1"
-                         onClick={() => setIsMobileMenuOpen(false)}
-                       >
-                         {subItem}
-                       </Link>
-                     ))}
-                   </div>
+                  <div className="mt-3 pl-4 space-y-2">
+                    {item.submenuItems.map((subItem, subIndex) => (
+                      <Link
+                        key={subIndex}
+                        to={item.name === "About" ? `/about/${subItem.toLowerCase().replace(/\s+/g, '-')}` : `/category/${subItem.toLowerCase().replace(/\s+/g, '-')}`}
+                        className="text-muted-foreground hover:text-primary text-sm font-body block py-1"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {subItem}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
@@ -373,7 +325,6 @@ const Navigation = () => {
         </div>
       )}
       
-      {/* Shopping Bag Component */}
       <ShoppingBag 
         isOpen={isShoppingBagOpen}
         onClose={() => setIsShoppingBagOpen(false)}
@@ -385,32 +336,19 @@ const Navigation = () => {
         }}
       />
       
-      {/* Favorites Off-canvas overlay */}
+      {/* Favorites Off-canvas */}
       {offCanvasType === 'favorites' && (
         <div className="fixed inset-0 z-50 h-screen">
-          {/* Backdrop */}
-          <div 
-            className="absolute inset-0 bg-black/50 h-screen"
-            onClick={() => setOffCanvasType(null)}
-          />
-          
-          {/* Off-canvas panel */}
+          <div className="absolute inset-0 bg-foreground/30 h-screen" onClick={() => setOffCanvasType(null)} />
           <div className="absolute right-0 top-0 h-screen w-96 bg-background border-l border-border animate-slide-in-right flex flex-col">
-            {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-border">
-              <h2 className="text-lg font-light text-foreground">Your Favorites</h2>
-              <button
-                onClick={() => setOffCanvasType(null)}
-                className="p-2 text-foreground hover:text-muted-foreground transition-colors"
-                aria-label="Close"
-              >
+              <h2 className="text-lg font-light text-foreground">Your Wishlist</h2>
+              <button onClick={() => setOffCanvasType(null)} className="p-2 text-foreground hover:text-muted-foreground transition-colors" aria-label="Close">
                 <X size={20} />
               </button>
             </div>
-            
-            {/* Content */}
             <div className="p-6">
-              <p className="text-muted-foreground text-sm mb-6">
+              <p className="text-muted-foreground text-sm font-body mb-6">
                 You haven't added any favorites yet. Browse our collection and click the heart icon to save items you love.
               </p>
             </div>

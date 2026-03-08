@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ReviewProduct from "./ReviewProduct";
+import { getProductById } from "@/data/products";
 
 const CustomStar = ({ filled, className }: { filled: boolean; className?: string }) => (
   <svg 
@@ -18,11 +19,18 @@ const CustomStar = ({ filled, className }: { filled: boolean; className?: string
   </svg>
 );
 
-const ProductDescription = () => {
+interface ProductDescriptionProps {
+  productId?: number;
+}
+
+const ProductDescription = ({ productId }: ProductDescriptionProps) => {
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isCareOpen, setIsCareOpen] = useState(false);
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
+
+  const product = productId ? getProductById(productId) : null;
+  const description = product?.description || "Premium quality 100% virgin human hair.";
 
   return (
     <div className="space-y-0 mt-8 border-t border-border">
@@ -31,63 +39,38 @@ const ProductDescription = () => {
         <Button
           variant="ghost"
           onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}
-          className="w-full h-14 px-0 justify-between hover:bg-transparent font-light rounded-none"
+          className="w-full h-14 px-0 justify-between hover:bg-transparent font-body font-light rounded-none"
         >
           <span>Description</span>
-          {isDescriptionOpen ? (
-            <ChevronUp className="h-4 w-4" />
-          ) : (
-            <ChevronDown className="h-4 w-4" />
-          )}
+          {isDescriptionOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
         </Button>
         {isDescriptionOpen && (
           <div className="pb-6 space-y-4">
-            <p className="text-sm font-light text-muted-foreground leading-relaxed">
-              The Pantheon earrings embody architectural elegance with their clean, geometric design. 
-              Inspired by classical Roman architecture, these statement pieces feature a sophisticated 
-              interplay of curves and angles that catch and reflect light beautifully.
-            </p>
-            <p className="text-sm font-light text-muted-foreground leading-relaxed">
-              Each earring is meticulously crafted from premium sterling silver with an 18k gold 
-              plating, ensuring both durability and luxury. The minimalist aesthetic makes them 
-              perfect for both everyday wear and special occasions.
+            <p className="text-sm font-body font-light text-muted-foreground leading-relaxed">
+              {description}
             </p>
           </div>
         )}
       </div>
 
-      {/* Product Details */}
+      {/* Hair Details */}
       <div className="border-b border-border">
         <Button
           variant="ghost"
           onClick={() => setIsDetailsOpen(!isDetailsOpen)}
-          className="w-full h-14 px-0 justify-between hover:bg-transparent font-light rounded-none"
+          className="w-full h-14 px-0 justify-between hover:bg-transparent font-body font-light rounded-none"
         >
-          <span>Product Details</span>
-          {isDetailsOpen ? (
-            <ChevronUp className="h-4 w-4" />
-          ) : (
-            <ChevronDown className="h-4 w-4" />
-          )}
+          <span>Hair Details</span>
+          {isDetailsOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
         </Button>
         {isDetailsOpen && (
-          <div className="pb-6 space-y-3">
-            <div className="flex justify-between">
-              <span className="text-sm font-light text-muted-foreground">SKU</span>
-              <span className="text-sm font-light text-foreground">LE-PTH-001</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-sm font-light text-muted-foreground">Collection</span>
-              <span className="text-sm font-light text-foreground">Architectural Series</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-sm font-light text-muted-foreground">Closure</span>
-              <span className="text-sm font-light text-foreground">Post and butterfly back</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-sm font-light text-muted-foreground">Hypoallergenic</span>
-              <span className="text-sm font-light text-foreground">Yes</span>
-            </div>
+          <div className="pb-6 space-y-2">
+            <p className="text-sm font-body font-light text-muted-foreground">• Hair Type: 100% Virgin Human Hair</p>
+            <p className="text-sm font-body font-light text-muted-foreground">• Hair Grade: 12A Premium</p>
+            <p className="text-sm font-body font-light text-muted-foreground">• Can be bleached, colored & heat styled</p>
+            <p className="text-sm font-body font-light text-muted-foreground">• Tangle-free and minimal shedding</p>
+            <p className="text-sm font-body font-light text-muted-foreground">• Cuticle aligned for longevity</p>
+            <p className="text-sm font-body font-light text-muted-foreground">• Lifespan: 12-18 months with proper care</p>
           </div>
         )}
       </div>
@@ -97,26 +80,18 @@ const ProductDescription = () => {
         <Button
           variant="ghost"
           onClick={() => setIsCareOpen(!isCareOpen)}
-          className="w-full h-14 px-0 justify-between hover:bg-transparent font-light rounded-none"
+          className="w-full h-14 px-0 justify-between hover:bg-transparent font-body font-light rounded-none"
         >
-          <span>Care & Cleaning</span>
-          {isCareOpen ? (
-            <ChevronUp className="h-4 w-4" />
-          ) : (
-            <ChevronDown className="h-4 w-4" />
-          )}
+          <span>Care Instructions</span>
+          {isCareOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
         </Button>
         {isCareOpen && (
-          <div className="pb-6 space-y-4">
-            <ul className="space-y-2">
-              <li className="text-sm font-light text-muted-foreground">• Clean with a soft, dry cloth after each wear</li>
-              <li className="text-sm font-light text-muted-foreground">• Avoid contact with perfumes, lotions, and cleaning products</li>
-              <li className="text-sm font-light text-muted-foreground">• Store in the provided jewelry pouch when not wearing</li>
-              <li className="text-sm font-light text-muted-foreground">• Remove before swimming, exercising, or showering</li>
-            </ul>
-            <p className="text-sm font-light text-muted-foreground">
-              For professional cleaning, visit your local jeweler or contact our customer service team.
-            </p>
+          <div className="pb-6 space-y-2">
+            <p className="text-sm font-body font-light text-muted-foreground">• Wash with sulfate-free shampoo</p>
+            <p className="text-sm font-body font-light text-muted-foreground">• Deep condition weekly</p>
+            <p className="text-sm font-body font-light text-muted-foreground">• Use heat protectant before styling</p>
+            <p className="text-sm font-body font-light text-muted-foreground">• Air dry or blow dry on low heat</p>
+            <p className="text-sm font-body font-light text-muted-foreground">• Store on silk/satin when not in use</p>
           </div>
         )}
       </div>
@@ -126,84 +101,43 @@ const ProductDescription = () => {
         <Button
           variant="ghost"
           onClick={() => setIsReviewsOpen(!isReviewsOpen)}
-          className="w-full h-14 px-0 justify-between hover:bg-transparent font-light rounded-none"
+          className="w-full h-14 px-0 justify-between hover:bg-transparent font-body font-light rounded-none"
         >
           <div className="flex items-center gap-3">
             <span>Customer Reviews</span>
             <div className="flex items-center">
               {[1, 2, 3, 4, 5].map((star) => (
-                <CustomStar
-                  key={star}
-                  filled={star <= 4.8}
-                />
+                <CustomStar key={star} filled={star <= 4.8} />
               ))}
-              <span className="text-sm font-light text-muted-foreground ml-1">4.8</span>
+              <span className="text-sm font-body font-light text-muted-foreground ml-1">4.9</span>
             </div>
           </div>
-          {isReviewsOpen ? (
-            <ChevronUp className="h-4 w-4" />
-          ) : (
-            <ChevronDown className="h-4 w-4" />
-          )}
+          {isReviewsOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
         </Button>
         {isReviewsOpen && (
           <div className="pb-6 space-y-6">
-            {/* Review Product Button */}
             <ReviewProduct />
-
-            {/* Reviews List */}
             <div className="space-y-6">
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <div className="flex items-center">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <CustomStar
-                        key={star}
-                        filled={true}
-                      />
-                    ))}
+                    {[1, 2, 3, 4, 5].map((star) => (<CustomStar key={star} filled={true} />))}
                   </div>
-                  <span className="text-sm font-light text-muted-foreground">Sarah M.</span>
+                  <span className="text-sm font-body font-light text-muted-foreground">Jasmine K.</span>
                 </div>
-                <p className="text-sm font-light text-muted-foreground leading-relaxed">
-                  "Absolutely stunning earrings! The quality is exceptional and they go with everything. 
-                  The architectural design is so unique and I get compliments every time I wear them."
+                <p className="text-sm font-body font-light text-muted-foreground leading-relaxed">
+                  "This hair is absolutely gorgeous! Silky smooth, no shedding at all. I've had it installed for 3 months and it still looks brand new. Will definitely be ordering again!"
                 </p>
               </div>
-
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <div className="flex items-center">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <CustomStar
-                        key={star}
-                        filled={star <= 4}
-                      />
-                    ))}
+                    {[1, 2, 3, 4, 5].map((star) => (<CustomStar key={star} filled={true} />))}
                   </div>
-                  <span className="text-sm font-light text-muted-foreground">Emma T.</span>
+                  <span className="text-sm font-body font-light text-muted-foreground">Destiny M.</span>
                 </div>
-                <p className="text-sm font-light text-muted-foreground leading-relaxed">
-                  "Beautiful craftsmanship and comfortable to wear all day. The gold plating has held up 
-                  perfectly after months of regular wear. Highly recommend!"
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <CustomStar
-                        key={star}
-                        filled={true}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-sm font-light text-muted-foreground">Jessica R.</span>
-                </div>
-                <p className="text-sm font-light text-muted-foreground leading-relaxed">
-                  "These earrings are a work of art. The minimalist design is elegant and sophisticated. 
-                  Perfect weight and the packaging was beautiful too."
+                <p className="text-sm font-body font-light text-muted-foreground leading-relaxed">
+                  "Best virgin hair I've ever purchased! The quality is unmatched. I colored it honey blonde and it took the color beautifully. 100% recommend Naya Hair."
                 </p>
               </div>
             </div>
