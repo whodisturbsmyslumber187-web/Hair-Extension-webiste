@@ -28,8 +28,8 @@ const OurStory = () => {
             <ImageTextBlock
               image={heroImage}
               imageAlt="Naya Hair Extensions founders"
-              title="Born From a Need"
-              content="Naya was founded by women who were tired of low-quality hair that tangled after one wash, shed after a week, and never matched the photos online. We went straight to the source — partnering with ethical suppliers to bring you 100% virgin human hair that looks, feels, and moves like your own. No shortcuts. No synthetics. Just premium hair you can trust."
+              title="Over 20 Years of Excellence"
+              content="For over 20 years, we have been a trusted source in the hair industry, supplying premium virgin human hair to both retail customers and professional salons worldwide. Founded by women who were tired of low-quality hair that tangled after one wash, we went straight to the source — partnering with ethical suppliers to bring you 100% virgin human hair that looks, feels, and moves like your own."
               imagePosition="left"
             />
           </ContentSection>
