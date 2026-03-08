@@ -17,6 +17,7 @@ const AboutSidebar = () => {
           <NavLink
             key={page.path}
             to={page.path}
+            style={{ textShadow: '0 3px 10px rgba(0,0,0,0.8)' }}
             className={({ isActive }) =>
               `block py-2 text-lg font-black transition-all ${
                 isActive
