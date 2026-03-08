@@ -1,23 +1,35 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { Button } from "@/components/ui/button";
-import { Check, Package, Sparkles, ArrowRight } from "lucide-react";
+import { Check, Package, Sparkles } from "lucide-react";
 import { products } from "@/data/products";
+import heroBundleDeal from "@/assets/hero-bundle-deal.jpg";
 
 type TextureType = "Straight" | "Body Wave" | "Deep Wave";
 type ClosureType = "none" | "closure" | "frontal";
 
 const BundleDeal = () => {
+  const [searchParams] = useSearchParams();
+  const preset = searchParams.get("preset");
+
   useEffect(() => {
     document.title = "Bundle Deals - Naya Hair Extensions";
   }, []);
 
   const [texture, setTexture] = useState<TextureType>("Straight");
   const [length, setLength] = useState('20"');
-  const [bundleCount, setBundleCount] = useState(3);
-  const [closureType, setClosureType] = useState<ClosureType>("closure");
+  const [bundleCount, setBundleCount] = useState(() => {
+    if (preset === "4-frontal") return 4;
+    if (preset === "3-closure") return 3;
+    return 3;
+  });
+  const [closureType, setClosureType] = useState<ClosureType>(() => {
+    if (preset === "4-frontal") return "frontal";
+    if (preset === "3-closure") return "closure";
+    return "closure";
+  });
   const [closureLength, setClosureLength] = useState('16"');
 
   const bundles = products.filter(p => p.category === "Bundles");
@@ -43,7 +55,6 @@ const BundleDeal = () => {
       ? (selectedFrontal?.priceNum || 100) + (closureLengthIdx > 0 ? closureLengthIdx * 8 : 0)
       : 0;
 
-  // Bundle deal discount
   const bundleDiscount = bundleCount >= 4 ? 0.20 : bundleCount >= 3 ? 0.15 : 0.10;
   const closureDiscount = closureType !== "none" ? 0.10 : 0;
 
@@ -54,23 +65,33 @@ const BundleDeal = () => {
 
   const textures: TextureType[] = ["Straight", "Body Wave", "Deep Wave"];
 
+  // Get images for selected products
+  const bundleImage = selectedBundle?.image;
+  const closureImage = closureType === "closure" ? selectedClosure?.image : closureType === "frontal" ? selectedFrontal?.image : null;
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
       <main className="pt-6">
-        <div className="max-w-6xl mx-auto px-6 py-12">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 mb-4">
+        {/* Hero Banner */}
+        <div className="relative w-full h-[340px] md:h-[420px] overflow-hidden mb-12">
+          <img src={heroBundleDeal} alt="Bundle Deals" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 mb-4 border border-white/20">
               <Sparkles className="w-4 h-4" />
               <span className="text-xs font-body tracking-widest uppercase">Exclusive Bundle Deals</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-light text-foreground mb-4">Build Your Perfect Bundle</h1>
-            <p className="text-muted-foreground font-body max-w-xl mx-auto">
+            <h1 className="text-4xl md:text-6xl font-light text-white mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              Build Your Perfect Bundle
+            </h1>
+            <p className="text-white/80 font-body max-w-xl mx-auto text-sm md:text-base">
               Mix and match bundles with a closure or frontal. The more you buy, the more you save.
             </p>
           </div>
+        </div>
 
+        <div className="max-w-6xl mx-auto px-6 pb-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Builder */}
             <div className="lg:col-span-2 space-y-8">
@@ -81,17 +102,27 @@ const BundleDeal = () => {
                   Choose Your Texture
                 </h2>
                 <div className="grid grid-cols-3 gap-3 mt-4">
-                  {textures.map(t => (
-                    <button
-                      key={t}
-                      onClick={() => setTexture(t)}
-                      className={`p-4 border text-center transition-all font-body text-sm ${
-                        texture === t ? "border-primary bg-primary/5 text-foreground" : "border-border text-muted-foreground hover:border-primary/40"
-                      }`}
-                    >
-                      {t}
-                    </button>
-                  ))}
+                  {textures.map(t => {
+                    const textureProduct = bundles.find(p => p.subcategory === t);
+                    return (
+                      <button
+                        key={t}
+                        onClick={() => setTexture(t)}
+                        className={`border text-center transition-all font-body text-sm overflow-hidden ${
+                          texture === t ? "border-primary ring-2 ring-primary/20" : "border-border hover:border-primary/40"
+                        }`}
+                      >
+                        {textureProduct && (
+                          <div className="aspect-[4/3] overflow-hidden">
+                            <img src={textureProduct.image} alt={t} className="w-full h-full object-cover" />
+                          </div>
+                        )}
+                        <div className="p-3">
+                          <span className={texture === t ? "text-foreground font-medium" : "text-muted-foreground"}>{t}</span>
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -107,7 +138,7 @@ const BundleDeal = () => {
                       key={l}
                       onClick={() => setLength(l)}
                       className={`px-4 py-2 border font-body text-sm transition-all ${
-                        length === l ? "border-primary bg-primary/5 text-foreground" : "border-border text-muted-foreground hover:border-primary/40"
+                        length === l ? "border-primary bg-primary text-primary-foreground" : "border-border text-muted-foreground hover:border-primary/40"
                       }`}
                     >
                       {l}
@@ -148,19 +179,26 @@ const BundleDeal = () => {
                 </h2>
                 <div className="grid grid-cols-3 gap-3 mt-4">
                   {([
-                    { key: "none" as ClosureType, label: "No Thanks" },
-                    { key: "closure" as ClosureType, label: "HD Lace Closure" },
-                    { key: "frontal" as ClosureType, label: "Lace Frontal" },
+                    { key: "none" as ClosureType, label: "No Thanks", product: null },
+                    { key: "closure" as ClosureType, label: "HD Lace Closure", product: selectedClosure },
+                    { key: "frontal" as ClosureType, label: "Lace Frontal", product: selectedFrontal },
                   ]).map(opt => (
                     <button
                       key={opt.key}
                       onClick={() => setClosureType(opt.key)}
-                      className={`p-4 border text-center transition-all font-body text-sm ${
-                        closureType === opt.key ? "border-primary bg-primary/5 text-foreground" : "border-border text-muted-foreground hover:border-primary/40"
+                      className={`border text-center transition-all font-body text-sm overflow-hidden ${
+                        closureType === opt.key ? "border-primary ring-2 ring-primary/20" : "border-border hover:border-primary/40"
                       }`}
                     >
-                      {opt.label}
-                      {opt.key !== "none" && <p className="text-xs text-primary mt-1">10% off with bundle</p>}
+                      {opt.product && (
+                        <div className="aspect-[4/3] overflow-hidden">
+                          <img src={opt.product.image} alt={opt.label} className="w-full h-full object-cover" />
+                        </div>
+                      )}
+                      <div className="p-3">
+                        <span className={closureType === opt.key ? "text-foreground font-medium" : "text-muted-foreground"}>{opt.label}</span>
+                        {opt.key !== "none" && <p className="text-xs text-primary mt-1">10% off with bundle</p>}
+                      </div>
                     </button>
                   ))}
                 </div>
@@ -176,7 +214,7 @@ const BundleDeal = () => {
                           key={l}
                           onClick={() => setClosureLength(l)}
                           className={`px-3 py-1.5 border font-body text-sm transition-all ${
-                            closureLength === l ? "border-primary bg-primary/5 text-foreground" : "border-border text-muted-foreground hover:border-primary/40"
+                            closureLength === l ? "border-primary bg-primary text-primary-foreground" : "border-border text-muted-foreground hover:border-primary/40"
                           }`}
                         >
                           {l}
@@ -195,6 +233,20 @@ const BundleDeal = () => {
                   <Package className="w-5 h-5 text-primary" />
                   Your Bundle Deal
                 </h3>
+
+                {/* Product preview images */}
+                <div className="flex gap-3">
+                  {bundleImage && (
+                    <div className="flex-1 aspect-square overflow-hidden border border-border">
+                      <img src={bundleImage} alt="Selected bundle" className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                  {closureImage && (
+                    <div className="flex-1 aspect-square overflow-hidden border border-border">
+                      <img src={closureImage} alt="Selected closure/frontal" className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                </div>
 
                 <div className="space-y-4 text-sm font-body">
                   <div className="flex justify-between items-start pb-3 border-b border-border">
@@ -247,7 +299,7 @@ const BundleDeal = () => {
 
           {/* Why Bundle CTA */}
           <div className="mt-16 bg-primary/5 border border-primary/20 p-8 md:p-12 text-center">
-            <h2 className="text-2xl font-light text-foreground mb-4">Why Buy Bundles?</h2>
+            <h2 className="text-2xl font-light text-foreground mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Why Buy Bundles?</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
               {[
                 { title: "Save Up to 20%", desc: "The more bundles you add, the bigger the discount" },
