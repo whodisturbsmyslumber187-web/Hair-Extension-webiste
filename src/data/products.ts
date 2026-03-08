@@ -172,7 +172,7 @@ export const products: Product[] = [
     weights: ["150g", "200g", "250g"],
     colors: ["613 Blonde", "Honey Blonde #27"],
     description: "Platinum blonde 613 full lace wig. Pre-plucked hairline with baby hairs. 150% density. Can be toned to any shade.",
-    colorImages: { "613 Blonde": hairWigBlonde, "Honey Blonde #27": hairBundlesHoneyBlonde },
+    colorImages: { "613 Blonde": hairWigBlonde, "Honey Blonde #27": hairBlondeFrontal },
   },
   {
     id: 6,
