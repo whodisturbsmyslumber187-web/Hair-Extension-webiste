@@ -87,7 +87,7 @@ const CustomerCare = () => {
                 What are your shipping options?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                We offer Standard shipping (5–7 business days, free on orders over €150), Express shipping (2–3 business days, €15), and Next-Day delivery (€35). All orders include tracking and are shipped in discreet luxury packaging.
+                Estimated delivery is 4–6 weeks depending on supply and availability. All orders include tracking and are shipped in discreet luxury packaging. You'll receive a tracking number via email once your order ships.
               </AccordionContent>
             </AccordionItem>
 
