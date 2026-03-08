@@ -58,7 +58,7 @@ const ProductInfo = ({ productId }: ProductInfoProps) => {
             <h1 className="text-2xl md:text-3xl font-light text-foreground" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{name}</h1>
           </div>
           <div className="text-right">
-            <p className="text-xl font-body font-light text-foreground">from {price}</p>
+            <p className="text-xl font-body font-light text-foreground">{displayPrice}</p>
           </div>
         </div>
       </div>
