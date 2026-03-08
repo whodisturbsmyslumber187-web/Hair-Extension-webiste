@@ -180,8 +180,8 @@ const Navigation = () => {
             <div
               key={item.name}
               className="relative"
-              onMouseEnter={() => setActiveDropdown(item.name)}
-              onMouseLeave={() => setActiveDropdown(null)}
+              onMouseEnter={() => handleMouseEnter(item.name)}
+              onMouseLeave={handleMouseLeave}
             >
               <Link
                 to={item.href}
