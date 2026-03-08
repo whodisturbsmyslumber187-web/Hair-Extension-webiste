@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ShoppingBag from "./ShoppingBag";
 import LanguageSelector from "./LanguageSelector";
+import MusicPlayer from "./MusicPlayer";
 import hairBundlesStraight from "@/assets/hair-bundles-straight.jpg";
 import hairBundlesBodywave from "@/assets/hair-bundles-bodywave.jpg";
 import hairFrontal from "@/assets/hair-frontal.jpg";
