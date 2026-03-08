@@ -233,16 +233,28 @@ const Navigation = () => {
                 <ul className="space-y-2">
                   {navItems
                     .find(item => item.name === activeDropdown)
-                    ?.submenuItems.map((subItem, index) => (
+                    ?.submenuItems.map((subItem, index) => {
+                    let linkTo = "";
+                    if (activeDropdown === "About") {
+                      linkTo = `/about/${subItem.toLowerCase().replace(/\s+/g, '-')}`;
+                    } else if (activeDropdown === "Bundle Deals") {
+                      if (subItem === "3 Bundle + Closure") linkTo = "/bundle-deal?preset=3-closure";
+                      else if (subItem === "4 Bundle + Frontal") linkTo = "/bundle-deal?preset=4-frontal";
+                      else linkTo = "/bundle-deal";
+                    } else {
+                      linkTo = `/category/${subItem.toLowerCase().replace(/\s+/g, '-')}`;
+                    }
+                    return (
                     <li key={index}>
                       <Link 
-                        to={activeDropdown === "About" ? `/about/${subItem.toLowerCase().replace(/\s+/g, '-')}` : `/category/${subItem.toLowerCase().replace(/\s+/g, '-')}`}
+                        to={linkTo}
                         className="text-nav-foreground hover:text-nav-hover transition-colors duration-200 text-sm font-body tracking-wide block py-2"
                       >
                         {subItem}
                       </Link>
                     </li>
-                  ))}
+                    );
+                  })}
                 </ul>
               </div>
               <div className="flex space-x-6">
