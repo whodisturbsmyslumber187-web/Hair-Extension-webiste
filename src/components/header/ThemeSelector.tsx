@@ -1,20 +1,19 @@
 import { useState, useEffect, useRef } from "react";
 import { Palette } from "lucide-react";
 
-export type ThemeKey = "rose-gold" | "noir-gold" | "royal-emerald" | "midnight-ruby" | "ivory-champagne";
+export type ThemeKey = "rose-gold" | "black-gold" | "silver-blue" | "opal-green";
 
 interface ThemeOption {
   key: ThemeKey;
   label: string;
-  preview: string[]; // 3 color swatches
+  preview: string[];
 }
 
 const themes: ThemeOption[] = [
   { key: "rose-gold", label: "Rose Gold", preview: ["#b5736c", "#faf5f3", "#d4956a"] },
-  { key: "noir-gold", label: "Noir & Gold", preview: ["#1a1a1a", "#c9a84c", "#2d2d2d"] },
-  { key: "royal-emerald", label: "Royal Emerald", preview: ["#1b4332", "#d4af37", "#2d6a4f"] },
-  { key: "midnight-ruby", label: "Midnight Ruby", preview: ["#1a1020", "#9b1b30", "#d4af37"] },
-  { key: "ivory-champagne", label: "Ivory & Champagne", preview: ["#faf8f0", "#b8860b", "#3d3020"] },
+  { key: "black-gold", label: "Black & Gold", preview: ["#0a0a0a", "#c9a84c", "#1a1a1a"] },
+  { key: "silver-blue", label: "Silver & Blue", preview: ["#0d1b2a", "#708dad", "#c0c0c0"] },
+  { key: "opal-green", label: "Opal White & Green", preview: ["#f7f5f0", "#2d6a4f", "#d4cfc4"] },
 ];
 
 const ThemeSelector = () => {
