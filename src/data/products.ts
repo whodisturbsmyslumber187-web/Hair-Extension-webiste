@@ -404,6 +404,14 @@ export const products: Product[] = [
   },
 ];
 
+// Auto-generate length and weight pricing for all products
+products.forEach(p => {
+  const lengthIncrement = p.category === "Wigs" ? 15 : p.category === "Frontals" ? 10 : p.category === "Closures" ? 8 : p.category === "Clip-Ins" ? 10 : p.category === "Tape-Ins" ? 8 : p.category === "Extensions" ? 8 : 10;
+  const weightIncrement = p.category === "Wigs" ? 25 : 15;
+  p.lengthPrices = genLengthPrices(p.lengths, p.priceNum, lengthIncrement);
+  p.weightPrices = genWeightPrices(p.weights, p.priceNum, weightIncrement);
+});
+
 export const categories = [
   { name: "Bundles", slug: "bundles", description: "Premium virgin hair bundles in all textures" },
   { name: "Wigs", slug: "wigs", description: "HD lace wigs for a flawless, natural look" },
