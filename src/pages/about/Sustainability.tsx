@@ -25,33 +25,33 @@ const Sustainability = () => {
         <ContentSection title="Our Sourcing Standards">
           <div className="grid md:grid-cols-2 gap-12 mb-16">
             <div className="space-y-6">
-              <h3 className="text-xl font-black text-foreground drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">Ethically Sourced</h3>
-              <p className="text-foreground font-bold leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+              <h3 className="text-xl">Ethically Sourced</h3>
+              <p className="leading-relaxed">
                 All Naya hair is ethically sourced from single donors. We work directly with trusted collectors who ensure fair compensation and transparent practices. Every bundle can be traced back to its origin.
               </p>
             </div>
             <div className="space-y-6">
-              <h3 className="text-xl font-black text-foreground drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">Cuticle-Aligned</h3>
-              <p className="text-foreground font-bold leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+              <h3 className="text-xl">Cuticle-Aligned</h3>
+              <p className="leading-relaxed">
                 Our hair is collected with cuticles running in the same direction — root to tip. This eliminates tangling and matting, giving you that silky, natural movement that cheap hair simply can't replicate.
               </p>
             </div>
           </div>
 
-          <div className="bg-muted/10 p-8">
-            <h3 className="text-2xl font-black text-foreground mb-6 drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">Quality Benchmarks</h3>
+          <div className="bg-black/20 backdrop-blur-sm p-8 rounded-sm">
+            <h3 className="text-2xl mb-6">Quality Benchmarks</h3>
             <div className="grid md:grid-cols-3 gap-8">
               <div>
-                <div className="text-3xl font-black text-primary mb-2 drop-shadow-[0_3px_6px_rgba(0,0,0,0.6)]">100%</div>
-                <p className="text-sm font-bold text-foreground drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Virgin human hair — no synthetics, no blends</p>
+                <div className="text-3xl mb-2">100%</div>
+                <p className="text-sm">Virgin human hair — no synthetics, no blends</p>
               </div>
               <div>
-                <div className="text-3xl font-black text-primary mb-2 drop-shadow-[0_3px_6px_rgba(0,0,0,0.6)]">Grade 12A</div>
-                <p className="text-sm font-bold text-foreground drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Highest quality grade available on the market</p>
+                <div className="text-3xl mb-2">Grade 12A</div>
+                <p className="text-sm">Highest quality grade available on the market</p>
               </div>
               <div>
-                <div className="text-3xl font-black text-primary mb-2 drop-shadow-[0_3px_6px_rgba(0,0,0,0.6)]">12–24 mo</div>
-                <p className="text-sm font-bold text-foreground drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Lifespan with proper care and maintenance</p>
+                <div className="text-3xl mb-2">12–24 mo</div>
+                <p className="text-sm">Lifespan with proper care and maintenance</p>
               </div>
             </div>
           </div>
@@ -59,22 +59,18 @@ const Sustainability = () => {
 
         <ContentSection title="Quality Control Process">
           <div className="space-y-8">
-            <p className="text-lg text-foreground font-bold leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+            <p className="text-lg leading-relaxed">
               Every bundle goes through a 5-step quality check before it reaches you. We reject anything that doesn't meet our standards — no exceptions.
             </p>
             
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-4">
-                <h3 className="text-lg font-black text-foreground drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">Texture Verification</h3>
-                <p className="text-foreground font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                  Every bundle is checked to ensure the texture pattern (straight, body wave, deep wave) is consistent from root to tip and holds its shape after washing.
-                </p>
+                <h3 className="text-lg">Texture Verification</h3>
+                <p>Every bundle is checked to ensure the texture pattern (straight, body wave, deep wave) is consistent from root to tip and holds its shape after washing.</p>
               </div>
               <div className="space-y-4">
-                <h3 className="text-lg font-black text-foreground drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">Weight & Length Accuracy</h3>
-                <p className="text-foreground font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                  We weigh every bundle and verify the length so you always receive the exact inches and grams you ordered — no stretching, no short bundles.
-                </p>
+                <h3 className="text-lg">Weight & Length Accuracy</h3>
+                <p>We weigh every bundle and verify the length so you always receive the exact inches and grams you ordered — no stretching, no short bundles.</p>
               </div>
             </div>
           </div>
@@ -82,23 +78,23 @@ const Sustainability = () => {
 
         <ContentSection title="Hair Care Tips">
           <div className="space-y-8">
-            <p className="text-foreground font-bold leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+            <p className="leading-relaxed">
               Proper care extends the life of your Naya hair. Follow these expert tips to keep your hair looking fresh.
             </p>
             
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-4 bg-muted/10 p-6">
-                <h4 className="font-black text-foreground drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">Washing</h4>
-                <ul className="space-y-2 text-sm font-bold text-foreground drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+              <div className="space-y-4 bg-black/20 backdrop-blur-sm p-6 rounded-sm">
+                <h4>Washing</h4>
+                <ul className="space-y-2 text-sm">
                   <li>• Use sulfate-free shampoo and conditioner</li>
                   <li>• Wash in a downward motion — never scrub</li>
                   <li>• Co-wash between full washes to maintain moisture</li>
                   <li>• Air dry when possible to preserve texture</li>
                 </ul>
               </div>
-              <div className="space-y-4 bg-muted/10 p-6">
-                <h4 className="font-black text-foreground drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">Styling & Maintenance</h4>
-                <ul className="space-y-2 text-sm font-bold text-foreground drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+              <div className="space-y-4 bg-black/20 backdrop-blur-sm p-6 rounded-sm">
+                <h4>Styling & Maintenance</h4>
+                <ul className="space-y-2 text-sm">
                   <li>• Always use heat protectant before flat-ironing or curling</li>
                   <li>• Sleep on a silk or satin pillowcase</li>
                   <li>• Detangle from ends to roots with a wide-tooth comb</li>

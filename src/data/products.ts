@@ -667,6 +667,8 @@ products.forEach(p => {
 });
 
 export const categories = [
+  { name: "All Products", slug: "all", description: "Browse our full collection of premium virgin hair" },
+  { name: "New In", slug: "new-in", description: "Our latest arrivals — fresh drops and new textures" },
   { name: "Bundles", slug: "bundles", description: "Premium virgin hair bundles in all textures" },
   { name: "Wigs", slug: "wigs", description: "HD lace wigs for a flawless, natural look" },
   { name: "Frontals", slug: "frontals", description: "Lace frontals for seamless hairlines" },

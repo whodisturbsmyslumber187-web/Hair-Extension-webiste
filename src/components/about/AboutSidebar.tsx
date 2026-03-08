@@ -10,21 +10,21 @@ const aboutPages = [
 
 const AboutSidebar = () => {
   return (
-    <aside className="hidden md:block w-64 sticky top-32 h-fit px-6">
+    <aside className="hidden md:block w-64 sticky top-32 h-fit px-6 about-text-bold">
       <nav className="space-y-1">
-        <h3 className="text-2xl font-black uppercase text-primary mb-6" style={{ WebkitTextStroke: '1px currentColor', textShadow: '0 3px 10px rgba(0,0,0,0.8)' }}>About</h3>
+        <h3 className="text-2xl uppercase mb-6">About</h3>
         {aboutPages.map((page) => (
           <NavLink
             key={page.path}
             to={page.path}
-            style={{ textShadow: '0 3px 10px rgba(0,0,0,0.8)' }}
             className={({ isActive }) =>
               `block py-2 text-lg font-black transition-all ${
                 isActive
-                  ? 'text-primary underline decoration-2 underline-offset-4'
-                  : 'text-foreground hover:text-primary hover:underline hover:decoration-1 hover:underline-offset-4'
+                  ? 'underline decoration-2 underline-offset-4'
+                  : 'hover:underline hover:decoration-1 hover:underline-offset-4 opacity-80 hover:opacity-100'
               }`
             }
+            style={{ color: 'hsl(0, 0%, 95%)', textShadow: '0 2px 8px rgba(0,0,0,0.9)' }}
           >
             {page.name}
           </NavLink>

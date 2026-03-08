@@ -52,6 +52,10 @@
     --rose-gold: 15 60% 65%;
     --rose-gold-foreground: 0 0% 100%;
     
+    /* Silver for about pages */
+    --about-text: 0 0% 92%;
+    --about-heading: 0 0% 100%;
+    
     --radius: 0.375rem;
     
     /* Transitions */
@@ -107,6 +111,9 @@
     
     --rose-gold: 15 50% 55%;
     --rose-gold-foreground: 0 0% 100%;
+    
+    --about-text: 0 0% 90%;
+    --about-heading: 0 0% 100%;
   }
 }
 
@@ -139,6 +146,8 @@
   --destructive-foreground: 0 0% 98%;
   --rose-gold: 43 80% 48%;
   --rose-gold-foreground: 0 0% 2%;
+  --about-text: 0 0% 90%;
+  --about-heading: 0 0% 100%;
 }
 
 /* ============ SILVER & BLUE ============ */
@@ -170,6 +179,8 @@
   --destructive-foreground: 0 0% 98%;
   --rose-gold: 0 0% 75%;
   --rose-gold-foreground: 210 30% 8%;
+  --about-text: 0 0% 90%;
+  --about-heading: 0 0% 100%;
 }
 
 /* ============ OPAL WHITE & GREEN ============ */
@@ -201,6 +212,8 @@
   --destructive-foreground: 0 0% 98%;
   --rose-gold: 152 45% 35%;
   --rose-gold-foreground: 0 0% 100%;
+  --about-text: 0 0% 92%;
+  --about-heading: 0 0% 100%;
 }
 
 @layer base {
@@ -213,12 +226,14 @@
   }
 }
 
-/* About pages — maximum text visibility */
+/* About pages — silver/white text on dark background images */
+.about-text-bold h1,
+.about-text-bold h2,
 .about-text-bold h3,
 .about-text-bold h4 {
+  color: hsl(var(--about-heading));
   font-weight: 900;
-  -webkit-text-stroke: 0.8px currentColor;
-  text-shadow: 0 4px 12px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.6);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.7);
 }
 
 .about-text-bold p,
@@ -227,11 +242,17 @@
 .about-text-bold td,
 .about-text-bold label,
 .about-text-bold button[data-state] {
-  font-weight: 800;
-  text-shadow: 0 3px 8px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.5);
+  color: hsl(var(--about-text));
+  font-weight: 700;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.8), 0 1px 2px rgba(0,0,0,0.6);
 }
 
 .about-text-bold th {
+  color: hsl(var(--about-heading));
   font-weight: 900;
-  text-shadow: 0 3px 8px rgba(0,0,0,0.7);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+}
+
+.about-text-bold .text-primary {
+  color: hsl(var(--about-heading)) !important;
 }
