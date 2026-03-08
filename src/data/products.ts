@@ -36,19 +36,61 @@ export interface Product {
   colorImages?: Record<string, string>;
 }
 
+/** Bulk discount rates by weight for bundles */
+const weightDiscounts: Record<string, number> = {
+  "100g": 0,
+  "150g": 0.10,
+  "200g": 0.15,
+  "300g": 0.20,
+  "400g": 0.25,
+};
+
+/** Weight multipliers (how many 100g units) */
+const weightMultipliers: Record<string, number> = {
+  "50g": 0.5,
+  "60g": 0.6,
+  "100g": 1,
+  "120g": 1.2,
+  "150g": 1.5,
+  "160g": 1.6,
+  "180g": 1.8,
+  "200g": 2,
+  "220g": 2.2,
+  "250g": 2.5,
+  "300g": 3,
+  "400g": 4,
+};
+
 /** Calculate the final price for a product given selections */
 export const calculatePrice = (product: Product, selectedLength?: string, selectedWeight?: string): number => {
-  let price = product.priceNum;
+  // Get the per-100g price based on length
+  let basePrice = product.priceNum;
   if (selectedLength && product.lengthPrices?.[selectedLength] !== undefined) {
-    price = product.lengthPrices[selectedLength];
+    basePrice = product.lengthPrices[selectedLength];
   }
+
+  // For bundles: multiply by weight and apply bulk discount
+  if (selectedWeight && product.category === "Bundles") {
+    const multiplier = weightMultipliers[selectedWeight] || 1;
+    const discount = weightDiscounts[selectedWeight] || 0;
+    const totalPrice = basePrice * multiplier;
+    return Math.round(totalPrice * (1 - discount));
+  }
+
+  // For non-bundles: use the old weight pricing if applicable
   if (selectedWeight && product.weightPrices?.[selectedWeight] !== undefined) {
-    price += product.weightPrices[selectedWeight] - product.priceNum;
-    if (selectedLength && product.lengthPrices?.[selectedLength] !== undefined) {
-      price = product.lengthPrices[selectedLength] + (product.weightPrices[selectedWeight] - product.priceNum);
-    }
+    const weightAdj = product.weightPrices[selectedWeight] - product.priceNum;
+    return basePrice + weightAdj;
   }
-  return price;
+
+  return basePrice;
+};
+
+/** Get the discount label for a weight */
+export const getWeightDiscount = (weight: string): string | null => {
+  const discount = weightDiscounts[weight];
+  if (discount && discount > 0) return `${Math.round(discount * 100)}% off`;
+  return null;
 };
 
 /** Generate length-based pricing: base price + increment per step */
@@ -58,7 +100,7 @@ const genLengthPrices = (lengths: string[], basePrice: number, increment: number
   return map;
 };
 
-/** Generate weight-based pricing */
+/** Generate weight-based pricing (for non-bundle categories) */
 const genWeightPrices = (weights: string[], basePrice: number, increment: number): Record<string, number> => {
   const map: Record<string, number> = {};
   weights.forEach((w, i) => { map[w] = basePrice + i * increment; });
