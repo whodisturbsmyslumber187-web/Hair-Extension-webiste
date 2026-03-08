@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
   Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator 
 } from "@/components/ui/breadcrumb";
 import { Minus, Plus } from "lucide-react";
-import { getProductById } from "@/data/products";
+import { getProductById, calculatePrice } from "@/data/products";
 
 interface ProductInfoProps {
   productId?: number;
@@ -21,10 +21,18 @@ const ProductInfo = ({ productId }: ProductInfoProps) => {
   
   const name = product?.name || "Straight Virgin Bundles";
   const category = product?.category || "Bundles";
-  const price = product?.price || "$85";
   const lengths = product?.lengths || ["14\"", "16\"", "18\"", "20\"", "22\"", "24\""];
   const weights = product?.weights || ["100g", "150g", "200g"];
   const colors = product?.colors || ["Natural Black #1B"];
+
+  const currentPrice = useMemo(() => {
+    if (!product) return 85;
+    return calculatePrice(product, selectedLength || undefined, selectedWeight || undefined);
+  }, [product, selectedLength, selectedWeight]);
+
+  const displayPrice = selectedLength || selectedWeight 
+    ? `$${currentPrice}` 
+    : `from $${product?.priceNum || 85}`;
 
   const incrementQuantity = () => setQuantity(prev => prev + 1);
   const decrementQuantity = () => setQuantity(prev => Math.max(1, prev - 1));
@@ -50,7 +58,7 @@ const ProductInfo = ({ productId }: ProductInfoProps) => {
             <h1 className="text-2xl md:text-3xl font-light text-foreground" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{name}</h1>
           </div>
           <div className="text-right">
-            <p className="text-xl font-body font-light text-foreground">from {price}</p>
+            <p className="text-xl font-body font-light text-foreground">{displayPrice}</p>
           </div>
         </div>
       </div>
