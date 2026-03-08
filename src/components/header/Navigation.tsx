@@ -243,6 +243,8 @@ const Navigation = () => {
                       else linkTo = "/bundle-deal";
                     } else if (activeDropdown === "New In") {
                       linkTo = "/category/new-in";
+                    } else {
+                      linkTo = `/category/${subItem.toLowerCase().replace(/\s+/g, '-')}`;
                     }
                     return (
                     <li key={index}>
