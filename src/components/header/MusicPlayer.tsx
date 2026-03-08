@@ -12,6 +12,27 @@ const MusicPlayer = () => {
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const isStoppedRef = useRef(false);
+  const hasAutoStarted = useRef(false);
+
+  // Auto-start music on first user interaction
+  useEffect(() => {
+    if (hasAutoStarted.current) return;
+    const startOnInteraction = () => {
+      if (!hasAutoStarted.current) {
+        hasAutoStarted.current = true;
+        createShoppingMusic();
+        setIsPlaying(true);
+      }
+      document.removeEventListener("click", startOnInteraction);
+      document.removeEventListener("touchstart", startOnInteraction);
+    };
+    document.addEventListener("click", startOnInteraction);
+    document.addEventListener("touchstart", startOnInteraction);
+    return () => {
+      document.removeEventListener("click", startOnInteraction);
+      document.removeEventListener("touchstart", startOnInteraction);
+    };
+  }, [createShoppingMusic]);
 
   const createShoppingMusic = useCallback(() => {
     const ctx = new AudioContext();
