@@ -20,6 +20,7 @@ import StoreLocator from "./pages/about/StoreLocator";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Support from "./pages/Support";
+import Wholesale from "./pages/Wholesale";
 import FloatingChatButton from "./components/chat/FloatingChatButton";
 
 const queryClient = new QueryClient();
