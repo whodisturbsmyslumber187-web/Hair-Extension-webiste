@@ -23,10 +23,10 @@ const ImageTextBlock = ({
         />
       </div>
       <div className="flex-1 space-y-6">
-        <h3 className="text-2xl font-black text-foreground drop-shadow-[0_3px_8px_rgba(0,0,0,0.8)]" style={{ WebkitTextStroke: '0.5px currentColor' }}>
+        <h3 className="text-3xl font-black uppercase text-foreground" style={{ WebkitTextStroke: '1px currentColor', textShadow: '0 4px 12px rgba(0,0,0,0.8)' }}>
           {title}
         </h3>
-        <p className="text-foreground font-bold leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
+        <p className="text-lg text-foreground font-extrabold leading-relaxed" style={{ textShadow: '0 3px 8px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.5)' }}>
           {content}
         </p>
       </div>

@@ -8,7 +8,7 @@ const ContentSection = ({ title, children, className = "" }: ContentSectionProps
   return (
     <section className={`pr-6 py-16 ${className}`}>
       {title && (
-        <h2 className="text-3xl font-black text-foreground mb-8 drop-shadow-[0_3px_8px_rgba(0,0,0,0.8)]" style={{ WebkitTextStroke: '0.5px currentColor' }}>
+        <h2 className="text-4xl font-black uppercase tracking-wide text-foreground mb-8" style={{ WebkitTextStroke: '1px currentColor', textShadow: '0 4px 12px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.6)' }}>
           {title}
         </h2>
       )}
