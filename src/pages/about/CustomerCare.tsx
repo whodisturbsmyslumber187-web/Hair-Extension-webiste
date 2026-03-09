@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import PageHeader from "../../components/about/PageHeader";
@@ -5,11 +6,46 @@ import ContentSection from "../../components/about/ContentSection";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
+import { Label } from "../../components/ui/label";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../../components/ui/accordion";
 import AboutSidebar from "../../components/about/AboutSidebar";
 import BackgroundSlideshow from "../../components/about/BackgroundSlideshow";
+import { toast } from "sonner";
+
+const generateMathChallenge = () => {
+  const a = Math.floor(Math.random() * 10) + 1;
+  const b = Math.floor(Math.random() * 10) + 1;
+  return { question: `${a} + ${b}`, answer: a + b };
+};
 
 const CustomerCare = () => {
+  const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "", orderNumber: "", message: "" });
+  const [captcha, setCaptcha] = useState(generateMathChallenge);
+  const [captchaInput, setCaptchaInput] = useState("");
+  const [honeypot, setHoneypot] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (honeypot) return;
+    if (!formData.firstName || !formData.email || !formData.message) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+    if (parseInt(captchaInput) !== captcha.answer) {
+      toast.error("Incorrect answer — please try again");
+      setCaptcha(generateMathChallenge());
+      setCaptchaInput("");
+      return;
+    }
+    setIsSubmitting(true);
+    await new Promise((r) => setTimeout(r, 1500));
+    setIsSubmitting(false);
+    toast.success("Message sent! We'll respond within 24 hours.");
+    setFormData({ firstName: "", lastName: "", email: "", orderNumber: "", message: "" });
+    setCaptcha(generateMathChallenge());
+    setCaptchaInput("");
+  };
   return (
     <div className="min-h-screen relative">
       <BackgroundSlideshow />
