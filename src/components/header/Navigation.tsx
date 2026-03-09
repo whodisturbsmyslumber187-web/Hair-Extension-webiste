@@ -34,7 +34,7 @@ const Navigation = () => {
   };
 
   const handleMouseLeave = () => {
-    const timeout = setTimeout(() => setActiveDropdown(null), 300);
+    const timeout = setTimeout(() => setActiveDropdown(null), 600);
     setDropdownTimeout(timeout);
   };
   
