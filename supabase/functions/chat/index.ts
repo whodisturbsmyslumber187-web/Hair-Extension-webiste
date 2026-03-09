@@ -31,6 +31,7 @@ CONTACT: WhatsApp or Instagram DM for virtual consultations.
 
 When customers ask about orders, ask for their confirmation number and look it up.
 Keep responses friendly, concise, and helpful. Use markdown formatting for readability.
+IMPORTANT: Never reveal full customer names or detailed personal information. Only provide order status and tracking info.
 `;
 
 const MAX_MESSAGES = 20;
@@ -38,26 +39,14 @@ const MAX_MSG_LENGTH = 4000;
 const VALID_ROLES = ["user", "assistant"];
 const CONFIRMATION_PATTERN = /^[A-Z0-9-]{3,30}$/i;
 
-// Simple in-memory rate limiter (per-isolate, resets on cold start)
-const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT_WINDOW_MS = 60_000; // 1 minute
-const RATE_LIMIT_MAX = 20; // max requests per window per IP
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const entry = rateLimitMap.get(ip);
-  if (!entry || now > entry.resetAt) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
-    return false;
-  }
-  entry.count++;
-  return entry.count > RATE_LIMIT_MAX;
-}
-
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
+
+  const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+  const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+  const supabase = createClient(supabaseUrl, supabaseKey);
 
   try {
     // --- Auth: validate the anon key ---
@@ -70,12 +59,24 @@ serve(async (req) => {
       );
     }
 
-    // --- Rate limiting ---
+    // --- Persistent rate limiting using database ---
     const clientIp =
       req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
       req.headers.get("cf-connecting-ip") ||
       "unknown";
-    if (isRateLimited(clientIp)) {
+    
+    const { data: isLimited, error: rateLimitError } = await supabase.rpc("check_rate_limit", {
+      p_identifier: clientIp,
+      p_endpoint: "chat",
+      p_max_requests: 20,
+      p_window_minutes: 1
+    });
+
+    if (rateLimitError) {
+      console.error("Rate limit check error:", rateLimitError);
+    }
+
+    if (isLimited === true) {
       return new Response(
         JSON.stringify({ error: "Too many requests. Please wait a moment." }),
         { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -121,31 +122,34 @@ serve(async (req) => {
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 
     // If a confirmation number is provided, look up the order
+    // Only expose non-PII data: status, tracking, estimated delivery
     let orderContext = "";
     if (confirmationNumber) {
-      const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-      const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-      const supabase = createClient(supabaseUrl, supabaseKey);
-
       const { data: order } = await supabase
         .from("orders")
-        .select("*, order_updates(*)")
+        .select("confirmation_number, status, tracking_number, estimated_delivery, created_at, order_updates(status, message, created_at)")
         .eq("confirmation_number", confirmationNumber.toUpperCase())
         .maybeSingle();
 
       if (order) {
+        // Build a summary of items without exposing full details
+        const latestUpdate = order.order_updates?.length 
+          ? order.order_updates.sort((a: any, b: any) => 
+              new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+            )[0]
+          : null;
+
         orderContext = `\n\nORDER FOUND:
 - Confirmation: ${order.confirmation_number}
 - Status: ${order.status}
-- Customer: ${order.customer_name || "N/A"}
-- Total: $${order.total}
-- Items: ${JSON.stringify(order.items)}
-- Tracking: ${order.tracking_number || "Not yet available"}
+- Tracking Number: ${order.tracking_number || "Not yet available"}
 - Estimated Delivery: ${order.estimated_delivery || "4-6 weeks from order date"}
-- Order Date: ${order.created_at}
-${order.order_updates?.length ? `\nTracking Updates:\n${order.order_updates.map((u: any) => `- ${u.created_at}: ${u.status} - ${u.message}`).join("\n")}` : ""}`;
+- Order Date: ${new Date(order.created_at).toLocaleDateString()}
+${latestUpdate ? `- Latest Update: ${latestUpdate.status} - ${latestUpdate.message}` : ""}
+
+Note: For privacy, we don't display full customer details. If they need to verify identity, ask them to contact support directly.`;
       } else {
-        orderContext = `\n\nNo order found with confirmation number "${confirmationNumber}". Ask the customer to double-check the number.`;
+        orderContext = `\n\nNo order found with confirmation number "${confirmationNumber}". Ask the customer to double-check the number or contact support.`;
       }
     }
 
