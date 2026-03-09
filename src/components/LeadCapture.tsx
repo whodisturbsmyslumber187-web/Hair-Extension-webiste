@@ -50,9 +50,14 @@ const LeadCapture = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+    if (parseInt(captchaInput) !== captcha.answer) {
+      toast.error("Incorrect answer — please try again");
+      setCaptcha(generateMathChallenge());
+      setCaptchaInput("");
+      return;
+    }
     setSubmitted(true);
     localStorage.setItem("naya-lead-captured", "true");
-    // In production, this would send to your email service via an edge function
     setTimeout(() => {
       setIsVisible(false);
     }, 3000);
