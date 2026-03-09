@@ -105,7 +105,21 @@ const LeadCapture = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 className="rounded-none h-12 font-body"
                 required
+                maxLength={255}
               />
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground whitespace-nowrap">{captcha.question} =</span>
+                <Input
+                  type="text"
+                  inputMode="numeric"
+                  value={captchaInput}
+                  onChange={(e) => setCaptchaInput(e.target.value)}
+                  placeholder="?"
+                  maxLength={5}
+                  className="rounded-none h-10 font-body w-20"
+                  required
+                />
+              </div>
               <Button type="submit" className="w-full rounded-none h-12 font-body text-base">
                 Get My 15% Off
               </Button>

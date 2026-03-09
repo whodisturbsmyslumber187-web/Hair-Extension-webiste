@@ -142,38 +142,60 @@ const CustomerCare = () => {
 
         <ContentSection title="Contact Form">
           <div className="bg-black/20 backdrop-blur-sm p-8 rounded-sm">
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm">First Name</label>
-                  <Input className="rounded-none bg-white/10 border-white/20" placeholder="Your first name" />
+                  <Label className="text-sm">First Name *</Label>
+                  <Input value={formData.firstName} onChange={(e) => setFormData(p => ({ ...p, firstName: e.target.value }))} className="rounded-none bg-white/10 border-white/20" placeholder="Your first name" maxLength={100} />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm">Last Name</label>
-                  <Input className="rounded-none bg-white/10 border-white/20" placeholder="Your last name" />
+                  <Label className="text-sm">Last Name</Label>
+                  <Input value={formData.lastName} onChange={(e) => setFormData(p => ({ ...p, lastName: e.target.value }))} className="rounded-none bg-white/10 border-white/20" placeholder="Your last name" maxLength={100} />
                 </div>
               </div>
               
               <div className="space-y-2">
-                <label className="text-sm">Email</label>
-                <Input type="email" className="rounded-none bg-white/10 border-white/20" placeholder="Your email address" />
+                <Label className="text-sm">Email *</Label>
+                <Input type="email" value={formData.email} onChange={(e) => setFormData(p => ({ ...p, email: e.target.value }))} className="rounded-none bg-white/10 border-white/20" placeholder="Your email address" maxLength={255} />
               </div>
               
               <div className="space-y-2">
-                <label className="text-sm">Order Number (Optional)</label>
-                <Input className="rounded-none bg-white/10 border-white/20" placeholder="e.g. NAYA-12345" />
+                <Label className="text-sm">Order Number (Optional)</Label>
+                <Input value={formData.orderNumber} onChange={(e) => setFormData(p => ({ ...p, orderNumber: e.target.value }))} className="rounded-none bg-white/10 border-white/20" placeholder="e.g. NAYA-12345" maxLength={50} />
               </div>
               
               <div className="space-y-2">
-                <label className="text-sm">How can we help?</label>
+                <Label className="text-sm">How can we help? *</Label>
                 <Textarea 
+                  value={formData.message}
+                  onChange={(e) => setFormData(p => ({ ...p, message: e.target.value }))}
                   className="rounded-none min-h-[120px] bg-white/10 border-white/20" 
                   placeholder="Tell us about your question — include your hair length, texture, and any details that will help us assist you faster"
+                  maxLength={1000}
+                />
+              </div>
+
+              {/* Honeypot */}
+              <div className="absolute opacity-0 pointer-events-none h-0 overflow-hidden" aria-hidden="true">
+                <Input tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+              </div>
+
+              {/* Math CAPTCHA */}
+              <div className="space-y-2">
+                <Label className="text-sm">Security Check: What is {captcha.question}? *</Label>
+                <Input
+                  type="text"
+                  inputMode="numeric"
+                  value={captchaInput}
+                  onChange={(e) => setCaptchaInput(e.target.value)}
+                  placeholder="Enter your answer"
+                  maxLength={5}
+                  className="rounded-none bg-white/10 border-white/20 max-w-[200px]"
                 />
               </div>
               
-              <Button type="submit" className="w-full rounded-none">
-                Send Message
+              <Button type="submit" className="w-full rounded-none" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </div>
