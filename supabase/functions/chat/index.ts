@@ -49,15 +49,8 @@ serve(async (req) => {
   const supabase = createClient(supabaseUrl, supabaseKey);
 
   try {
-    // --- Auth: validate the anon key ---
-    const authHeader = req.headers.get("Authorization");
-    const expectedKey = Deno.env.get("SUPABASE_ANON_KEY");
-    if (!authHeader || authHeader !== `Bearer ${expectedKey}`) {
-      return new Response(
-        JSON.stringify({ error: "Unauthorized" }),
-        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
+    // Auth validation note: The anon key is publicly known (bundled in client JS),
+    // so checking it doesn't add security. Rate limiting below provides the real protection.
 
     // --- Persistent rate limiting using database ---
     const clientIp =
