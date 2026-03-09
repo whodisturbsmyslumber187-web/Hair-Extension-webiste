@@ -33,13 +33,90 @@ When customers ask about orders, ask for their confirmation number and look it u
 Keep responses friendly, concise, and helpful. Use markdown formatting for readability.
 `;
 
+const MAX_MESSAGES = 20;
+const MAX_MSG_LENGTH = 4000;
+const VALID_ROLES = ["user", "assistant"];
+const CONFIRMATION_PATTERN = /^[A-Z0-9-]{3,30}$/i;
+
+// Simple in-memory rate limiter (per-isolate, resets on cold start)
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT_WINDOW_MS = 60_000; // 1 minute
+const RATE_LIMIT_MAX = 20; // max requests per window per IP
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+  entry.count++;
+  return entry.count > RATE_LIMIT_MAX;
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
+    // --- Auth: validate the anon key ---
+    const authHeader = req.headers.get("Authorization");
+    const expectedKey = Deno.env.get("SUPABASE_ANON_KEY");
+    if (!authHeader || authHeader !== `Bearer ${expectedKey}`) {
+      return new Response(
+        JSON.stringify({ error: "Unauthorized" }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // --- Rate limiting ---
+    const clientIp =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      req.headers.get("cf-connecting-ip") ||
+      "unknown";
+    if (isRateLimited(clientIp)) {
+      return new Response(
+        JSON.stringify({ error: "Too many requests. Please wait a moment." }),
+        { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     const { messages, confirmationNumber } = await req.json();
+
+    // --- Input validation ---
+    if (!Array.isArray(messages) || messages.length === 0 || messages.length > MAX_MESSAGES) {
+      return new Response(
+        JSON.stringify({ error: "Invalid messages: must be an array of 1-20 messages" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    for (const msg of messages) {
+      if (typeof msg.content !== "string" || msg.content.length > MAX_MSG_LENGTH) {
+        return new Response(
+          JSON.stringify({ error: `Each message must be a string of at most ${MAX_MSG_LENGTH} characters` }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+      if (!VALID_ROLES.includes(msg.role)) {
+        return new Response(
+          JSON.stringify({ error: "Invalid message role" }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+    }
+
+    // Validate confirmation number format if provided
+    if (confirmationNumber !== undefined && confirmationNumber !== null) {
+      if (typeof confirmationNumber !== "string" || !CONFIRMATION_PATTERN.test(confirmationNumber)) {
+        return new Response(
+          JSON.stringify({ error: "Invalid confirmation number format" }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+    }
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 
@@ -118,7 +195,7 @@ ${order.order_updates?.length ? `\nTracking Updates:\n${order.order_updates.map(
   } catch (e) {
     console.error("chat error:", e);
     return new Response(
-      JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }),
+      JSON.stringify({ error: "Something went wrong. Please try again." }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
