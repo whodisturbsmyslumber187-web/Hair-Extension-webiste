@@ -2,6 +2,13 @@ import { useState, useEffect } from "react";
 import { X, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
+
+const generateMathChallenge = () => {
+  const a = Math.floor(Math.random() * 10) + 1;
+  const b = Math.floor(Math.random() * 10) + 1;
+  return { question: `${a} + ${b}`, answer: a + b };
+};
 
 /**
  * Lead capture popup that appears after 8 seconds on site.
@@ -12,6 +19,8 @@ const LeadCapture = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const [captcha, setCaptcha] = useState(generateMathChallenge);
+  const [captchaInput, setCaptchaInput] = useState("");
 
   useEffect(() => {
     // Don't show if already dismissed or submitted
@@ -41,9 +50,14 @@ const LeadCapture = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+    if (parseInt(captchaInput) !== captcha.answer) {
+      toast.error("Incorrect answer — please try again");
+      setCaptcha(generateMathChallenge());
+      setCaptchaInput("");
+      return;
+    }
     setSubmitted(true);
     localStorage.setItem("naya-lead-captured", "true");
-    // In production, this would send to your email service via an edge function
     setTimeout(() => {
       setIsVisible(false);
     }, 3000);
@@ -91,7 +105,21 @@ const LeadCapture = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 className="rounded-none h-12 font-body"
                 required
+                maxLength={255}
               />
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground whitespace-nowrap">{captcha.question} =</span>
+                <Input
+                  type="text"
+                  inputMode="numeric"
+                  value={captchaInput}
+                  onChange={(e) => setCaptchaInput(e.target.value)}
+                  placeholder="?"
+                  maxLength={5}
+                  className="rounded-none h-10 font-body w-20"
+                  required
+                />
+              </div>
               <Button type="submit" className="w-full rounded-none h-12 font-body text-base">
                 Get My 15% Off
               </Button>
