@@ -2,6 +2,13 @@ import { useState, useEffect } from "react";
 import { X, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
+
+const generateMathChallenge = () => {
+  const a = Math.floor(Math.random() * 10) + 1;
+  const b = Math.floor(Math.random() * 10) + 1;
+  return { question: `${a} + ${b}`, answer: a + b };
+};
 
 /**
  * Lead capture popup that appears after 8 seconds on site.
@@ -12,6 +19,8 @@ const LeadCapture = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const [captcha, setCaptcha] = useState(generateMathChallenge);
+  const [captchaInput, setCaptchaInput] = useState("");
 
   useEffect(() => {
     // Don't show if already dismissed or submitted
