@@ -123,6 +123,7 @@ const ChatWindow = ({ onClose, onMinimize, fullPage = false }: ChatWindowProps) 
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSend()}
             placeholder="Ask about products, orders..."
+            maxLength={4000}
             className="flex-1 bg-secondary/30 text-foreground placeholder:text-muted-foreground rounded-full px-4 py-2 text-sm outline-none focus:ring-1 focus:ring-primary/30"
             disabled={isLoading}
           />
