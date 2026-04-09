@@ -45,6 +45,7 @@ const StoreMap = () => {
         style={{ border: 0 }}
         allowFullScreen
         loading="lazy"
+        sandbox="allow-scripts"
         referrerPolicy="no-referrer-when-downgrade"
         className="w-full h-full"
       />
