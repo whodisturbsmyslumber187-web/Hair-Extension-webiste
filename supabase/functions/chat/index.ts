@@ -126,8 +126,9 @@ serve(async (req) => {
 
       if (order) {
         // Build a summary of items without exposing full details
+        type OrderUpdate = { status: string; message: string; created_at: string };
         const latestUpdate = order.order_updates?.length 
-          ? order.order_updates.sort((a: any, b: any) => 
+          ? order.order_updates.sort((a: OrderUpdate, b: OrderUpdate) => 
               new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
             )[0]
           : null;

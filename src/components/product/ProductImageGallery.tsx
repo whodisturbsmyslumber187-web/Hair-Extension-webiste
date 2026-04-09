@@ -55,7 +55,7 @@ const ProductImageGallery = ({ productId, selectedColor }: ProductImageGalleryPr
     if (!touchStartX.current || !touchEndX.current) return;
     const difference = touchStartX.current - touchEndX.current;
     if (Math.abs(difference) > 50) {
-      difference > 0 ? nextImage() : prevImage();
+      if (difference > 0) { nextImage(); } else { prevImage(); }
     }
     touchStartX.current = null;
     touchEndX.current = null;
